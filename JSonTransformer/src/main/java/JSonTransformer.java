@@ -24,7 +24,7 @@ import net.thisptr.jackson.jq.Versions;
 import net.thisptr.jackson.jq.module.loaders.BuiltinModuleLoader;
 
 public class JSonTransformer {
-	
+	// Test git
 	public static void main(String[] args) throws IOException {
 		String jqQuery = 			".[].payload | select(.name != null) | { \"name\" : .name, \"id\": .identifier }";
 
