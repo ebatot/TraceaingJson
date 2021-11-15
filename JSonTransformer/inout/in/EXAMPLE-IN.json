@@ -1,0 +1,62 @@
+[
+    {
+      "payload": {
+        "identifier": "d6e3aa92-680d-42e8-93e1-85e222a680b7",
+        "@type": "Package",
+        "qualifiedName": "Base",
+        "aliasId": [],
+        "name": "Base",
+        "effectiveName": "Base"
+      }
+    },
+    {
+      "payload": {
+        "@type": "Import",
+        "ownedRelatedElement": [],
+        "isRecursive": false,
+        "documentationComment": [],
+        "identifier": "b85d7576-e010-49d1-9538-cd2ab0ad852b"
+      }
+    },
+    {
+      "payload": {
+        "identifier": "ff411070-e127-4237-a2d3-6a26f240336a",
+        "@type": "Package",
+        "qualifiedName": "ScalarValues",
+        "aliasId": [],
+        "name": "ScalarValues",
+        "effectiveName": "ScalarValues"
+      }
+    },
+    {
+      "payload": {
+        "@type": "Import",
+        "ownedRelatedElement": [],
+        "identifier": "2ec0bec7-f148-4a21-af9c-2f035f230267"
+      }
+    },
+    {
+      "payload": {
+        "identifier": "e4065d8d-f5b7-4de1-a242-e26c59762584",
+        "@type": "Package",
+        "qualifiedName": "Time",
+        "aliasId": [],
+        "name": "Time",
+        "effectiveName": "Time"
+       }
+    },
+    {
+      "payload": {
+        "documentationComment": [],
+        "identifier": "2bd61978-911b-4112-9ca0-89ce1c397abe",
+        "importedMemberName": "TimeInstantValue"
+      }
+    },
+    {
+      "payload": {
+        "identifier": "7abffda3-6344-4fea-80dd-42894c97a28c",
+        "name": "IntegerFunctions",
+        "effectiveName": "IntegerFunctions"
+      }
+    }
+]
