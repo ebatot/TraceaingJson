@@ -28,10 +28,10 @@ import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
 import model.AnnotatingFeature;
-import model.Link;
+import model.Connection;
 import net.thisptr.jackson.jq.exception.JsonQueryException;
 import transform.JSonTransformer;
-import transform.LinkFactory;
+import transform.ConnectionFactory;
 
 public class Transformer {
 	// Test git
@@ -48,17 +48,17 @@ public class Transformer {
 		String fileOut_meta_name = 	"inout/out/Tracing_FilterExample-meta.json";
 		
 		
-		String strIn = checkAndCleanFileInput(fileIn_name);
+		String datamodel = checkAndCleanFileInput(fileIn_name);
 		
 		
 	
 		System.out.println("\n    **** * * * Links and Elements pretty:");
 		File fileOut_lne = checkOutFileName(fileOut_lne_name);
-		JSonTransformer.getAndStoreConnectionsAndElements(strIn, fileOut_lne);
+		JSonTransformer.getAndStoreConnectionsAndElements(datamodel, fileOut_lne);
 		
 
 		System.out.println("\n    **** * * * Links and Elements RAW:");
-		String outText_lne_raw = JSonTransformer.getPartsAndLinksRaw(strIn); 
+		String outText_lne_raw = JSonTransformer.getPartsAndLinksRaw(datamodel); 
 		FileWriter fw0 = new FileWriter(checkOutFileName(fileOut_lne_raw_name));
 		fw0.write(outText_lne_raw);
 		fw0.close();
@@ -66,71 +66,70 @@ public class Transformer {
 		
 		System.out.println("\n    **** * * * Meta batch:");
 		File fileOut_meta = checkOutFileName(fileOut_meta_name);
-		String outText_meta = getTracingmetas(strIn);
+		String outText_meta = getTracingmetas(datamodel);
 		FileWriter fw2 = new FileWriter(fileOut_meta);
 		fw2.write(outText_meta);
 		fw2.close();
 		
-		HashMap<String, Link> links_map = new HashMap<>(); // Un ID a su Link-object
 		
 		
-		List<String> links_id = JSonTransformer.getLinksIDs(strIn);
-		System.out.println("Links: ");
+		List<String> links_id = JSonTransformer.getLinksIDs(datamodel);
+		System.out.println("* Connections retrieval: ");
 		links_id.forEach(System.out::println);
-		System.out.println("  - fin");
+		System.out.println("- end");
+		System.out.println();
 		
-		Map<String,String> mapOfElements = JSonTransformer.getMapOfElementsRawJsonFromIDs(strIn, (String[]) links_id.toArray(new String[links_id.size()]));
+//		Map<String,String> mapOfElements = JSonTransformer.getMapOfElementsRawJsonFromIDs(datamodel, (String[]) links_id.toArray(new String[links_id.size()]));
 //		mapOfElements.forEach((key, value) -> {
 //		    System.out.println("Key : " + key + " Value : " );
 //		});
 //		links_af.forEach(System.out::println);
 		
 		
-		String link_id = "3c367802-9e00-4e95-983b-e00501307c9e";
-		links_map.put(link_id, new Link(link_id));
-		Link l = links_map.get(link_id);
+		HashMap<String, Connection> links_map = new HashMap<>(); // Un ID a su Link-object
 		
-		// Get the annotating features' ID of id"3c367
-		List<String> links_af = JSonTransformer.getAnnotatingFeaturesIDOfLink(strIn, link_id);
-		HashMap<String, ArrayList<String>> linksMF_list = JSonTransformer.affectAnnotatingFeaturesToLink(strIn, l, links_af);
-		System.out.println(l.toStringPretty());
+		System.out.println("* One Connection build up:");
+		String link_id = "3c367802-9e00-4e95-983b-e00501307c9e";
+		Connection link1 = ConnectionFactory.buildConnection(datamodel, link_id);
+		System.out.println(link1.toStringPretty());
+		HashMap<String, ArrayList<String>> linksMF_list = JSonTransformer.affectAnnotatingFeaturesToConnection(datamodel, link1);
+		System.out.println("- end");
 		System.out.println();
 
-		
-		l.getMetadatas().forEach((id, mf) -> {
-			try {
-				
-				if(mf.isConfidence()) {
-					boolean isAddedValue = JSonTransformer.affectDoubleValueToMF(strIn, mf);
-					System.out.println("added value: "+isAddedValue + ": "+mf.getDoubleValues());
-					System.out.println(mf);
-				}
-				
-				if(mf.isTraceType()){
-					boolean isAddedValue = JSonTransformer.affectStringValueToMF(strIn, mf);
-					System.out.println("added value: "+isAddedValue + ": " +mf.getStringValues());
-					System.out.println(mf);
-				}
-				
-			} catch (JsonQueryException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+		links_id.forEach((id)-> {
+			Connection c = ConnectionFactory.buildConnection(datamodel, id);
+			links_map.put(id, c);
 		});
 		
-		System.out.println(l.toStringPretty());
+		System.out.println("* Building up all connections:");
+		for (Connection l : links_map.values()) {
+			JSonTransformer.affectAnnotatingFeaturesToConnection(datamodel, l);
+			l.getMetadatas().forEach((mf) -> {
+				try {
+					if(mf.isConfidence()) 
+						JSonTransformer.affectDoubleValueToMetadataFeature(datamodel, mf);
+					if(mf.isTraceType())
+						JSonTransformer.affectEnumValueToMetadataFeature(datamodel, mf);
+				} catch (JsonQueryException e) {
+					e.printStackTrace();
+				} catch (JsonProcessingException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+			});
+			System.out.println(l.toStringPretty());
+		}
+		System.out.println(" --> "+links_map.values().size()+" connections found.");
+		System.out.println("* end");
+		
+		System.out.println("\nExit !");
 		System.exit(0);
 		
 		
 		//Get their owner as MetadataFeature MDF
-		String links_af_id = JSonTransformer.extractJSon(strIn,
+		String links_af_id = JSonTransformer.executeJQuery(datamodel,
 				".[].payload "
 						+ "| select((.AAAtype ==  \"MetadataFeature\") and "
 //						+ " ((.owner.AAAid  == \"afbd0bd8-e341-4cc1-8f85-70f049012777\") or "
@@ -149,7 +148,7 @@ public class Transformer {
 		
 		System.out.println("\n    **** * * * Test batch:");
 		fwtest = new FileWriter(checkOutFileName("inout/out/Tracing_FilterExample-test.json"));
-		fwtest.write(JSonTransformer.extractJSon(strIn,
+		fwtest.write(JSonTransformer.executeJQuery(datamodel,
 				".[].payload "
 						+ "| select((.effectiveName != null)) | "
 						+ "{ "
@@ -164,12 +163,18 @@ public class Transformer {
 		
 
 		
-		System.out.println(linksMF_list);
+		
 
 	}
 
 
 
+	/** 
+	 * Verify that the file exists and replaces the @symbol that plagues SysMLv2 JSon persistence. They are replaced with an arbitrary "AAA" sequence.
+	 * @param fileIn_name
+	 * @return
+	 * @throws IOException
+	 */
 	private static String checkAndCleanFileInput(String fileIn_name) throws IOException {
 		File fileIn = new File(fileIn_name);
 		if(!fileIn.exists()) {
@@ -196,7 +201,14 @@ public class Transformer {
 
 
 
-
+	/**
+	 * Returns in a String the elements of the model that are either MetadataFeature, or MetadataFeatureValue
+	 * @param strIn A SysMLv2 model written in JSon
+	 * @return
+	 * @throws IOException
+	 * @throws JsonQueryException
+	 * @throws JsonProcessingException
+	 */
 	private static String getTracingmetas(String strIn) throws IOException, JsonQueryException, JsonProcessingException {
 //		String metasFields_strings = 
 //				" {"
@@ -209,16 +221,22 @@ public class Transformer {
 		
 		String jqQuery_meta = 			".[] "
 				+ "| select(.payload | (.AAAtype == \"MetadataFeature\") or (.AAAtype == \"MetadataFeatureValue\") ) " 
-				+ "| select(.payload | (.qualifiedName != null) and (.qualifiedName | contains(\"Link95\")) ) ";
+				+ "| select(.payload | (.qualifiedName != null)  ) "; //and (.qualifiedName | contains(\"Link95\"))
 //				+ "| "+metasFields_strings;
 
 		
 		
-		String outText_metas = JSonTransformer.extractJSon(strIn, jqQuery_meta);
+		String outText_metas = JSonTransformer.executeJQuery(strIn, jqQuery_meta);
 		return outText_metas;
 	}
 
-
+	
+	/**
+	 * If the file exists it is blanked, if not it is created.
+	 * @param fileOutLinksAndElements_name
+	 * @return
+	 * @throws IOException
+	 */
 	private static File checkOutFileName(String fileOutLinksAndElements_name) throws IOException {
 		File fileOutLinksAndElements = new File(fileOutLinksAndElements_name);
 		if(fileOutLinksAndElements.exists()) {

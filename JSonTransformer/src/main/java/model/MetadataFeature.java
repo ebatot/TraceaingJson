@@ -23,6 +23,12 @@ public class MetadataFeature {
 		return "<MF:"+effectiveName+":"+ID+":"+doubleValue+stringValue+">";
 	}
 	
+	public String toStringPretty() {
+		String doubleValue = doubleValues.isEmpty()? "" : ":" + doubleValues.values().toString();
+		String stringValue = stringValues.isEmpty()? "" : ":" + stringValues.values().toString();
+		return "<"+effectiveName+":"+doubleValue+stringValue+">";
+	}
+	
 	public void addDoubleValue(String literalRationalID, double value) {
 		doubleValues.put(literalRationalID, value);
 	}
