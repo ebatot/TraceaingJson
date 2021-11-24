@@ -1,0 +1,2521 @@
+[ {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "19e63b9d-1d2d-42cd-a6fa-633c3e5bcdbd"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "identifier" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "nestedView" : [ ],
+    "ownedMember" : [ ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ ],
+    "member" : [ ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "end1",
+    "importedMembership" : [ ],
+    "ownedElement" : [ ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ ],
+    "isAbstract" : false,
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::end1",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "end1",
+    "ownedMembership" : [ ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "PartUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "19e63b9d-1d2d-42cd-a6fa-633c3e5bcdbd"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af"
+  }
+}, {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "9466e831-4e21-40cb-baef-e6ad73364094"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "identifier" : "04948cbd-bee6-4481-a6f5-a017fac9d3ec",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "nestedView" : [ ],
+    "ownedMember" : [ ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ ],
+    "member" : [ ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "end2",
+    "importedMembership" : [ ],
+    "ownedElement" : [ ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ ],
+    "isAbstract" : false,
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::end2",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "end2",
+    "ownedMembership" : [ ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "PartUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "9466e831-4e21-40cb-baef-e6ad73364094"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "04948cbd-bee6-4481-a6f5-a017fac9d3ec"
+  }
+}, {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "7ff6d889-f3c3-41a5-bd7e-a83fa8cc8530"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "identifier" : "0b3cd6e8-94c6-4dc3-9532-e5c09ac8f6ec",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "nestedView" : [ ],
+    "ownedMember" : [ ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ ],
+    "member" : [ ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "end3",
+    "importedMembership" : [ ],
+    "ownedElement" : [ ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ ],
+    "isAbstract" : false,
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::end3",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "end3",
+    "ownedMembership" : [ ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "PartUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "7ff6d889-f3c3-41a5-bd7e-a83fa8cc8530"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "0b3cd6e8-94c6-4dc3-9532-e5c09ac8f6ec"
+  }
+}, {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "7c76880a-ac42-46dd-be43-bb9f50d745ea"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "identifier" : "e7eff0d6-e358-4be9-a227-23263a6e5d2c",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "nestedView" : [ ],
+    "ownedMember" : [ ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ ],
+    "member" : [ ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "end4",
+    "importedMembership" : [ ],
+    "ownedElement" : [ ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ ],
+    "isAbstract" : false,
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::end4",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "end4",
+    "ownedMembership" : [ ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "PartUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "7c76880a-ac42-46dd-be43-bb9f50d745ea"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "e7eff0d6-e358-4be9-a227-23263a6e5d2c"
+  }
+}, {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "1ab13285-7328-476e-bb19-70467a2c5b1b"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "identifier" : "91600467-18ae-40cc-b46b-c7a60da1f8f5",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "nestedView" : [ ],
+    "ownedMember" : [ ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ ],
+    "member" : [ ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "end5",
+    "importedMembership" : [ ],
+    "ownedElement" : [ ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ ],
+    "isAbstract" : false,
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::end5",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "end5",
+    "ownedMembership" : [ ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "PartUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "1ab13285-7328-476e-bb19-70467a2c5b1b"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "91600467-18ae-40cc-b46b-c7a60da1f8f5"
+  }
+}, {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "7a85dab7-f0c6-4002-9951-94d86c423a16"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "identifier" : "145ea1ac-d00e-4993-985b-5704d662d3c6",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "nestedView" : [ ],
+    "ownedMember" : [ ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ ],
+    "member" : [ ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "end6",
+    "importedMembership" : [ ],
+    "ownedElement" : [ ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ ],
+    "isAbstract" : false,
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::end6",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "end6",
+    "ownedMembership" : [ ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "PartUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "7a85dab7-f0c6-4002-9951-94d86c423a16"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "145ea1ac-d00e-4993-985b-5704d662d3c6"
+  }
+}, {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "30a66375-31e4-49bc-995a-89dbcdcee17d"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "identifier" : "a4446418-bcd0-48ea-bdb8-7178bd69a273",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "nestedView" : [ ],
+    "ownedMember" : [ ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ ],
+    "member" : [ ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "end7",
+    "importedMembership" : [ ],
+    "ownedElement" : [ ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ ],
+    "isAbstract" : false,
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::end7",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "end7",
+    "ownedMembership" : [ ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "PartUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "30a66375-31e4-49bc-995a-89dbcdcee17d"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "a4446418-bcd0-48ea-bdb8-7178bd69a273"
+  }
+}, {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "9d67b42a-c6de-4896-8902-e986a29c6469"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "identifier" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "nestedView" : [ ],
+    "ownedMember" : [ ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ ],
+    "member" : [ ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "end8",
+    "importedMembership" : [ ],
+    "ownedElement" : [ ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ ],
+    "isAbstract" : false,
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::end8",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "end8",
+    "ownedMembership" : [ ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "PartUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "9d67b42a-c6de-4896-8902-e986a29c6469"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef"
+  }
+}, {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "be5b505c-4609-4d15-a8fb-160895e6eda1"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "sourceFeature" : {
+      "AAAid" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af"
+    },
+    "identifier" : "3c367802-9e00-4e95-983b-e00501307c9e",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ {
+      "AAAid" : "f6f8e345-67a9-4d24-83b6-3d41983f1bac"
+    }, {
+      "AAAid" : "06566100-b17b-4b53-833a-b81861af48ea"
+    }, {
+      "AAAid" : "afbd0bd8-e341-4cc1-8f85-70f049012777"
+    }, {
+      "AAAid" : "187755de-aeb7-4a31-8d1d-449a4544cc30"
+    } ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "relatedElement" : [ {
+      "AAAid" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af"
+    }, {
+      "AAAid" : "04948cbd-bee6-4481-a6f5-a017fac9d3ec"
+    } ],
+    "nestedView" : [ ],
+    "ownedMember" : [ {
+      "AAAid" : "f6f8e345-67a9-4d24-83b6-3d41983f1bac"
+    }, {
+      "AAAid" : "06566100-b17b-4b53-833a-b81861af48ea"
+    }, {
+      "AAAid" : "afbd0bd8-e341-4cc1-8f85-70f049012777"
+    }, {
+      "AAAid" : "187755de-aeb7-4a31-8d1d-449a4544cc30"
+    } ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "association" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ {
+      "AAAid" : "f6f8e345-67a9-4d24-83b6-3d41983f1bac"
+    }, {
+      "AAAid" : "06566100-b17b-4b53-833a-b81861af48ea"
+    }, {
+      "AAAid" : "afbd0bd8-e341-4cc1-8f85-70f049012777"
+    }, {
+      "AAAid" : "187755de-aeb7-4a31-8d1d-449a4544cc30"
+    } ],
+    "member" : [ {
+      "AAAid" : "f6f8e345-67a9-4d24-83b6-3d41983f1bac"
+    }, {
+      "AAAid" : "06566100-b17b-4b53-833a-b81861af48ea"
+    }, {
+      "AAAid" : "afbd0bd8-e341-4cc1-8f85-70f049012777"
+    }, {
+      "AAAid" : "187755de-aeb7-4a31-8d1d-449a4544cc30"
+    } ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "testLink95",
+    "importedMembership" : [ ],
+    "ownedElement" : [ {
+      "AAAid" : "f6f8e345-67a9-4d24-83b6-3d41983f1bac"
+    }, {
+      "AAAid" : "06566100-b17b-4b53-833a-b81861af48ea"
+    }, {
+      "AAAid" : "afbd0bd8-e341-4cc1-8f85-70f049012777"
+    }, {
+      "AAAid" : "187755de-aeb7-4a31-8d1d-449a4544cc30"
+    } ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ {
+      "AAAid" : "ae441dcb-edd5-48a1-953d-940d74c591aa"
+    }, {
+      "AAAid" : "2077f5c9-3e1e-467d-8fb1-45a64f2e8b3c"
+    } ],
+    "isAbstract" : false,
+    "relatedFeature" : [ {
+      "AAAid" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af"
+    }, {
+      "AAAid" : "04948cbd-bee6-4481-a6f5-a017fac9d3ec"
+    } ],
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "source" : [ {
+      "AAAid" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af"
+    } ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::testLink95",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ {
+      "AAAid" : "f6f8e345-67a9-4d24-83b6-3d41983f1bac"
+    }, {
+      "AAAid" : "06566100-b17b-4b53-833a-b81861af48ea"
+    } ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "testLink95",
+    "connectorEnd" : [ {
+      "AAAid" : "f6f8e345-67a9-4d24-83b6-3d41983f1bac"
+    }, {
+      "AAAid" : "06566100-b17b-4b53-833a-b81861af48ea"
+    } ],
+    "connectionDefinition" : [ ],
+    "ownedMembership" : [ {
+      "AAAid" : "ae441dcb-edd5-48a1-953d-940d74c591aa"
+    }, {
+      "AAAid" : "2077f5c9-3e1e-467d-8fb1-45a64f2e8b3c"
+    }, {
+      "AAAid" : "936747af-a68d-41ce-83fe-9dca49d79085"
+    }, {
+      "AAAid" : "4365226c-4b81-4623-83d7-0d10d956bd9f"
+    } ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "ConnectionUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ {
+      "AAAid" : "ae441dcb-edd5-48a1-953d-940d74c591aa"
+    }, {
+      "AAAid" : "2077f5c9-3e1e-467d-8fb1-45a64f2e8b3c"
+    }, {
+      "AAAid" : "936747af-a68d-41ce-83fe-9dca49d79085"
+    }, {
+      "AAAid" : "4365226c-4b81-4623-83d7-0d10d956bd9f"
+    } ],
+    "ownedRelatedElement" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "targetFeature" : [ {
+      "AAAid" : "04948cbd-bee6-4481-a6f5-a017fac9d3ec"
+    } ],
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ {
+      "AAAid" : "f6f8e345-67a9-4d24-83b6-3d41983f1bac"
+    }, {
+      "AAAid" : "06566100-b17b-4b53-833a-b81861af48ea"
+    } ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ {
+      "AAAid" : "ae441dcb-edd5-48a1-953d-940d74c591aa"
+    }, {
+      "AAAid" : "2077f5c9-3e1e-467d-8fb1-45a64f2e8b3c"
+    } ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "be5b505c-4609-4d15-a8fb-160895e6eda1"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ {
+      "AAAid" : "ae441dcb-edd5-48a1-953d-940d74c591aa"
+    }, {
+      "AAAid" : "2077f5c9-3e1e-467d-8fb1-45a64f2e8b3c"
+    }, {
+      "AAAid" : "936747af-a68d-41ce-83fe-9dca49d79085"
+    }, {
+      "AAAid" : "4365226c-4b81-4623-83d7-0d10d956bd9f"
+    } ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "target" : [ {
+      "AAAid" : "04948cbd-bee6-4481-a6f5-a017fac9d3ec"
+    } ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "isDirected" : false,
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "3c367802-9e00-4e95-983b-e00501307c9e"
+  }
+}, {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "7bee4cb1-38b5-4599-a1b1-3b1c24afb0bd"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "sourceFeature" : {
+      "AAAid" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af"
+    },
+    "identifier" : "3622f709-b31e-4945-8e3e-1d232b8b53cb",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ {
+      "AAAid" : "485de6b8-e623-4254-b0f0-4112201ef58c"
+    }, {
+      "AAAid" : "3c7b3183-5570-4f66-a76e-66efe2f3859f"
+    }, {
+      "AAAid" : "14b85311-0312-498c-8fc1-9570ab2f6bc7"
+    } ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "relatedElement" : [ {
+      "AAAid" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af"
+    }, {
+      "AAAid" : "0b3cd6e8-94c6-4dc3-9532-e5c09ac8f6ec"
+    } ],
+    "nestedView" : [ ],
+    "ownedMember" : [ {
+      "AAAid" : "485de6b8-e623-4254-b0f0-4112201ef58c"
+    }, {
+      "AAAid" : "3c7b3183-5570-4f66-a76e-66efe2f3859f"
+    }, {
+      "AAAid" : "14b85311-0312-498c-8fc1-9570ab2f6bc7"
+    } ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "association" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ {
+      "AAAid" : "485de6b8-e623-4254-b0f0-4112201ef58c"
+    }, {
+      "AAAid" : "3c7b3183-5570-4f66-a76e-66efe2f3859f"
+    }, {
+      "AAAid" : "14b85311-0312-498c-8fc1-9570ab2f6bc7"
+    } ],
+    "member" : [ {
+      "AAAid" : "485de6b8-e623-4254-b0f0-4112201ef58c"
+    }, {
+      "AAAid" : "3c7b3183-5570-4f66-a76e-66efe2f3859f"
+    }, {
+      "AAAid" : "14b85311-0312-498c-8fc1-9570ab2f6bc7"
+    } ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "testLink85",
+    "importedMembership" : [ ],
+    "ownedElement" : [ {
+      "AAAid" : "485de6b8-e623-4254-b0f0-4112201ef58c"
+    }, {
+      "AAAid" : "3c7b3183-5570-4f66-a76e-66efe2f3859f"
+    }, {
+      "AAAid" : "14b85311-0312-498c-8fc1-9570ab2f6bc7"
+    } ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ {
+      "AAAid" : "45c2e44c-a81d-48ad-a510-26a51877104b"
+    }, {
+      "AAAid" : "fca66f61-6276-40a7-aef7-fa8c3c001bd5"
+    } ],
+    "isAbstract" : false,
+    "relatedFeature" : [ {
+      "AAAid" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af"
+    }, {
+      "AAAid" : "0b3cd6e8-94c6-4dc3-9532-e5c09ac8f6ec"
+    } ],
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "source" : [ {
+      "AAAid" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af"
+    } ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::testLink85",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ {
+      "AAAid" : "485de6b8-e623-4254-b0f0-4112201ef58c"
+    }, {
+      "AAAid" : "3c7b3183-5570-4f66-a76e-66efe2f3859f"
+    } ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "testLink85",
+    "connectorEnd" : [ {
+      "AAAid" : "485de6b8-e623-4254-b0f0-4112201ef58c"
+    }, {
+      "AAAid" : "3c7b3183-5570-4f66-a76e-66efe2f3859f"
+    } ],
+    "connectionDefinition" : [ ],
+    "ownedMembership" : [ {
+      "AAAid" : "45c2e44c-a81d-48ad-a510-26a51877104b"
+    }, {
+      "AAAid" : "fca66f61-6276-40a7-aef7-fa8c3c001bd5"
+    }, {
+      "AAAid" : "13ebe624-db96-4434-975f-0a308bc5aa27"
+    } ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "ConnectionUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ {
+      "AAAid" : "45c2e44c-a81d-48ad-a510-26a51877104b"
+    }, {
+      "AAAid" : "fca66f61-6276-40a7-aef7-fa8c3c001bd5"
+    }, {
+      "AAAid" : "13ebe624-db96-4434-975f-0a308bc5aa27"
+    } ],
+    "ownedRelatedElement" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "targetFeature" : [ {
+      "AAAid" : "0b3cd6e8-94c6-4dc3-9532-e5c09ac8f6ec"
+    } ],
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ {
+      "AAAid" : "485de6b8-e623-4254-b0f0-4112201ef58c"
+    }, {
+      "AAAid" : "3c7b3183-5570-4f66-a76e-66efe2f3859f"
+    } ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ {
+      "AAAid" : "45c2e44c-a81d-48ad-a510-26a51877104b"
+    }, {
+      "AAAid" : "fca66f61-6276-40a7-aef7-fa8c3c001bd5"
+    } ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "7bee4cb1-38b5-4599-a1b1-3b1c24afb0bd"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ {
+      "AAAid" : "45c2e44c-a81d-48ad-a510-26a51877104b"
+    }, {
+      "AAAid" : "fca66f61-6276-40a7-aef7-fa8c3c001bd5"
+    }, {
+      "AAAid" : "13ebe624-db96-4434-975f-0a308bc5aa27"
+    } ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "target" : [ {
+      "AAAid" : "0b3cd6e8-94c6-4dc3-9532-e5c09ac8f6ec"
+    } ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "isDirected" : false,
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "3622f709-b31e-4945-8e3e-1d232b8b53cb"
+  }
+}, {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "4c55f990-de23-42bb-b65d-1c9c0ace757d"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "sourceFeature" : {
+      "AAAid" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af"
+    },
+    "identifier" : "6fe01af9-a8c3-405f-b048-5cfb0f120ea9",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ {
+      "AAAid" : "2436b1c8-5870-4766-bdbe-b56fc2801c87"
+    }, {
+      "AAAid" : "cbddc382-0b46-4a64-943a-d09a58e0f9a9"
+    }, {
+      "AAAid" : "772a8fa9-c20a-4782-b8be-364a65254d46"
+    }, {
+      "AAAid" : "5cd2ba30-654d-4b95-bdd5-7d58fa1112f6"
+    } ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "relatedElement" : [ {
+      "AAAid" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af"
+    }, {
+      "AAAid" : "e7eff0d6-e358-4be9-a227-23263a6e5d2c"
+    } ],
+    "nestedView" : [ ],
+    "ownedMember" : [ {
+      "AAAid" : "2436b1c8-5870-4766-bdbe-b56fc2801c87"
+    }, {
+      "AAAid" : "cbddc382-0b46-4a64-943a-d09a58e0f9a9"
+    }, {
+      "AAAid" : "772a8fa9-c20a-4782-b8be-364a65254d46"
+    }, {
+      "AAAid" : "5cd2ba30-654d-4b95-bdd5-7d58fa1112f6"
+    } ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "association" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ {
+      "AAAid" : "2436b1c8-5870-4766-bdbe-b56fc2801c87"
+    }, {
+      "AAAid" : "cbddc382-0b46-4a64-943a-d09a58e0f9a9"
+    }, {
+      "AAAid" : "772a8fa9-c20a-4782-b8be-364a65254d46"
+    }, {
+      "AAAid" : "5cd2ba30-654d-4b95-bdd5-7d58fa1112f6"
+    } ],
+    "member" : [ {
+      "AAAid" : "2436b1c8-5870-4766-bdbe-b56fc2801c87"
+    }, {
+      "AAAid" : "cbddc382-0b46-4a64-943a-d09a58e0f9a9"
+    }, {
+      "AAAid" : "772a8fa9-c20a-4782-b8be-364a65254d46"
+    }, {
+      "AAAid" : "5cd2ba30-654d-4b95-bdd5-7d58fa1112f6"
+    } ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "testLink75",
+    "importedMembership" : [ ],
+    "ownedElement" : [ {
+      "AAAid" : "2436b1c8-5870-4766-bdbe-b56fc2801c87"
+    }, {
+      "AAAid" : "cbddc382-0b46-4a64-943a-d09a58e0f9a9"
+    }, {
+      "AAAid" : "772a8fa9-c20a-4782-b8be-364a65254d46"
+    }, {
+      "AAAid" : "5cd2ba30-654d-4b95-bdd5-7d58fa1112f6"
+    } ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ {
+      "AAAid" : "fd36513d-c638-47a9-a222-4d101af2203f"
+    }, {
+      "AAAid" : "6273b10d-7cc7-4ed0-9434-aa9c1ca29569"
+    } ],
+    "isAbstract" : false,
+    "relatedFeature" : [ {
+      "AAAid" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af"
+    }, {
+      "AAAid" : "e7eff0d6-e358-4be9-a227-23263a6e5d2c"
+    } ],
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "source" : [ {
+      "AAAid" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af"
+    } ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::testLink75",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ {
+      "AAAid" : "2436b1c8-5870-4766-bdbe-b56fc2801c87"
+    }, {
+      "AAAid" : "cbddc382-0b46-4a64-943a-d09a58e0f9a9"
+    } ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "testLink75",
+    "connectorEnd" : [ {
+      "AAAid" : "2436b1c8-5870-4766-bdbe-b56fc2801c87"
+    }, {
+      "AAAid" : "cbddc382-0b46-4a64-943a-d09a58e0f9a9"
+    } ],
+    "connectionDefinition" : [ ],
+    "ownedMembership" : [ {
+      "AAAid" : "fd36513d-c638-47a9-a222-4d101af2203f"
+    }, {
+      "AAAid" : "6273b10d-7cc7-4ed0-9434-aa9c1ca29569"
+    }, {
+      "AAAid" : "895072f8-1ce8-47f1-b281-bed7acc112b8"
+    }, {
+      "AAAid" : "9abfe3a0-7490-4fb8-afa2-33a71377da4d"
+    } ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "ConnectionUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ {
+      "AAAid" : "fd36513d-c638-47a9-a222-4d101af2203f"
+    }, {
+      "AAAid" : "6273b10d-7cc7-4ed0-9434-aa9c1ca29569"
+    }, {
+      "AAAid" : "895072f8-1ce8-47f1-b281-bed7acc112b8"
+    }, {
+      "AAAid" : "9abfe3a0-7490-4fb8-afa2-33a71377da4d"
+    } ],
+    "ownedRelatedElement" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "targetFeature" : [ {
+      "AAAid" : "e7eff0d6-e358-4be9-a227-23263a6e5d2c"
+    } ],
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ {
+      "AAAid" : "2436b1c8-5870-4766-bdbe-b56fc2801c87"
+    }, {
+      "AAAid" : "cbddc382-0b46-4a64-943a-d09a58e0f9a9"
+    } ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ {
+      "AAAid" : "fd36513d-c638-47a9-a222-4d101af2203f"
+    }, {
+      "AAAid" : "6273b10d-7cc7-4ed0-9434-aa9c1ca29569"
+    } ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "4c55f990-de23-42bb-b65d-1c9c0ace757d"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ {
+      "AAAid" : "fd36513d-c638-47a9-a222-4d101af2203f"
+    }, {
+      "AAAid" : "6273b10d-7cc7-4ed0-9434-aa9c1ca29569"
+    }, {
+      "AAAid" : "895072f8-1ce8-47f1-b281-bed7acc112b8"
+    }, {
+      "AAAid" : "9abfe3a0-7490-4fb8-afa2-33a71377da4d"
+    } ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "target" : [ {
+      "AAAid" : "e7eff0d6-e358-4be9-a227-23263a6e5d2c"
+    } ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "isDirected" : false,
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "6fe01af9-a8c3-405f-b048-5cfb0f120ea9"
+  }
+}, {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "2a4e1421-d835-40fb-bb8f-190fa4737d10"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "sourceFeature" : {
+      "AAAid" : "91600467-18ae-40cc-b46b-c7a60da1f8f5"
+    },
+    "identifier" : "67467048-3c3d-48dd-a609-e91f320b7e37",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ {
+      "AAAid" : "7fa0aa55-c1c0-406c-9894-0e13b28e27bb"
+    }, {
+      "AAAid" : "5a9dac62-6fe5-43a1-bb9f-d2dcfa88a444"
+    }, {
+      "AAAid" : "e2c87116-7dcd-453c-808f-afc94f2078d3"
+    } ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "relatedElement" : [ {
+      "AAAid" : "91600467-18ae-40cc-b46b-c7a60da1f8f5"
+    }, {
+      "AAAid" : "145ea1ac-d00e-4993-985b-5704d662d3c6"
+    } ],
+    "nestedView" : [ ],
+    "ownedMember" : [ {
+      "AAAid" : "7fa0aa55-c1c0-406c-9894-0e13b28e27bb"
+    }, {
+      "AAAid" : "5a9dac62-6fe5-43a1-bb9f-d2dcfa88a444"
+    }, {
+      "AAAid" : "e2c87116-7dcd-453c-808f-afc94f2078d3"
+    } ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "association" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ {
+      "AAAid" : "7fa0aa55-c1c0-406c-9894-0e13b28e27bb"
+    }, {
+      "AAAid" : "5a9dac62-6fe5-43a1-bb9f-d2dcfa88a444"
+    }, {
+      "AAAid" : "e2c87116-7dcd-453c-808f-afc94f2078d3"
+    } ],
+    "member" : [ {
+      "AAAid" : "7fa0aa55-c1c0-406c-9894-0e13b28e27bb"
+    }, {
+      "AAAid" : "5a9dac62-6fe5-43a1-bb9f-d2dcfa88a444"
+    }, {
+      "AAAid" : "e2c87116-7dcd-453c-808f-afc94f2078d3"
+    } ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "testLink65",
+    "importedMembership" : [ ],
+    "ownedElement" : [ {
+      "AAAid" : "7fa0aa55-c1c0-406c-9894-0e13b28e27bb"
+    }, {
+      "AAAid" : "5a9dac62-6fe5-43a1-bb9f-d2dcfa88a444"
+    }, {
+      "AAAid" : "e2c87116-7dcd-453c-808f-afc94f2078d3"
+    } ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ {
+      "AAAid" : "5004877d-7d1f-4550-9deb-4c9f92784b64"
+    }, {
+      "AAAid" : "c74acbea-f990-4719-8456-64bda1f34056"
+    } ],
+    "isAbstract" : false,
+    "relatedFeature" : [ {
+      "AAAid" : "91600467-18ae-40cc-b46b-c7a60da1f8f5"
+    }, {
+      "AAAid" : "145ea1ac-d00e-4993-985b-5704d662d3c6"
+    } ],
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "source" : [ {
+      "AAAid" : "91600467-18ae-40cc-b46b-c7a60da1f8f5"
+    } ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::testLink65",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ {
+      "AAAid" : "7fa0aa55-c1c0-406c-9894-0e13b28e27bb"
+    }, {
+      "AAAid" : "5a9dac62-6fe5-43a1-bb9f-d2dcfa88a444"
+    } ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "testLink65",
+    "connectorEnd" : [ {
+      "AAAid" : "7fa0aa55-c1c0-406c-9894-0e13b28e27bb"
+    }, {
+      "AAAid" : "5a9dac62-6fe5-43a1-bb9f-d2dcfa88a444"
+    } ],
+    "connectionDefinition" : [ ],
+    "ownedMembership" : [ {
+      "AAAid" : "5004877d-7d1f-4550-9deb-4c9f92784b64"
+    }, {
+      "AAAid" : "c74acbea-f990-4719-8456-64bda1f34056"
+    }, {
+      "AAAid" : "b32ce079-f23e-432c-922e-fe5df47a764a"
+    } ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "ConnectionUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ {
+      "AAAid" : "5004877d-7d1f-4550-9deb-4c9f92784b64"
+    }, {
+      "AAAid" : "c74acbea-f990-4719-8456-64bda1f34056"
+    }, {
+      "AAAid" : "b32ce079-f23e-432c-922e-fe5df47a764a"
+    } ],
+    "ownedRelatedElement" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "targetFeature" : [ {
+      "AAAid" : "145ea1ac-d00e-4993-985b-5704d662d3c6"
+    } ],
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ {
+      "AAAid" : "7fa0aa55-c1c0-406c-9894-0e13b28e27bb"
+    }, {
+      "AAAid" : "5a9dac62-6fe5-43a1-bb9f-d2dcfa88a444"
+    } ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ {
+      "AAAid" : "5004877d-7d1f-4550-9deb-4c9f92784b64"
+    }, {
+      "AAAid" : "c74acbea-f990-4719-8456-64bda1f34056"
+    } ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "2a4e1421-d835-40fb-bb8f-190fa4737d10"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ {
+      "AAAid" : "5004877d-7d1f-4550-9deb-4c9f92784b64"
+    }, {
+      "AAAid" : "c74acbea-f990-4719-8456-64bda1f34056"
+    }, {
+      "AAAid" : "b32ce079-f23e-432c-922e-fe5df47a764a"
+    } ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "target" : [ {
+      "AAAid" : "145ea1ac-d00e-4993-985b-5704d662d3c6"
+    } ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "isDirected" : false,
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "67467048-3c3d-48dd-a609-e91f320b7e37"
+  }
+}, {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "bfa9ae4a-426f-4edb-be99-aa85f0f5d6cb"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "sourceFeature" : {
+      "AAAid" : "145ea1ac-d00e-4993-985b-5704d662d3c6"
+    },
+    "identifier" : "1399bb11-7229-48bb-8bf2-7e6b5869e5b3",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ {
+      "AAAid" : "764eec29-a269-4ac8-aebf-628fc4909f08"
+    }, {
+      "AAAid" : "83194f7e-9d2b-439d-86fc-6d93a3902793"
+    }, {
+      "AAAid" : "ad0ab9cb-81fc-460e-8f50-229405d9ed41"
+    } ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "relatedElement" : [ {
+      "AAAid" : "145ea1ac-d00e-4993-985b-5704d662d3c6"
+    }, {
+      "AAAid" : "a4446418-bcd0-48ea-bdb8-7178bd69a273"
+    } ],
+    "nestedView" : [ ],
+    "ownedMember" : [ {
+      "AAAid" : "764eec29-a269-4ac8-aebf-628fc4909f08"
+    }, {
+      "AAAid" : "83194f7e-9d2b-439d-86fc-6d93a3902793"
+    }, {
+      "AAAid" : "ad0ab9cb-81fc-460e-8f50-229405d9ed41"
+    } ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "association" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ {
+      "AAAid" : "764eec29-a269-4ac8-aebf-628fc4909f08"
+    }, {
+      "AAAid" : "83194f7e-9d2b-439d-86fc-6d93a3902793"
+    }, {
+      "AAAid" : "ad0ab9cb-81fc-460e-8f50-229405d9ed41"
+    } ],
+    "member" : [ {
+      "AAAid" : "764eec29-a269-4ac8-aebf-628fc4909f08"
+    }, {
+      "AAAid" : "83194f7e-9d2b-439d-86fc-6d93a3902793"
+    }, {
+      "AAAid" : "ad0ab9cb-81fc-460e-8f50-229405d9ed41"
+    } ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "testLink55",
+    "importedMembership" : [ ],
+    "ownedElement" : [ {
+      "AAAid" : "764eec29-a269-4ac8-aebf-628fc4909f08"
+    }, {
+      "AAAid" : "83194f7e-9d2b-439d-86fc-6d93a3902793"
+    }, {
+      "AAAid" : "ad0ab9cb-81fc-460e-8f50-229405d9ed41"
+    } ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ {
+      "AAAid" : "2e338bc4-fe8d-497f-a7a4-fb9685dd0828"
+    }, {
+      "AAAid" : "b0aed267-860a-4c36-9abd-a3be086a1a4a"
+    } ],
+    "isAbstract" : false,
+    "relatedFeature" : [ {
+      "AAAid" : "145ea1ac-d00e-4993-985b-5704d662d3c6"
+    }, {
+      "AAAid" : "a4446418-bcd0-48ea-bdb8-7178bd69a273"
+    } ],
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "source" : [ {
+      "AAAid" : "145ea1ac-d00e-4993-985b-5704d662d3c6"
+    } ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::testLink55",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ {
+      "AAAid" : "764eec29-a269-4ac8-aebf-628fc4909f08"
+    }, {
+      "AAAid" : "83194f7e-9d2b-439d-86fc-6d93a3902793"
+    } ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "testLink55",
+    "connectorEnd" : [ {
+      "AAAid" : "764eec29-a269-4ac8-aebf-628fc4909f08"
+    }, {
+      "AAAid" : "83194f7e-9d2b-439d-86fc-6d93a3902793"
+    } ],
+    "connectionDefinition" : [ ],
+    "ownedMembership" : [ {
+      "AAAid" : "2e338bc4-fe8d-497f-a7a4-fb9685dd0828"
+    }, {
+      "AAAid" : "b0aed267-860a-4c36-9abd-a3be086a1a4a"
+    }, {
+      "AAAid" : "275053d5-fbe3-48d3-80dc-b128dc3104f1"
+    } ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "ConnectionUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ {
+      "AAAid" : "2e338bc4-fe8d-497f-a7a4-fb9685dd0828"
+    }, {
+      "AAAid" : "b0aed267-860a-4c36-9abd-a3be086a1a4a"
+    }, {
+      "AAAid" : "275053d5-fbe3-48d3-80dc-b128dc3104f1"
+    } ],
+    "ownedRelatedElement" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "targetFeature" : [ {
+      "AAAid" : "a4446418-bcd0-48ea-bdb8-7178bd69a273"
+    } ],
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ {
+      "AAAid" : "764eec29-a269-4ac8-aebf-628fc4909f08"
+    }, {
+      "AAAid" : "83194f7e-9d2b-439d-86fc-6d93a3902793"
+    } ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ {
+      "AAAid" : "2e338bc4-fe8d-497f-a7a4-fb9685dd0828"
+    }, {
+      "AAAid" : "b0aed267-860a-4c36-9abd-a3be086a1a4a"
+    } ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "bfa9ae4a-426f-4edb-be99-aa85f0f5d6cb"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ {
+      "AAAid" : "2e338bc4-fe8d-497f-a7a4-fb9685dd0828"
+    }, {
+      "AAAid" : "b0aed267-860a-4c36-9abd-a3be086a1a4a"
+    }, {
+      "AAAid" : "275053d5-fbe3-48d3-80dc-b128dc3104f1"
+    } ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "target" : [ {
+      "AAAid" : "a4446418-bcd0-48ea-bdb8-7178bd69a273"
+    } ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "isDirected" : false,
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "1399bb11-7229-48bb-8bf2-7e6b5869e5b3"
+  }
+}, {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "a57dca9e-6be0-46fb-8d3b-3953bf3d6e1c"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "sourceFeature" : {
+      "AAAid" : "a4446418-bcd0-48ea-bdb8-7178bd69a273"
+    },
+    "identifier" : "6e548969-0eb7-4912-a82d-9958792786ef",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ {
+      "AAAid" : "e1350f45-c1f1-4fc1-afac-27a6400a0d03"
+    }, {
+      "AAAid" : "851edcd0-18e2-4d72-98b1-293eb31880b4"
+    }, {
+      "AAAid" : "92708e5d-af89-4ac0-9fe6-99094939b26f"
+    }, {
+      "AAAid" : "575615a4-e998-4dad-a72f-e5e96ef37974"
+    } ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "relatedElement" : [ {
+      "AAAid" : "a4446418-bcd0-48ea-bdb8-7178bd69a273"
+    }, {
+      "AAAid" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef"
+    } ],
+    "nestedView" : [ ],
+    "ownedMember" : [ {
+      "AAAid" : "e1350f45-c1f1-4fc1-afac-27a6400a0d03"
+    }, {
+      "AAAid" : "851edcd0-18e2-4d72-98b1-293eb31880b4"
+    }, {
+      "AAAid" : "92708e5d-af89-4ac0-9fe6-99094939b26f"
+    }, {
+      "AAAid" : "575615a4-e998-4dad-a72f-e5e96ef37974"
+    } ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "association" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ {
+      "AAAid" : "e1350f45-c1f1-4fc1-afac-27a6400a0d03"
+    }, {
+      "AAAid" : "851edcd0-18e2-4d72-98b1-293eb31880b4"
+    }, {
+      "AAAid" : "92708e5d-af89-4ac0-9fe6-99094939b26f"
+    }, {
+      "AAAid" : "575615a4-e998-4dad-a72f-e5e96ef37974"
+    } ],
+    "member" : [ {
+      "AAAid" : "e1350f45-c1f1-4fc1-afac-27a6400a0d03"
+    }, {
+      "AAAid" : "851edcd0-18e2-4d72-98b1-293eb31880b4"
+    }, {
+      "AAAid" : "92708e5d-af89-4ac0-9fe6-99094939b26f"
+    }, {
+      "AAAid" : "575615a4-e998-4dad-a72f-e5e96ef37974"
+    } ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "testLink45",
+    "importedMembership" : [ ],
+    "ownedElement" : [ {
+      "AAAid" : "e1350f45-c1f1-4fc1-afac-27a6400a0d03"
+    }, {
+      "AAAid" : "851edcd0-18e2-4d72-98b1-293eb31880b4"
+    }, {
+      "AAAid" : "92708e5d-af89-4ac0-9fe6-99094939b26f"
+    }, {
+      "AAAid" : "575615a4-e998-4dad-a72f-e5e96ef37974"
+    } ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ {
+      "AAAid" : "120253db-1eb7-438d-b4ab-dfd8900384be"
+    }, {
+      "AAAid" : "6fed0c46-36e8-4e04-a2a1-78e2e04c2899"
+    } ],
+    "isAbstract" : false,
+    "relatedFeature" : [ {
+      "AAAid" : "a4446418-bcd0-48ea-bdb8-7178bd69a273"
+    }, {
+      "AAAid" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef"
+    } ],
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "source" : [ {
+      "AAAid" : "a4446418-bcd0-48ea-bdb8-7178bd69a273"
+    } ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::testLink45",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ {
+      "AAAid" : "e1350f45-c1f1-4fc1-afac-27a6400a0d03"
+    }, {
+      "AAAid" : "851edcd0-18e2-4d72-98b1-293eb31880b4"
+    } ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "testLink45",
+    "connectorEnd" : [ {
+      "AAAid" : "e1350f45-c1f1-4fc1-afac-27a6400a0d03"
+    }, {
+      "AAAid" : "851edcd0-18e2-4d72-98b1-293eb31880b4"
+    } ],
+    "connectionDefinition" : [ ],
+    "ownedMembership" : [ {
+      "AAAid" : "120253db-1eb7-438d-b4ab-dfd8900384be"
+    }, {
+      "AAAid" : "6fed0c46-36e8-4e04-a2a1-78e2e04c2899"
+    }, {
+      "AAAid" : "69e63d47-cac0-4878-9c0e-6c9d30f177b0"
+    }, {
+      "AAAid" : "73264b52-6545-4da9-829e-4706317b48ea"
+    } ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "ConnectionUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ {
+      "AAAid" : "120253db-1eb7-438d-b4ab-dfd8900384be"
+    }, {
+      "AAAid" : "6fed0c46-36e8-4e04-a2a1-78e2e04c2899"
+    }, {
+      "AAAid" : "69e63d47-cac0-4878-9c0e-6c9d30f177b0"
+    }, {
+      "AAAid" : "73264b52-6545-4da9-829e-4706317b48ea"
+    } ],
+    "ownedRelatedElement" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "targetFeature" : [ {
+      "AAAid" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef"
+    } ],
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ {
+      "AAAid" : "e1350f45-c1f1-4fc1-afac-27a6400a0d03"
+    }, {
+      "AAAid" : "851edcd0-18e2-4d72-98b1-293eb31880b4"
+    } ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ {
+      "AAAid" : "120253db-1eb7-438d-b4ab-dfd8900384be"
+    }, {
+      "AAAid" : "6fed0c46-36e8-4e04-a2a1-78e2e04c2899"
+    } ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "a57dca9e-6be0-46fb-8d3b-3953bf3d6e1c"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ {
+      "AAAid" : "120253db-1eb7-438d-b4ab-dfd8900384be"
+    }, {
+      "AAAid" : "6fed0c46-36e8-4e04-a2a1-78e2e04c2899"
+    }, {
+      "AAAid" : "69e63d47-cac0-4878-9c0e-6c9d30f177b0"
+    }, {
+      "AAAid" : "73264b52-6545-4da9-829e-4706317b48ea"
+    } ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "target" : [ {
+      "AAAid" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef"
+    } ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "isDirected" : false,
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "6e548969-0eb7-4912-a82d-9958792786ef"
+  }
+}, {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "1a7861bd-dfaa-456a-b3d8-dd7cff35d8a1"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "sourceFeature" : {
+      "AAAid" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef"
+    },
+    "identifier" : "2984574f-7227-4c49-9151-cbdad136ac79",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ {
+      "AAAid" : "80f5bde6-4064-409f-b9bb-7581d4aa7447"
+    }, {
+      "AAAid" : "ee45bb5a-6660-4829-8649-0ca04daaa42c"
+    }, {
+      "AAAid" : "950a5a51-8a6e-417a-a861-c31823ea0fd8"
+    } ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "relatedElement" : [ {
+      "AAAid" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef"
+    }, {
+      "AAAid" : "a4446418-bcd0-48ea-bdb8-7178bd69a273"
+    } ],
+    "nestedView" : [ ],
+    "ownedMember" : [ {
+      "AAAid" : "80f5bde6-4064-409f-b9bb-7581d4aa7447"
+    }, {
+      "AAAid" : "ee45bb5a-6660-4829-8649-0ca04daaa42c"
+    }, {
+      "AAAid" : "950a5a51-8a6e-417a-a861-c31823ea0fd8"
+    } ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "association" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ {
+      "AAAid" : "80f5bde6-4064-409f-b9bb-7581d4aa7447"
+    }, {
+      "AAAid" : "ee45bb5a-6660-4829-8649-0ca04daaa42c"
+    }, {
+      "AAAid" : "950a5a51-8a6e-417a-a861-c31823ea0fd8"
+    } ],
+    "member" : [ {
+      "AAAid" : "80f5bde6-4064-409f-b9bb-7581d4aa7447"
+    }, {
+      "AAAid" : "ee45bb5a-6660-4829-8649-0ca04daaa42c"
+    }, {
+      "AAAid" : "950a5a51-8a6e-417a-a861-c31823ea0fd8"
+    } ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "testLink35",
+    "importedMembership" : [ ],
+    "ownedElement" : [ {
+      "AAAid" : "80f5bde6-4064-409f-b9bb-7581d4aa7447"
+    }, {
+      "AAAid" : "ee45bb5a-6660-4829-8649-0ca04daaa42c"
+    }, {
+      "AAAid" : "950a5a51-8a6e-417a-a861-c31823ea0fd8"
+    } ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ {
+      "AAAid" : "eea6d97e-0542-4b16-9a5d-9ad03155132c"
+    }, {
+      "AAAid" : "dc775750-a1d9-4425-b79f-232c9aa911a7"
+    } ],
+    "isAbstract" : false,
+    "relatedFeature" : [ {
+      "AAAid" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef"
+    }, {
+      "AAAid" : "a4446418-bcd0-48ea-bdb8-7178bd69a273"
+    } ],
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "source" : [ {
+      "AAAid" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef"
+    } ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::testLink35",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ {
+      "AAAid" : "80f5bde6-4064-409f-b9bb-7581d4aa7447"
+    }, {
+      "AAAid" : "ee45bb5a-6660-4829-8649-0ca04daaa42c"
+    } ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "testLink35",
+    "connectorEnd" : [ {
+      "AAAid" : "80f5bde6-4064-409f-b9bb-7581d4aa7447"
+    }, {
+      "AAAid" : "ee45bb5a-6660-4829-8649-0ca04daaa42c"
+    } ],
+    "connectionDefinition" : [ ],
+    "ownedMembership" : [ {
+      "AAAid" : "eea6d97e-0542-4b16-9a5d-9ad03155132c"
+    }, {
+      "AAAid" : "dc775750-a1d9-4425-b79f-232c9aa911a7"
+    }, {
+      "AAAid" : "10f7fba9-d17f-497c-8b08-8779e8410848"
+    } ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "ConnectionUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ {
+      "AAAid" : "eea6d97e-0542-4b16-9a5d-9ad03155132c"
+    }, {
+      "AAAid" : "dc775750-a1d9-4425-b79f-232c9aa911a7"
+    }, {
+      "AAAid" : "10f7fba9-d17f-497c-8b08-8779e8410848"
+    } ],
+    "ownedRelatedElement" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "targetFeature" : [ {
+      "AAAid" : "a4446418-bcd0-48ea-bdb8-7178bd69a273"
+    } ],
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ {
+      "AAAid" : "80f5bde6-4064-409f-b9bb-7581d4aa7447"
+    }, {
+      "AAAid" : "ee45bb5a-6660-4829-8649-0ca04daaa42c"
+    } ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ {
+      "AAAid" : "eea6d97e-0542-4b16-9a5d-9ad03155132c"
+    }, {
+      "AAAid" : "dc775750-a1d9-4425-b79f-232c9aa911a7"
+    } ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "1a7861bd-dfaa-456a-b3d8-dd7cff35d8a1"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ {
+      "AAAid" : "eea6d97e-0542-4b16-9a5d-9ad03155132c"
+    }, {
+      "AAAid" : "dc775750-a1d9-4425-b79f-232c9aa911a7"
+    }, {
+      "AAAid" : "10f7fba9-d17f-497c-8b08-8779e8410848"
+    } ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "target" : [ {
+      "AAAid" : "a4446418-bcd0-48ea-bdb8-7178bd69a273"
+    } ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "isDirected" : false,
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "2984574f-7227-4c49-9151-cbdad136ac79"
+  }
+}, {
+  "payload" : {
+    "owningMembership" : {
+      "AAAid" : "5c98cc0c-3e3c-43a3-985d-9052c7a1921c"
+    },
+    "ownedTypeFeaturing" : [ ],
+    "usage" : [ ],
+    "ownedSubsetting" : [ ],
+    "type" : [ ],
+    "nestedRequirement" : [ ],
+    "output" : [ ],
+    "nestedPort" : [ ],
+    "nestedTransition" : [ ],
+    "nestedConstraint" : [ ],
+    "isSufficient" : false,
+    "ownedRedefinition" : [ ],
+    "sourceFeature" : {
+      "AAAid" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef"
+    },
+    "identifier" : "1e100cfc-b644-4bd4-bee5-c051f595ea59",
+    "nestedAttribute" : [ ],
+    "nestedEnumeration" : [ ],
+    "ownedFeature" : [ {
+      "AAAid" : "1944950d-9280-4a92-9b93-728df8ce5201"
+    }, {
+      "AAAid" : "ae0435f5-7225-49f3-9b3f-040ecd7ae0c8"
+    }, {
+      "AAAid" : "b8d69d1b-03e0-4f83-8cfd-f02e381e65f5"
+    }, {
+      "AAAid" : "885586eb-1b2b-4589-895d-d3ee6db38128"
+    } ],
+    "documentation" : [ ],
+    "nestedAnalysisCase" : [ ],
+    "directedFeature" : [ ],
+    "input" : [ ],
+    "nestedCalculation" : [ ],
+    "relatedElement" : [ {
+      "AAAid" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef"
+    }, {
+      "AAAid" : "145ea1ac-d00e-4993-985b-5704d662d3c6"
+    } ],
+    "nestedView" : [ ],
+    "ownedMember" : [ {
+      "AAAid" : "1944950d-9280-4a92-9b93-728df8ce5201"
+    }, {
+      "AAAid" : "ae0435f5-7225-49f3-9b3f-040ecd7ae0c8"
+    }, {
+      "AAAid" : "b8d69d1b-03e0-4f83-8cfd-f02e381e65f5"
+    }, {
+      "AAAid" : "885586eb-1b2b-4589-895d-d3ee6db38128"
+    } ],
+    "nestedOccurrence" : [ ],
+    "nestedAllocation" : [ ],
+    "association" : [ ],
+    "isPortion" : false,
+    "nestedReference" : [ ],
+    "owningNamespace" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "isReadOnly" : false,
+    "isVariation" : false,
+    "feature" : [ {
+      "AAAid" : "1944950d-9280-4a92-9b93-728df8ce5201"
+    }, {
+      "AAAid" : "ae0435f5-7225-49f3-9b3f-040ecd7ae0c8"
+    }, {
+      "AAAid" : "b8d69d1b-03e0-4f83-8cfd-f02e381e65f5"
+    }, {
+      "AAAid" : "885586eb-1b2b-4589-895d-d3ee6db38128"
+    } ],
+    "member" : [ {
+      "AAAid" : "1944950d-9280-4a92-9b93-728df8ce5201"
+    }, {
+      "AAAid" : "ae0435f5-7225-49f3-9b3f-040ecd7ae0c8"
+    }, {
+      "AAAid" : "b8d69d1b-03e0-4f83-8cfd-f02e381e65f5"
+    }, {
+      "AAAid" : "885586eb-1b2b-4589-895d-d3ee6db38128"
+    } ],
+    "isReference" : true,
+    "inheritedFeature" : [ ],
+    "effectiveName" : "testLink25",
+    "importedMembership" : [ ],
+    "ownedElement" : [ {
+      "AAAid" : "1944950d-9280-4a92-9b93-728df8ce5201"
+    }, {
+      "AAAid" : "ae0435f5-7225-49f3-9b3f-040ecd7ae0c8"
+    }, {
+      "AAAid" : "b8d69d1b-03e0-4f83-8cfd-f02e381e65f5"
+    }, {
+      "AAAid" : "885586eb-1b2b-4589-895d-d3ee6db38128"
+    } ],
+    "partDefinition" : [ ],
+    "featureMembership" : [ {
+      "AAAid" : "ce17027a-2076-4a76-9daf-9df3fcc3743e"
+    }, {
+      "AAAid" : "febb93f9-9416-49f8-b536-aae4d1f11e4b"
+    } ],
+    "isAbstract" : false,
+    "relatedFeature" : [ {
+      "AAAid" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef"
+    }, {
+      "AAAid" : "145ea1ac-d00e-4993-985b-5704d662d3c6"
+    } ],
+    "nestedRendering" : [ ],
+    "nestedConnection" : [ ],
+    "nestedInterface" : [ ],
+    "ownedSpecialization" : [ ],
+    "nestedViewpoint" : [ ],
+    "directedUsage" : [ ],
+    "nestedPart" : [ ],
+    "chainingFeature" : [ ],
+    "isConjugated" : false,
+    "isUnique" : true,
+    "nestedUsage" : [ ],
+    "source" : [ {
+      "AAAid" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef"
+    } ],
+    "variant" : [ ],
+    "nestedState" : [ ],
+    "documentationComment" : [ ],
+    "isOrdered" : false,
+    "ownedAnnotation" : [ ],
+    "isDerived" : false,
+    "qualifiedName" : "Tracing_FilterExample::testLink25",
+    "nestedVerificationCase" : [ ],
+    "endFeature" : [ {
+      "AAAid" : "1944950d-9280-4a92-9b93-728df8ce5201"
+    }, {
+      "AAAid" : "ae0435f5-7225-49f3-9b3f-040ecd7ae0c8"
+    } ],
+    "isEnd" : false,
+    "nestedItem" : [ ],
+    "featuringType" : [ ],
+    "isComposite" : false,
+    "name" : "testLink25",
+    "connectorEnd" : [ {
+      "AAAid" : "1944950d-9280-4a92-9b93-728df8ce5201"
+    }, {
+      "AAAid" : "ae0435f5-7225-49f3-9b3f-040ecd7ae0c8"
+    } ],
+    "connectionDefinition" : [ ],
+    "ownedMembership" : [ {
+      "AAAid" : "ce17027a-2076-4a76-9daf-9df3fcc3743e"
+    }, {
+      "AAAid" : "febb93f9-9416-49f8-b536-aae4d1f11e4b"
+    }, {
+      "AAAid" : "40dd256f-85aa-4c30-8d95-d8f0e4f0a2c4"
+    }, {
+      "AAAid" : "59d2600e-1a16-43d3-9780-00556f420385"
+    } ],
+    "disjointType" : [ ],
+    "nestedFlow" : [ ],
+    "nestedCase" : [ ],
+    "AAAtype" : "ConnectionUsage",
+    "ownedDisjoining" : [ ],
+    "membership" : [ {
+      "AAAid" : "ce17027a-2076-4a76-9daf-9df3fcc3743e"
+    }, {
+      "AAAid" : "febb93f9-9416-49f8-b536-aae4d1f11e4b"
+    }, {
+      "AAAid" : "40dd256f-85aa-4c30-8d95-d8f0e4f0a2c4"
+    }, {
+      "AAAid" : "59d2600e-1a16-43d3-9780-00556f420385"
+    } ],
+    "ownedRelatedElement" : [ ],
+    "isIndividual" : false,
+    "isNonunique" : false,
+    "targetFeature" : [ {
+      "AAAid" : "145ea1ac-d00e-4993-985b-5704d662d3c6"
+    } ],
+    "ownedFeatureChaining" : [ ],
+    "ownedTyping" : [ ],
+    "inheritedMembership" : [ ],
+    "ownedEndFeature" : [ {
+      "AAAid" : "1944950d-9280-4a92-9b93-728df8ce5201"
+    }, {
+      "AAAid" : "ae0435f5-7225-49f3-9b3f-040ecd7ae0c8"
+    } ],
+    "occurrenceDefinition" : [ ],
+    "ownedFeatureMembership" : [ {
+      "AAAid" : "ce17027a-2076-4a76-9daf-9df3fcc3743e"
+    }, {
+      "AAAid" : "febb93f9-9416-49f8-b536-aae4d1f11e4b"
+    } ],
+    "definition" : [ ],
+    "nestedUseCase" : [ ],
+    "owner" : {
+      "AAAid" : "f37c594a-586b-4aab-8566-8bd64261b3d3"
+    },
+    "owningRelationship" : {
+      "AAAid" : "5c98cc0c-3e3c-43a3-985d-9052c7a1921c"
+    },
+    "nestedAction" : [ ],
+    "ownedRelationship" : [ {
+      "AAAid" : "ce17027a-2076-4a76-9daf-9df3fcc3743e"
+    }, {
+      "AAAid" : "febb93f9-9416-49f8-b536-aae4d1f11e4b"
+    }, {
+      "AAAid" : "40dd256f-85aa-4c30-8d95-d8f0e4f0a2c4"
+    }, {
+      "AAAid" : "59d2600e-1a16-43d3-9780-00556f420385"
+    } ],
+    "nestedConcern" : [ ],
+    "ownedImport" : [ ],
+    "itemDefinition" : [ ],
+    "target" : [ {
+      "AAAid" : "145ea1ac-d00e-4993-985b-5704d662d3c6"
+    } ],
+    "ownedTextualRepresentation" : [ ],
+    "variantMembership" : [ ],
+    "isDirected" : false,
+    "aliasId" : [ ]
+  },
+  "identity" : {
+    "AAAid" : "1e100cfc-b644-4bd4-bee5-c051f595ea59"
+  }
+} ]
