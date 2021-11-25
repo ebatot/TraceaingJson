@@ -14,14 +14,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.IntNode;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
-import model.AnnotatingFeature;
-import model.Connection;
-import model.MetadataFeature;
+import model.Trace;
 import net.thisptr.jackson.jq.BuiltinFunctionLoader;
 import net.thisptr.jackson.jq.JsonQuery;
 import net.thisptr.jackson.jq.Scope;
@@ -31,109 +25,17 @@ import net.thisptr.jackson.jq.module.loaders.BuiltinModuleLoader;
 
 public class JSonTransformer {
 	
-	
 	/**
-	 * Read Annotated connections and affect AnnotatingFeatures to their "Link" representation.
-	 * Link read through annotating features to access Metadatafeatures (and so on their values). This methods links the first three steps : Link-AF-MF, and returns such a Mapping in Java collection map.
 	 * 
-	 * Link -> AF -> MF(effectiveName)
-	 * 
-	 * @param datamodel A SysMLv2 model written in JSon
-	 * @param l Link - will be edited.
-	 * @param links_af
-	 * @return  {IDS of AnnotatingFeatures affected -> {IDs of MetadataFeatures}}
-	 * @throws IOException, JsonQueryException, JsonProcessingException, JsonMappingException
+	 * @param source '[ "STRING-WITH-GUILLEMETS-AND-BRACKETS" ]'
+	 * @return 'STRING-WITHOUT-GUILLEMETS-AND-BRACKETS'
 	 */
-	public static HashMap<String, ArrayList<String>> affectAnnotatingFeaturesToConnection(String datamodel, Connection l)
-			throws IOException, JsonQueryException, JsonProcessingException, JsonMappingException {
-		
-		List<String> links_af = JSonTransformer.getAnnotatingFeaturesIDOfConnection(datamodel, l.getID());
-		HashMap<String, ArrayList<String>> linksMF_map = new HashMap<>();
-		
-		for (String af_str : links_af) {
-			linksMF_map.put(af_str, new ArrayList<>());
-			
-			AnnotatingFeature af = new AnnotatingFeature(af_str);
-			
-			List<String> linkmf1 = ConnectionFactory.getConfidenceFeaturesFromJSon(datamodel, af);
-			if(!linkmf1.isEmpty()) 
-				af.addMetatadataFeature("confidence", linkmf1.get(0));
-
-			List<String> linkmf2 = ConnectionFactory.getTracetypeFeaturesFromJSon(datamodel, af);
-			if(!linkmf2.isEmpty())
-				af.addMetatadataFeature("tracetype",  linkmf2.get(0));
-			
-			if(!af.getMetadatas().isEmpty()) {
-				l.addAnnotatingFeature(af);
-				ArrayList<String> mfs = new ArrayList<>(af.getMetadatas().size());
-				af.getMetadatas().forEach( (id, mf) -> {mfs.add(mf.getID());});
-				linksMF_map.put(af.getID(), mfs);
-			}
-		}
-		return linksMF_map;
-	}
-	
-	/**
-	 * Access to the LiteralRational of a MF and return the entry <ID of the literal, value of the literal>. Value is of type DOUBLE
-	 * @param datamodel A SysMLv2 model written in JSon
-	 * @param id
-	 * @return
-	 * @throws JsonQueryException, JsonProcessingException, IOException, JsonMappingException
-	 */
-	public static boolean affectDoubleValueToMetadataFeature(String datamodel, MetadataFeature mf)
-			throws JsonQueryException, JsonProcessingException, IOException, JsonMappingException {
-		String id = mf.getID();
-		String literalRational_str = JSonTransformer.getElementSpecificFieldFromID(datamodel, id, ".payload.ownedFeature[].AAAid");
-		List<String> lr_list = new ObjectMapper().readValue(literalRational_str, new TypeReference<List<String>>() {});
-		String lr_s = JSonTransformer.getElementsRawJsonFromID(datamodel, lr_list.get(0));
-		
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		JsonElement jelem = gson.fromJson(lr_s.substring(1, lr_s.length()-1), JsonElement.class);
-		JsonObject jobj = jelem.getAsJsonObject(); 
-		JsonElement elt = jobj.get("payload").getAsJsonObject().get("value"); 
-		
-		if (elt != null) {
-			mf.addDoubleValue(id, elt.getAsDouble());
-		}
-		return elt != null;
+	public static String oneValueJsonArrayToString(String source) {
+		source = source.substring(1, source.length() - 1).trim();
+		source = source.substring(1, source.length() - 1).trim();
+		return source;
 	}
 
-	/**
-	 * Access to the LiteralRational of a MF and return the entry <ID of the literal, value of the literal>. Value is of type String.
-	 * @param datamodel A SysMLv2 model written in JSon
-	 * @param id
-	 * @return
-	 * @throws JsonQueryException, JsonProcessingException, IOException, JsonMappingException
-	 */
-	public static boolean affectEnumValueToMetadataFeature(String datamodel, MetadataFeature mf)
-			throws JsonQueryException, JsonProcessingException, IOException, JsonMappingException {
-		
-		String id = mf.getID();
-		String s_mf = JSonTransformer.getElementSpecificFieldFromID(datamodel, id, ".payload.ownedFeature[].AAAid");
-		
-		List<String> ss = new ObjectMapper().readValue(s_mf, new TypeReference<List<String>>() {});
-		String s = JSonTransformer.getElementsRawJsonFromID(datamodel, ss.get(0));
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		JsonElement jelem = gson.fromJson(s.substring(1, s.length()-1), JsonElement.class);
-		JsonObject jobj = jelem.getAsJsonObject(); 
-		JsonElement elt = jobj.get("payload").getAsJsonObject().get("referent").getAsJsonObject().get("AAAid"); 
-		String referentid = elt.getAsString();
-		
-		String referent_name_str = JSonTransformer.getElementSpecificFieldFromID(datamodel, referentid, ".payload.name");
-		jelem = gson.fromJson(referent_name_str, JsonElement.class); //Remove the "[]"
-		 
-		 
-		String name = jelem.getAsString();
-		
-		if (jelem != null) {
-			mf.addStringValue(id, name);
-		}
-		return elt != null;
-		
-	}
-
-
-	
 	
 	
 	/**
@@ -189,7 +91,7 @@ public class JSonTransformer {
 	 * @throws JsonProcessingException
 	 * @throws IOException
 	 */
-	public static String getElementsRawJsonFromID(String datamodel, String id) throws JsonQueryException, JsonProcessingException, IOException{
+	public static String getElementRawJsonFromID(String datamodel, String id) throws JsonQueryException, JsonProcessingException, IOException{
 		String jqQuery = ".[] | select(.payload | ( .identifier == \""+id+"\") )" ;
 		String outText_elts = JSonTransformer.executeJQuery(datamodel, jqQuery);
 		return outText_elts;
@@ -207,6 +109,7 @@ public class JSonTransformer {
 	 * @throws IOException
 	 */
 	public static String getElementSpecificFieldFromID(String datamodel, String id, String attribute) throws JsonQueryException, JsonProcessingException, IOException{
+//		System.out.println("dm: "+datamodel);
 		String jqQuery = ".[] | select(.payload | ( .identifier == \""+id+"\") ) | "+attribute ;
 		String outText_elts = JSonTransformer.executeJQuery(datamodel, jqQuery);
 		return outText_elts;
@@ -232,6 +135,7 @@ public class JSonTransformer {
 	}
 
 	/**
+	 * Attention - USE OF PARTUSAGE !
 	 * Returns in a String the raw JSon syntax of the Connections and Elements of the model passed in parameter.
 	 * @param datamodel A SysMLv2 model written in JSon
 	 * @return
@@ -258,7 +162,7 @@ public class JSonTransformer {
 	 * @throws JsonQueryException
 	 * @throws JsonProcessingException
 	 */
-	public static String getParts(String datamodel) throws IOException, JsonQueryException, JsonProcessingException {
+	public static String getPartUsagesJSon(String datamodel) throws IOException, JsonQueryException, JsonProcessingException {
 		String eltsFields_strings = 
 				" {"
 				+ " \"id\" : .identifier,"
@@ -268,9 +172,25 @@ public class JSonTransformer {
 				+ "}";
 		
 		String jqQuery_elts = 			".[].payload "
-				+ "| select((.AAAtype == \"ConnectionUsage\")) "
+				+ "| select((.AAAtype == \"PartUsage\")) "
 				+ "| "+eltsFields_strings;
 		
+		String outText_elts = JSonTransformer.executeJQuery(datamodel, jqQuery_elts);
+		return outText_elts;
+	}
+	
+	/**
+	 * Returns in a String the raw JSon syntax of the Elements of the model passed in parameter.
+	 * @param datamodel A SysMLv2 model written in JSon
+	 * @return
+	 * @throws IOException
+	 * @throws JsonQueryException
+	 * @throws JsonProcessingException
+	 */
+	public static String getPartUsagesRaw(String datamodel) throws IOException, JsonQueryException, JsonProcessingException {
+		String jqQuery_elts = 			".[].payload "
+				+ "| select((.AAAtype == \"PartUsage\")) "
+				;
 		String outText_elts = JSonTransformer.executeJQuery(datamodel, jqQuery_elts);
 		return outText_elts;
 	}
@@ -318,6 +238,7 @@ public class JSonTransformer {
 		List<String> links_id = new ObjectMapper().readValue(links, new TypeReference<List<String>>() {});
 		return links_id;
 	}
+	
 
 	/**
 	 * Execute a JQ query on the model passed in paramater and returns its JSon result.
@@ -366,7 +287,7 @@ public class JSonTransformer {
 	}
 	
 	/**
-	 * Write in a file and returns a String containing the pretty version of the COnnections and Elements of the model passed in parameter.
+	 * Write in a file and returns a String containing the pretty version of the Connections and Elements of the model passed in parameter.
 	 * @param datamodel A SysMLv2 model written in JSon
 	 * @param fileOut_lne
 	 * @return
@@ -374,16 +295,16 @@ public class JSonTransformer {
 	 * @throws JsonQueryException
 	 * @throws JsonProcessingException
 	 */
-	public static String getAndStoreConnectionsAndElements(String datamodel, File fileOut_lne)
+	public static String getAndStoreConnectionsAndElements(Trace t, File fileOut_lne)
 			throws IOException, JsonQueryException, JsonProcessingException {
-		String outText_lne = JSonTransformer.getConnections(datamodel);
-		String outText_elts = JSonTransformer.getParts(datamodel);
-		outText_lne = "{ \"elements\": \n" + outText_lne + ",\n\"links\": \n" + outText_elts + "}";
 		FileWriter fw = new FileWriter(fileOut_lne);
-		fw.write(outText_lne);
+		String t_string = t.toStringJSonD3();
+		fw.write(t_string);
 		fw.close();
-		return outText_lne;
+		return t_string;
 	}
+
+
 
 
 

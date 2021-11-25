@@ -9,6 +9,7 @@ public class AnnotatingFeature {
 	public AnnotatingFeature(String ID) {
 		this.ID = ID;
 	}
+	
 //	public AnnotatingFeature(String ID, String metadataEffectiveName, String metadataID) {
 //		this.ID = ID;
 //		MetadataFeature mf = new MetadataFeature(metadataID, metadataEffectiveName);

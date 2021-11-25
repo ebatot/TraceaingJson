@@ -1,100 +1,29 @@
-{ "elements": 
-[ {
-  "id" : "3c367802-9e00-4e95-983b-e00501307c9e",
-  "name" : "testLink95",
-  "type" : "ConnectionUsage",
-  "source" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af",
-  "target" : "04948cbd-bee6-4481-a6f5-a017fac9d3ec",
-  "qualifiedname" : "Tracing_FilterExample::testLink95"
-}, {
-  "id" : "3622f709-b31e-4945-8e3e-1d232b8b53cb",
-  "name" : "testLink85",
-  "type" : "ConnectionUsage",
-  "source" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af",
-  "target" : "0b3cd6e8-94c6-4dc3-9532-e5c09ac8f6ec",
-  "qualifiedname" : "Tracing_FilterExample::testLink85"
-}, {
-  "id" : "6fe01af9-a8c3-405f-b048-5cfb0f120ea9",
-  "name" : "testLink75",
-  "type" : "ConnectionUsage",
-  "source" : "e49e4feb-5e24-4f53-a453-ba4b8cf732af",
-  "target" : "e7eff0d6-e358-4be9-a227-23263a6e5d2c",
-  "qualifiedname" : "Tracing_FilterExample::testLink75"
-}, {
-  "id" : "67467048-3c3d-48dd-a609-e91f320b7e37",
-  "name" : "testLink65",
-  "type" : "ConnectionUsage",
-  "source" : "91600467-18ae-40cc-b46b-c7a60da1f8f5",
-  "target" : "145ea1ac-d00e-4993-985b-5704d662d3c6",
-  "qualifiedname" : "Tracing_FilterExample::testLink65"
-}, {
-  "id" : "1399bb11-7229-48bb-8bf2-7e6b5869e5b3",
-  "name" : "testLink55",
-  "type" : "ConnectionUsage",
-  "source" : "145ea1ac-d00e-4993-985b-5704d662d3c6",
-  "target" : "a4446418-bcd0-48ea-bdb8-7178bd69a273",
-  "qualifiedname" : "Tracing_FilterExample::testLink55"
-}, {
-  "id" : "6e548969-0eb7-4912-a82d-9958792786ef",
-  "name" : "testLink45",
-  "type" : "ConnectionUsage",
-  "source" : "a4446418-bcd0-48ea-bdb8-7178bd69a273",
-  "target" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef",
-  "qualifiedname" : "Tracing_FilterExample::testLink45"
-}, {
-  "id" : "2984574f-7227-4c49-9151-cbdad136ac79",
-  "name" : "testLink35",
-  "type" : "ConnectionUsage",
-  "source" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef",
-  "target" : "a4446418-bcd0-48ea-bdb8-7178bd69a273",
-  "qualifiedname" : "Tracing_FilterExample::testLink35"
-}, {
-  "id" : "1e100cfc-b644-4bd4-bee5-c051f595ea59",
-  "name" : "testLink25",
-  "type" : "ConnectionUsage",
-  "source" : "a2ebaea3-c259-4f5d-94be-960f2654c6ef",
-  "target" : "145ea1ac-d00e-4993-985b-5704d662d3c6",
-  "qualifiedname" : "Tracing_FilterExample::testLink25"
-} ],
-"links": 
-[ {
-  "id" : "3c367802-9e00-4e95-983b-e00501307c9e",
-  "name" : "testLink95",
-  "type" : "ConnectionUsage",
-  "qualifiedname" : "Tracing_FilterExample::testLink95"
-}, {
-  "id" : "3622f709-b31e-4945-8e3e-1d232b8b53cb",
-  "name" : "testLink85",
-  "type" : "ConnectionUsage",
-  "qualifiedname" : "Tracing_FilterExample::testLink85"
-}, {
-  "id" : "6fe01af9-a8c3-405f-b048-5cfb0f120ea9",
-  "name" : "testLink75",
-  "type" : "ConnectionUsage",
-  "qualifiedname" : "Tracing_FilterExample::testLink75"
-}, {
-  "id" : "67467048-3c3d-48dd-a609-e91f320b7e37",
-  "name" : "testLink65",
-  "type" : "ConnectionUsage",
-  "qualifiedname" : "Tracing_FilterExample::testLink65"
-}, {
-  "id" : "1399bb11-7229-48bb-8bf2-7e6b5869e5b3",
-  "name" : "testLink55",
-  "type" : "ConnectionUsage",
-  "qualifiedname" : "Tracing_FilterExample::testLink55"
-}, {
-  "id" : "6e548969-0eb7-4912-a82d-9958792786ef",
-  "name" : "testLink45",
-  "type" : "ConnectionUsage",
-  "qualifiedname" : "Tracing_FilterExample::testLink45"
-}, {
-  "id" : "2984574f-7227-4c49-9151-cbdad136ac79",
-  "name" : "testLink35",
-  "type" : "ConnectionUsage",
-  "qualifiedname" : "Tracing_FilterExample::testLink35"
-}, {
-  "id" : "1e100cfc-b644-4bd4-bee5-c051f595ea59",
-  "name" : "testLink25",
-  "type" : "ConnectionUsage",
-  "qualifiedname" : "Tracing_FilterExample::testLink25"
-} ]}
+{
+ "links": [
+  { "id": "6fe01af9-a8c3-405f-b048-5cfb0f120ea9", "name": "testLink75", "type": "typeA", "source_id": "e49e4feb-5e24-4f53-a453-ba4b8cf732af", "target_id": "e7eff0d6-e358-4be9-a227-23263a6e5d2c", "confidence": 0.75},
+  { "id": "3c367802-9e00-4e95-983b-e00501307c9e", "name": "testLink95", "type": "typeA", "source_id": "e49e4feb-5e24-4f53-a453-ba4b8cf732af", "target_id": "04948cbd-bee6-4481-a6f5-a017fac9d3ec", "confidence": 0.95},
+  { "id": "1399bb11-7229-48bb-8bf2-7e6b5869e5b3", "name": "testLink55", "type": "Untyped", "source_id": "145ea1ac-d00e-4993-985b-5704d662d3c6", "target_id": "a4446418-bcd0-48ea-bdb8-7178bd69a273", "confidence": 0.55},
+  { "id": "6e548969-0eb7-4912-a82d-9958792786ef", "name": "testLink45", "type": "typeE", "source_id": "a4446418-bcd0-48ea-bdb8-7178bd69a273", "target_id": "a2ebaea3-c259-4f5d-94be-960f2654c6ef", "confidence": 0.45},
+  { "id": "1e100cfc-b644-4bd4-bee5-c051f595ea59", "name": "testLink25", "type": "typeE", "source_id": "a2ebaea3-c259-4f5d-94be-960f2654c6ef", "target_id": "145ea1ac-d00e-4993-985b-5704d662d3c6", "confidence": 0.25},
+  { "id": "2984574f-7227-4c49-9151-cbdad136ac79", "name": "testLink35", "type": "Untyped", "source_id": "a2ebaea3-c259-4f5d-94be-960f2654c6ef", "target_id": "a4446418-bcd0-48ea-bdb8-7178bd69a273", "confidence": 0.35},
+  { "id": "67467048-3c3d-48dd-a609-e91f320b7e37", "name": "testLink65", "type": "Untyped", "source_id": "91600467-18ae-40cc-b46b-c7a60da1f8f5", "target_id": "145ea1ac-d00e-4993-985b-5704d662d3c6", "confidence": 0.65},
+  { "id": "3622f709-b31e-4945-8e3e-1d232b8b53cb", "name": "testLink85", "type": "Untyped", "source_id": "e49e4feb-5e24-4f53-a453-ba4b8cf732af", "target_id": "0b3cd6e8-94c6-4dc3-9532-e5c09ac8f6ec", "confidence": 0.85} 
+], "nodes": [
+  { "id": "e49e4feb-5e24-4f53-a453-ba4b8cf732af", "name": "end1", "type": "PartUsage"},
+  { "id": "e7eff0d6-e358-4be9-a227-23263a6e5d2c", "name": "end4", "type": "PartUsage"},
+  { "id": "e49e4feb-5e24-4f53-a453-ba4b8cf732af", "name": "end1", "type": "PartUsage"},
+  { "id": "04948cbd-bee6-4481-a6f5-a017fac9d3ec", "name": "end2", "type": "PartUsage"},
+  { "id": "145ea1ac-d00e-4993-985b-5704d662d3c6", "name": "end6", "type": "PartUsage"},
+  { "id": "a4446418-bcd0-48ea-bdb8-7178bd69a273", "name": "end7", "type": "PartUsage"},
+  { "id": "a4446418-bcd0-48ea-bdb8-7178bd69a273", "name": "end7", "type": "PartUsage"},
+  { "id": "a2ebaea3-c259-4f5d-94be-960f2654c6ef", "name": "end8", "type": "PartUsage"},
+  { "id": "a2ebaea3-c259-4f5d-94be-960f2654c6ef", "name": "end8", "type": "PartUsage"},
+  { "id": "145ea1ac-d00e-4993-985b-5704d662d3c6", "name": "end6", "type": "PartUsage"},
+  { "id": "a2ebaea3-c259-4f5d-94be-960f2654c6ef", "name": "end8", "type": "PartUsage"},
+  { "id": "a4446418-bcd0-48ea-bdb8-7178bd69a273", "name": "end7", "type": "PartUsage"},
+  { "id": "91600467-18ae-40cc-b46b-c7a60da1f8f5", "name": "end5", "type": "PartUsage"},
+  { "id": "145ea1ac-d00e-4993-985b-5704d662d3c6", "name": "end6", "type": "PartUsage"},
+  { "id": "e49e4feb-5e24-4f53-a453-ba4b8cf732af", "name": "end1", "type": "PartUsage"},
+  { "id": "0b3cd6e8-94c6-4dc3-9532-e5c09ac8f6ec", "name": "end3", "type": "PartUsage"} 
+]
+}

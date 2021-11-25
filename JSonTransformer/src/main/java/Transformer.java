@@ -6,32 +6,25 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
 import model.AnnotatingFeature;
 import model.Connection;
+import model.ElementFactory;
+import model.MetadataFeature;
+import model.Trace;
 import net.thisptr.jackson.jq.exception.JsonQueryException;
-import transform.JSonTransformer;
 import transform.ConnectionFactory;
+import transform.JSonTransformer;
 
 public class Transformer {
 	// Test git
@@ -51,10 +44,12 @@ public class Transformer {
 		String datamodel = checkAndCleanFileInput(fileIn_name);
 		
 		
+		
+		ConnectionFactory connectionFactory = ConnectionFactory.getInstance();
+		ElementFactory eltFactory = ElementFactory.getInstance(); 
+		eltFactory.setDatamodel(datamodel); // Same as the one used by the connection factory.
+		connectionFactory.setDatamodel(datamodel); // Same as the one used by the element factory.
 	
-		System.out.println("\n    **** * * * Links and Elements pretty:");
-		File fileOut_lne = checkOutFileName(fileOut_lne_name);
-		JSonTransformer.getAndStoreConnectionsAndElements(datamodel, fileOut_lne);
 		
 
 		System.out.println("\n    **** * * * Links and Elements RAW:");
@@ -74,7 +69,7 @@ public class Transformer {
 		
 		
 		List<String> links_id = JSonTransformer.getLinksIDs(datamodel);
-		System.out.println("* Connections retrieval: ");
+		System.out.println("* Connections IDs retrieval: ");
 		links_id.forEach(System.out::println);
 		System.out.println("- end");
 		System.out.println();
@@ -86,46 +81,70 @@ public class Transformer {
 //		links_af.forEach(System.out::println);
 		
 		
-		HashMap<String, Connection> links_map = new HashMap<>(); // Un ID a su Link-object
 		
-		System.out.println("* One Connection build up:");
+		System.out.println("* One Connection (specific ID) build up:");
 		String link_id = "3c367802-9e00-4e95-983b-e00501307c9e";
-		Connection link1 = ConnectionFactory.buildConnection(datamodel, link_id);
+		Connection link1 = connectionFactory.getConnection(link_id);
 		System.out.println(link1.toStringPretty());
-		HashMap<String, ArrayList<String>> linksMF_list = JSonTransformer.affectAnnotatingFeaturesToConnection(datamodel, link1);
 		System.out.println("- end");
 		System.out.println();
 
-		links_id.forEach((id)-> {
-			Connection c = ConnectionFactory.buildConnection(datamodel, id);
-			links_map.put(id, c);
-		});
+		
 		
 		System.out.println("* Building up all connections:");
-		for (Connection l : links_map.values()) {
-			JSonTransformer.affectAnnotatingFeaturesToConnection(datamodel, l);
-			l.getMetadatas().forEach((mf) -> {
-				try {
-					if(mf.isConfidence()) 
-						JSonTransformer.affectDoubleValueToMetadataFeature(datamodel, mf);
-					if(mf.isTraceType())
-						JSonTransformer.affectEnumValueToMetadataFeature(datamodel, mf);
-				} catch (JsonQueryException e) {
-					e.printStackTrace();
-				} catch (JsonProcessingException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				
-			});
-			System.out.println(l.toStringPretty());
-		}
+		HashMap<String, Connection> links_map = new HashMap<>(); // Un ID a su Link-object
+		links_id.forEach((id)-> {
+			Connection c = connectionFactory.getConnection(id);
+			links_map.put(id, c);
+			System.out.println(c.toStringPretty());
+		});
 		System.out.println(" --> "+links_map.values().size()+" connections found.");
-		System.out.println("* end");
+		System.out.println("- end\n");
+		
+		
+		
+		System.out.println("* Add extra-tracetype 'typeC' to Link1.");
+		AnnotatingFeature af_typeC = new AnnotatingFeature("ADDED-AF-0001");
+		MetadataFeature mf_typeC = new MetadataFeature("ADDED-MF-CONF-0001", "tracetype");
+		mf_typeC.addStringValue("ADDED-LR-0001", "typeC");
+		af_typeC.addMetatadataFeature(mf_typeC);
+		link1.addAnnotatingFeature(af_typeC);
+		System.out.println("  Link1 tracetypes: "+link1.getTracetypeValues());
+		System.out.println("  Link1 confidence: "+link1.getConfidenceValue());
+		System.out.println("- end\n");
+		
+		
+		
+		System.out.println("* Playing with metadata values:");
+		System.out.println("  Metafeatures: " + MetadataFeature.getAllEffectiveNames());
+		System.out.println("  Tracetypes:   " + MetadataFeature.getAllTraceTypes());
+		System.out.print("  Metafeatures values: {");
+//		System.out.println(MetadataFeature.getAllMetadataFeatureValues());
+		MetadataFeature.getAllMetadataFeatureValues().forEach((mf, v) -> {
+			System.out.print( mf.getEffectiveName() + " -> " + v + ", ");
+		});
+		System.out.println("}");
+		System.out.println("- end\n");
+
+		
+		
+		System.out.println("* Building up a trace:");
+		Trace t = new Trace();
+		links_map.forEach((id,c)->{t.addConnection(c);});
+		System.out.println(t.toStringPretty());
+		File fileOut_lne = checkOutFileName(fileOut_lne_name);
+		JSonTransformer.getAndStoreConnectionsAndElements(t, fileOut_lne);
+		System.out.println("Trace stored in '"+fileOut_lne.getAbsolutePath()+"'.");
+		System.out.println("- end\n");
+
+		
 		
 		System.out.println("\nExit !");
 		System.exit(0);
+		
+		
+		
+		
 		
 		
 		//Get their owner as MetadataFeature MDF
@@ -159,11 +178,6 @@ public class Transformer {
 						+ "} " 
 				));
 		fwtest.close();
-		
-		
-
-		
-		
 
 	}
 
