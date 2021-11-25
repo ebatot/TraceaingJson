@@ -9,21 +9,13 @@
   { "id": "67467048-3c3d-48dd-a609-e91f320b7e37", "name": "testLink65", "type": "Untyped", "source_id": "91600467-18ae-40cc-b46b-c7a60da1f8f5", "target_id": "145ea1ac-d00e-4993-985b-5704d662d3c6", "confidence": 0.65},
   { "id": "3622f709-b31e-4945-8e3e-1d232b8b53cb", "name": "testLink85", "type": "Untyped", "source_id": "e49e4feb-5e24-4f53-a453-ba4b8cf732af", "target_id": "0b3cd6e8-94c6-4dc3-9532-e5c09ac8f6ec", "confidence": 0.85} 
 ], "nodes": [
+  { "id": "0b3cd6e8-94c6-4dc3-9532-e5c09ac8f6ec", "name": "end3", "type": "PartUsage"},
+  { "id": "a4446418-bcd0-48ea-bdb8-7178bd69a273", "name": "end7", "type": "PartUsage"},
   { "id": "e49e4feb-5e24-4f53-a453-ba4b8cf732af", "name": "end1", "type": "PartUsage"},
   { "id": "e7eff0d6-e358-4be9-a227-23263a6e5d2c", "name": "end4", "type": "PartUsage"},
-  { "id": "e49e4feb-5e24-4f53-a453-ba4b8cf732af", "name": "end1", "type": "PartUsage"},
   { "id": "04948cbd-bee6-4481-a6f5-a017fac9d3ec", "name": "end2", "type": "PartUsage"},
   { "id": "145ea1ac-d00e-4993-985b-5704d662d3c6", "name": "end6", "type": "PartUsage"},
-  { "id": "a4446418-bcd0-48ea-bdb8-7178bd69a273", "name": "end7", "type": "PartUsage"},
-  { "id": "a4446418-bcd0-48ea-bdb8-7178bd69a273", "name": "end7", "type": "PartUsage"},
-  { "id": "a2ebaea3-c259-4f5d-94be-960f2654c6ef", "name": "end8", "type": "PartUsage"},
-  { "id": "a2ebaea3-c259-4f5d-94be-960f2654c6ef", "name": "end8", "type": "PartUsage"},
-  { "id": "145ea1ac-d00e-4993-985b-5704d662d3c6", "name": "end6", "type": "PartUsage"},
-  { "id": "a2ebaea3-c259-4f5d-94be-960f2654c6ef", "name": "end8", "type": "PartUsage"},
-  { "id": "a4446418-bcd0-48ea-bdb8-7178bd69a273", "name": "end7", "type": "PartUsage"},
   { "id": "91600467-18ae-40cc-b46b-c7a60da1f8f5", "name": "end5", "type": "PartUsage"},
-  { "id": "145ea1ac-d00e-4993-985b-5704d662d3c6", "name": "end6", "type": "PartUsage"},
-  { "id": "e49e4feb-5e24-4f53-a453-ba4b8cf732af", "name": "end1", "type": "PartUsage"},
-  { "id": "0b3cd6e8-94c6-4dc3-9532-e5c09ac8f6ec", "name": "end3", "type": "PartUsage"} 
+  { "id": "a2ebaea3-c259-4f5d-94be-960f2654c6ef", "name": "end8", "type": "PartUsage"} 
 ]
 }

@@ -3,10 +3,10 @@ package model;
 import java.util.ArrayList;
 
 public class Element extends TracingElement {
-	String name, qualifiedName;
-	String type;
+	private  String name, qualifiedName;
+	private  String type;
 	
-	ArrayList<Connection> sourceOf, targetOf; 
+	private  ArrayList<Connection> sourceOf, targetOf; 
 	
 	public Element(String identifier) {
 		super(identifier);
@@ -16,20 +16,22 @@ public class Element extends TracingElement {
 	
 	/**
 	 * NOT TESTES !!! NOT TRIED !!
+	 * 
 	 * @param e
 	 * @return
 	 */
 	public boolean connects(Element e) {
 		System.out.println("Element.connects()  NOT IMPLEMENTED");
-		for (Connection cSource : sourceOf) {
-			if(cSource.getSourceElement().equals(this))
+		for (Connection c : sourceOf)
+			if (c.getSourceElements().contains(e) || c.getTargetElements().contains(e))
 				return true;
-			if(cSource.getTargetElement().equals(this))
+		for (Connection c : targetOf)
+			if (c.getSourceElements().contains(e) || c.getTargetElements().contains(e))
 				return true;
-		}
+
 		return false;
 	}
-	
+
 	public ArrayList<Connection> getSourceOf() {
 		return sourceOf;
 	}

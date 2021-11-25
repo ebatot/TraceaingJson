@@ -31,8 +31,8 @@ import transform.JSonTransformer;
 public class Transformer {
 	// Test git
 	public static void main(String[] args) throws IOException {
-		printLOC();
-		System.exit(0);
+//		printLOC();
+//		System.exit(0);
 		
 		/* ARGS : 
 		 * 		[0: fileIn_name]
@@ -140,6 +140,7 @@ public class Transformer {
 		File fileOut_lne = checkOutFileName(fileOut_lne_name);
 		JSonTransformer.getAndStoreConnectionsAndElements(t, fileOut_lne);
 		System.out.println("Trace stored in '"+fileOut_lne.getAbsolutePath()+"'.");
+		System.out.println(t.toStringMatrix());
 		System.out.println("- end\n");
 
 		

@@ -99,12 +99,12 @@ public class ConnectionFactory {
 			String source_id = JSonTransformer.executeJQuery(elt_con.getAsJsonObject().toString(), ".source[0].AAAid");
 			source_id = JSonTransformer.oneValueJsonArrayToString(source_id);
 			Element source = ElementFactory.getInstance().getElement(source_id);
-			c.setSourceElement(source);
+			c.addSourceElement(source);
 			
 			String target_id = JSonTransformer.executeJQuery(elt_con.getAsJsonObject().toString(), ".target[0].AAAid");
 			target_id = JSonTransformer.oneValueJsonArrayToString(target_id);
 			Element target = ElementFactory.getInstance().getElement(target_id);
-			c.setTargetElement(target);
+			c.addTargetElement(target);
 			
 			affectAnnotatingFeaturesToConnection(c);
 			affectMetadataFeatureValueToConnection(c);

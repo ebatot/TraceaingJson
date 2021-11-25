@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Trace {
@@ -27,7 +28,7 @@ public class Trace {
 	}
 
 	public String toStringJSonD3() {
-		ArrayList<Element> elements = getAllElements();
+		HashSet<Element> elements = getAllElements();
 		
 		String links = "\"links\": [\n";
 		for (Connection c : connections) 
@@ -45,7 +46,7 @@ public class Trace {
 	}
 
 	public String toStringPretty() {
-		ArrayList<Element> elements = getAllElements();
+		HashSet<Element> elements = getAllElements();
 		String res = "Trace ("+connections.size()+" links connect "+elements.size()+" elements.";
 		for (Connection c : connections) 
 			res += "\n"+ c.toStringPretty("  ");
@@ -53,11 +54,11 @@ public class Trace {
 		return res;
 	}
 
-	private ArrayList<Element> getAllElements() {
-		ArrayList<Element> elements = new ArrayList<>(connections.size()*2);
+	private HashSet<Element> getAllElements() {
+		HashSet<Element> elements = new HashSet<>(connections.size()*2);
 		connections.forEach(c -> {
-			elements.add(c.getSourceElement());
-			elements.add(c.getTargetElement());
+			elements.addAll(c.getSourceElements());
+			elements.addAll(c.getTargetElements());
 		});
 		return elements;
 	}
@@ -69,13 +70,19 @@ public class Trace {
 	 */
 	public String toStringMatrix() {
 		System.out.println("Trace.toStringMatrix() NOT IMPLEMENTED");
-		String res = "";
+		String res = "     ";
 		for (Element e : getAllElements()) {
-			for (Element e2 : getAllElements()) {
-				res += ";" + e.getName() + ", " + e2.getName() + ":" + e.connects(e2);
-			}
-
+			res += e.getName() +" ";
 		}
-		return res;
+		
+		
+		String res2 = "";
+		for (Element e : getAllElements()) {
+			res2 += e.getName()+"|";
+			for (Element e2 : getAllElements()) 
+				res2 += (e2.connects(e)?"  x  ":"     ") + "";
+			res2 += "\n";
+		}
+		return res + "\n" + res2 + "\n";
 	}
 }

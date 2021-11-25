@@ -14,16 +14,20 @@ import java.util.List;
 public class Connection extends TracingElement {
 	public static String UNTYPED = "Untyped";	
 	
-	String effectiveName, qualifiedName;
-	ArrayList<AnnotatingFeature> annotatingFeatures = new ArrayList<>();
-	String sourceId, targetId;
-	private Element sourceElement;
-	private Element targetElement;
+	private String effectiveName, qualifiedName;
+	private ArrayList<AnnotatingFeature> annotatingFeatures = new ArrayList<>();
+	private List<String> sourceIds, targetIds;
+	private List<Element> sourceElements;
+	private List<Element> targetElements;
 	
 	
 	
 	private Connection(String identifier) {
 		super(identifier);
+		this.sourceIds = new ArrayList<>(1);
+		this.targetIds = new ArrayList<>(1);
+		this.sourceElements = new ArrayList<>(1);
+		this.targetElements = new ArrayList<>(1);
 	}
 	
 	public static Connection createConnection(String identifier) {
@@ -32,10 +36,10 @@ public class Connection extends TracingElement {
 	
 	public boolean connects(Connection c) {
 		return 
-				c.getSourceElement().equals(targetElement) ||
-				c.getSourceElement().equals(sourceElement) ||
-				c.getTargetElement().equals(targetElement) ||
-				c.getTargetElement().equals(sourceElement) ;
+				c.getSourceElements().equals(targetElements) ||
+				c.getSourceElements().equals(sourceElements) ||
+				c.getTargetElements().equals(targetElements) ||
+				c.getTargetElements().equals(sourceElements) ;
 	}
 	
 	
@@ -78,12 +82,20 @@ public class Connection extends TracingElement {
 		return qualifiedName;
 	}
 	
-	public String getSourceId() {
-		return sourceId;
+	public String getFirstSourceId() {
+		return sourceIds.get(0);
 	}
-	
-	public String getTargetId() {
-		return targetId;
+
+	public List<String> getSourceId() {
+		return sourceIds;
+	}
+
+	public String getFirstTargetId() {
+		return targetIds.get(0);
+	}
+
+	public List<String> getTargetId() {
+		return targetIds;
 	}
 	
 	public boolean addAnnotatingFeature(AnnotatingFeature af) {
@@ -98,33 +110,44 @@ public class Connection extends TracingElement {
 		this.qualifiedName = qualifiedName;
 	}
 	
-	public void setSourceId(String sourceID) {
-		this.sourceId = sourceID;
+	public void addSourceId(String sourceID) {
+		this.sourceIds.add(sourceID);
 	}
 	
-	public void setTargetId(String targetId) {
-		this.targetId = targetId;
+	public void addTargetId(String targetId) {
+		this.targetIds.add(targetId);
 	}
 	
-	public void setSourceElement(Element buildElement) {
-		this.sourceElement = buildElement;
-		setSourceId(buildElement.getID());
+	public void addSourceElement(Element buildElement) {
+		this.sourceElements.add(buildElement);
+		addSourceId(buildElement.getID());
 		buildElement.addSource(this);
 	}
 	
-	public void setTargetElement(Element buildElement) {
-		this.targetElement = buildElement;
-		setTargetId(buildElement.getID());
+	public void addTargetElement(Element buildElement) {
+		this.targetElements.add(buildElement);
+		addTargetId(buildElement.getID());
 		buildElement.addTarget(this);
 	}
 	
-	public Element getSourceElement() {
-		return sourceElement;
+	public List<Element> getSourceElements() {
+		return sourceElements;
 	}
 	
-	public Element getTargetElement() {
-		return targetElement;
+	public List<Element> getTargetElements() {
+		return targetElements;
 	}
+	
+	private Element getFirstSourceElement() {
+		// TODO Auto-generated method stub
+		return sourceElements.get(0);
+	}
+
+	private Element getFirstTargetElement() {
+		// TODO Auto-generated method stub
+		return targetElements.get(0);
+	}
+
 	/**
 	 * 
 	 * @return ¡ Attention ! The first type found ¡ ATTENTION !.
@@ -160,7 +183,6 @@ public class Connection extends TracingElement {
 		throw new UndefinedDataException("This connection has no confidence value defined.");
 	}
 
-
 	public String toStringPretty() {
 		String res  = "Con. "+effectiveName+": { \n";
 		for (MetadataFeature mf : getMetadatas()) {
@@ -170,26 +192,24 @@ public class Connection extends TracingElement {
 	}
 	
 	public String toStringPretty(String prefix) {
-		String res = prefix + "Con. " + effectiveName + ": " + sourceElement + "->" + targetElement + " { \n";
+		String res = prefix + "Con. " + effectiveName + ": " + getFirstSourceElement() + "->" + getFirstTargetElement() + " { \n";
 		for (MetadataFeature mf : getMetadatas()) {
 			res += prefix + "  " + mf.toStringPretty() + ",\n";
 		}
 		return res += prefix + "}";
 	}
-
 	
 	public String toStringJSon() {
 		String res = "{ "
 				+ "\"id\": \""+ID+"\", "
 				+ "\"name\": \""+effectiveName  +"\", "
 				+ "\"type\": \""+getFirstTracetype() +"\", "
-				+ "\"source_id\": \""+sourceId  +"\", "
-				+ "\"target_id\": \""+targetId  +"\", "
+				+ "\"source_id\": \""+getFirstSourceId()  +"\", "
+				+ "\"target_id\": \""+getFirstTargetId()  +"\", "
 				+ "\"confidence\": "+getConfidenceValue()+""
 				+ "}";
 		return res;
 	}
-	
 	
 	public String toString() {
 		return "<Con. "+ID+": AF("+annotatingFeatures.size()+")>";
