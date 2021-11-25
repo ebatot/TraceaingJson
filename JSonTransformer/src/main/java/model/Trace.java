@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Trace {
+	
 	List<Connection> connections = new ArrayList<>();
 	public Trace() {
 		

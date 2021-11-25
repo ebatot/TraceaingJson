@@ -2,12 +2,11 @@ package model;
 
 import java.util.HashMap;
 
-public class AnnotatingFeature {
-	String ID;
+public class AnnotatingFeature extends TracingElement {
 	HashMap<String, MetadataFeature> metadatas = new HashMap<>();
 	
 	public AnnotatingFeature(String ID) {
-		this.ID = ID;
+		super(ID);
 	}
 	
 //	public AnnotatingFeature(String ID, String metadataEffectiveName, String metadataID) {
@@ -39,9 +38,6 @@ public class AnnotatingFeature {
 	
 	public HashMap<String, MetadataFeature> getMetadatas() {
 		return metadatas;
-	}
-	public String getID() {
-		return ID;
 	}
 
 }

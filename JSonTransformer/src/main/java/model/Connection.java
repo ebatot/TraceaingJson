@@ -11,8 +11,9 @@ import java.util.List;
  * @author Edouard
  *
  */
-public class Connection {
-	String ID;
+public class Connection extends TracingElement {
+	public static String UNTYPED = "Untyped";	
+	
 	String effectiveName, qualifiedName;
 	ArrayList<AnnotatingFeature> annotatingFeatures = new ArrayList<>();
 	String sourceId, targetId;
@@ -22,51 +23,21 @@ public class Connection {
 	
 	
 	private Connection(String identifier) {
-		this.ID = identifier;
+		super(identifier);
 	}
 	
 	public static Connection createConnection(String identifier) {
 		return new Connection(identifier);
 	}
 	
-	
-	public boolean addAnnotatingFeature(AnnotatingFeature af) {
-		return annotatingFeatures.add(af);
+	public boolean connects(Connection c) {
+		return 
+				c.getSourceElement().equals(targetElement) ||
+				c.getSourceElement().equals(sourceElement) ||
+				c.getTargetElement().equals(targetElement) ||
+				c.getTargetElement().equals(sourceElement) ;
 	}
 	
-	public String toStringPretty() {
-		String res  = "Con. "+effectiveName+": { \n";
-		for (MetadataFeature mf : getMetadatas()) {
-			res += "  " + mf.toStringPretty() +",\n";
-		}
-		return res += "}";
-	}
-	
-	public String toStringPretty(String prefix) {
-		String res = prefix + "Con. " + effectiveName + ": " + sourceElement + "->" + targetElement + " { \n";
-		for (MetadataFeature mf : getMetadatas()) {
-			res += prefix + "  " + mf.toStringPretty() + ",\n";
-		}
-		return res += prefix + "}";
-	}
-
-	
-	public String toStringJSon() {
-		String res = "{ "
-				+ "\"id\": \""+ID+"\", "
-				+ "\"name\": \""+effectiveName  +"\", "
-				+ "\"type\": \""+getTracetype() +"\", "
-				+ "\"source_id\": \""+sourceId  +"\", "
-				+ "\"target_id\": \""+targetId  +"\", "
-				+ "\"confidence\": "+getConfidenceValue()+""
-				+ "}";
-		return res;
-	}
-	
-	
-	public String toString() {
-		return "<Con. "+ID+": AF("+annotatingFeatures.size()+")>";
-	}
 	
 	public List<MetadataFeature> getMetadatas() {
 		List<MetadataFeature> res = new ArrayList<>();
@@ -99,9 +70,6 @@ public class Connection {
 		return res;
 	}
 	
-	public String getID() {
-		return ID;
-	}
 	public String getEffectiveName() {
 		return effectiveName;
 	}
@@ -118,6 +86,10 @@ public class Connection {
 		return targetId;
 	}
 	
+	public boolean addAnnotatingFeature(AnnotatingFeature af) {
+		return annotatingFeatures.add(af);
+	}
+
 	public void setEffectiveName(String effectiveName) {
 		this.effectiveName = effectiveName;
 	}
@@ -134,7 +106,23 @@ public class Connection {
 		this.targetId = targetId;
 	}
 	
-	public static String UNTYPED = "Untyped";
+	public void setSourceElement(Element buildElement) {
+		this.sourceElement = buildElement;
+		setSourceId(buildElement.getID());
+	}
+	
+	public void setTargetElement(Element buildElement) {
+		this.targetElement = buildElement;
+		setTargetId(buildElement.getID());
+	}
+	
+	public Element getSourceElement() {
+		return sourceElement;
+	}
+	
+	public Element getTargetElement() {
+		return targetElement;
+	}
 	/**
 	 * 
 	 * @return ¡ Attention ! The first type found ¡ ATTENTION !.
@@ -170,20 +158,40 @@ public class Connection {
 		throw new UndefinedDataException("This connection has no confidence value defined.");
 	}
 
-	public void setSourceElement(Element buildElement) {
-		this.sourceElement = buildElement;
-		setSourceId(buildElement.getID());
+
+	public String toStringPretty() {
+		String res  = "Con. "+effectiveName+": { \n";
+		for (MetadataFeature mf : getMetadatas()) {
+			res += "  " + mf.toStringPretty() +",\n";
+		}
+		return res += "}";
 	}
 	
-	public void setTargetElement(Element buildElement) {
-		this.targetElement = buildElement;
-		setTargetId(buildElement.getID());
+	public String toStringPretty(String prefix) {
+		String res = prefix + "Con. " + effectiveName + ": " + sourceElement + "->" + targetElement + " { \n";
+		for (MetadataFeature mf : getMetadatas()) {
+			res += prefix + "  " + mf.toStringPretty() + ",\n";
+		}
+		return res += prefix + "}";
+	}
+
+	
+	public String toStringJSon() {
+		String res = "{ "
+				+ "\"id\": \""+ID+"\", "
+				+ "\"name\": \""+effectiveName  +"\", "
+				+ "\"type\": \""+getTracetype() +"\", "
+				+ "\"source_id\": \""+sourceId  +"\", "
+				+ "\"target_id\": \""+targetId  +"\", "
+				+ "\"confidence\": "+getConfidenceValue()+""
+				+ "}";
+		return res;
 	}
 	
-	public Element getSourceElement() {
-		return sourceElement;
-	}
-	public Element getTargetElement() {
-		return targetElement;
+	
+	public String toString() {
+		return "<Con. "+ID+": AF("+annotatingFeatures.size()+")>";
 	}
 }
+
+

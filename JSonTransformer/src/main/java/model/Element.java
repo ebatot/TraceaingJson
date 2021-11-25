@@ -1,12 +1,11 @@
 package model;
 
-public class Element {
+public class Element extends TracingElement {
 	String name, qualifiedName;
-	String ID;
 	String type;
 	
-	public Element(String ID) {
-		setID(ID);
+	public Element(String identifier) {
+		super(identifier);
 	}
 	
 	public void setName(String name) {
@@ -15,10 +14,6 @@ public class Element {
 	
 	public void setQualifiedName(String qualifiedName) {
 		this.qualifiedName = qualifiedName;
-	}
-	
-	public void setID(String iD) {
-		ID = iD;
 	}
 	
 	public void setType(String type) {
@@ -31,10 +26,6 @@ public class Element {
 	
 	public String getQualifiedName() {
 		return qualifiedName;
-	}
-	
-	public String getID() {
-		return ID;
 	}
 	
 	public String getType() {

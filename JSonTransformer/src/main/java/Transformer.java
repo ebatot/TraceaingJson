@@ -1,7 +1,9 @@
 
 
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -29,6 +31,9 @@ import transform.JSonTransformer;
 public class Transformer {
 	// Test git
 	public static void main(String[] args) throws IOException {
+		printLOC();
+		System.exit(0);
+		
 		/* ARGS : 
 		 * 		[0: fileIn_name]
 		 * 		[1: fileOut_name]
@@ -262,51 +267,41 @@ public class Transformer {
 	}
 
 
-	
-	
-	public static void main2(String[] args) throws JsonProcessingException, IOException {
-
-		
-		String fileIn_name = 	"inout/in/EXAMPLE-IN.json";
-		String fileOut_name = 	"inout/out/Tracing_FilterExample-t.json";
-//		String query1 = 		"[*].payload.{name:name, id:identifier}";
-//		String query = 			"[*].payload[?name=='Base'].{name:name, id:identifier}";
-		String query = 			"[*].payload[?name.contains(@, 'e') == `true`]";
-		
-		File fileIn = new File(fileIn_name);
-		if(!fileIn.exists()) {
-			System.out.println("File '"+fileIn.getAbsolutePath()+"' does not exist.");
-			System.out.println("Exit.");
-			System.exit(0);
+	public static void printLOC(){
+		int[] i;
+		try {
+			i = countLOC(new File("./src"));
+			System.out.println("Main.main(src:"+i[0]+") ("+i[1]+" classes)");
+//			i = countLOC(new File("./test"));
+//			System.out.println("Main.main(test:"+i[0]+")");
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-	
-		File fileOut = new File(fileOut_name);
-		if(fileOut.exists()) {
-			System.out.println("File '"+fileOut.getAbsolutePath()+"' already exists. It will be replaced.");
-			fileOut.delete();
-			fileOut.createNewFile();
+	}
+
+	static int[] countLOC(File f) throws IOException {
+		int[] res = new int[] {0, 0};
+		if(f.getName().endsWith(".java"))
+			res[1]++;
+		if(f.getName().startsWith("result"))
+			return res;
+		if(f.isDirectory()){
+			for (File f2 : f.listFiles()) {
+				res[0] += countLOC(f2)[0];
+				res[1] += countLOC(f2)[1];
+			}
+//			System.out.println("Dir:"+f.getCanonicalPath()+" : "+res);
+		} else {
+			BufferedReader br = new BufferedReader(new FileReader(f));
+			String line = "";
+			while((line = br.readLine()) != null){
+				if(!line.isEmpty())
+					res[0]++;
+			}
+			br.close();
+//			System.out.println(f.getCanonicalPath()+" : "+res);
 		}
-		System.out.println("In file:  "+fileIn.getAbsolutePath());
-		System.out.println("Out file: "+fileOut.getAbsolutePath());
-
-		JmesPath<JsonNode> jmespath = new JacksonRuntime();
-		Expression<JsonNode> expression = jmespath.compile(query);
-		System.out.println("Query: " + query);
-		System.out.println("    -> " +expression);
-		
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.enable(SerializationFeature.INDENT_OUTPUT);
-		JsonNode input = mapper.readTree(fileIn);
-		System.out.println("Input: "+input);
-
-		JsonNode result = expression.search(input);
-		
-		System.out.println("Result: "+result);
-		
-	
-		FileWriter fw = new FileWriter(fileOut);
-		fw.write(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result));
-		fw.close();
+		return res;
 	}
 
 }

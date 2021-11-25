@@ -5,20 +5,19 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-public class MetadataFeature {
+public class MetadataFeature extends TracingElement {
 	
 	public static HashMap<MetadataFeature, Object> allMetadataFeatureValues = new HashMap<>();
 	private static HashSet<String> allEffectiveNames = new HashSet<>();
 	private static HashSet<String> allTracetypes = new HashSet<>();
 	
 	String effectiveName;
-	String ID;
 	HashMap<String, Double> doubleValues = new HashMap<>();
 	HashMap<String, String> stringValues = new HashMap<>();
 
 	
 	public MetadataFeature(String identifier, String effectiveName) {
-		this.ID = identifier;
+		super(identifier);
 		this.effectiveName = effectiveName;
 		allEffectiveNames.add(effectiveName);
 	}
@@ -71,10 +70,6 @@ public class MetadataFeature {
 		
 	}
 	
-	public String getID() {
-		return ID;
-	}
-
 	public String getEffectiveName() {
 		return effectiveName;
 	}
