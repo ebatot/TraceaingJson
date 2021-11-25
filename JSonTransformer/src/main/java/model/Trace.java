@@ -61,14 +61,21 @@ public class Trace {
 		});
 		return elements;
 	}
-	
+
+	/**
+	 * NOT TESTED NOT CHECKED !
+	 * 
+	 * @return
+	 */
 	public String toStringMatrix() {
+		System.out.println("Trace.toStringMatrix() NOT IMPLEMENTED");
 		String res = "";
 		for (Element e : getAllElements()) {
-			res+= ";" + e.getName();
+			for (Element e2 : getAllElements()) {
+				res += ";" + e.getName() + ", " + e2.getName() + ":" + e.connects(e2);
+			}
+
 		}
-		
 		return res;
 	}
-
 }

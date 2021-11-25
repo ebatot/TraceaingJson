@@ -109,11 +109,13 @@ public class Connection extends TracingElement {
 	public void setSourceElement(Element buildElement) {
 		this.sourceElement = buildElement;
 		setSourceId(buildElement.getID());
+		buildElement.addSource(this);
 	}
 	
 	public void setTargetElement(Element buildElement) {
 		this.targetElement = buildElement;
 		setTargetId(buildElement.getID());
+		buildElement.addTarget(this);
 	}
 	
 	public Element getSourceElement() {
@@ -128,20 +130,20 @@ public class Connection extends TracingElement {
 	 * @return ¡ Attention ! The first type found ¡ ATTENTION !.
 	 * 
 	 */
-	public String getTracetype() {
+	public String getFirstTracetype() {
 		// @TODO make it clean with more types !
-		if(getTracetypeValues().size() > 1) {
-			String print = "Connection("+effectiveName+") has more than one type: " + getTracetypeValues();
-			System.out.println("[Warning] "+print+" -> chosen:'"+getTracetypeValues().get(0)+"' (stack: Connection.getTraceType())");
-			return getTracetypeValues().get(0);
-		} else if (getTracetypeValues().size() == 1) {
+		if(getTracetypes().size() > 1) {
+			String print = "Connection("+effectiveName+") has more than one type: " + getTracetypes();
+			System.out.println("[Warning] "+print+" -> chosen:'"+getTracetypes().get(0)+"' (stack: Connection.getTraceType())");
+			return getTracetypes().get(0);
+		} else if (getTracetypes().size() == 1) {
 			//One type only
-			String res = getTracetypeValues().get(0);
+			String res = getTracetypes().get(0);
 			return res;
 		} else return UNTYPED;
 	}
 	
-	public List<String> getTracetypeValues() {
+	public List<String> getTracetypes() {
 		List<String> res = new ArrayList<>();
 		for (MetadataFeature mf : getMetadatas()) {
 			if(mf.isTraceType())
@@ -180,7 +182,7 @@ public class Connection extends TracingElement {
 		String res = "{ "
 				+ "\"id\": \""+ID+"\", "
 				+ "\"name\": \""+effectiveName  +"\", "
-				+ "\"type\": \""+getTracetype() +"\", "
+				+ "\"type\": \""+getFirstTracetype() +"\", "
 				+ "\"source_id\": \""+sourceId  +"\", "
 				+ "\"target_id\": \""+targetId  +"\", "
 				+ "\"confidence\": "+getConfidenceValue()+""

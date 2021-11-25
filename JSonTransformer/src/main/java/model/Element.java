@@ -1,13 +1,42 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Element extends TracingElement {
 	String name, qualifiedName;
 	String type;
 	
+	ArrayList<Connection> sourceOf, targetOf; 
+	
 	public Element(String identifier) {
 		super(identifier);
+		sourceOf = new ArrayList<>(1);
+		targetOf = new ArrayList<>(1);
 	}
 	
+	/**
+	 * NOT TESTES !!! NOT TRIED !!
+	 * @param e
+	 * @return
+	 */
+	public boolean connects(Element e) {
+		System.out.println("Element.connects()  NOT IMPLEMENTED");
+		for (Connection cSource : sourceOf) {
+			if(cSource.getSourceElement().equals(this))
+				return true;
+			if(cSource.getTargetElement().equals(this))
+				return true;
+		}
+		return false;
+	}
+	
+	public ArrayList<Connection> getSourceOf() {
+		return sourceOf;
+	}
+	
+	public ArrayList<Connection> getTargetOf() {
+		return targetOf;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -44,5 +73,12 @@ public class Element extends TracingElement {
 	@Override
 	public String toString() {
 		return "<"+type+"::"+name+">";
+	}
+
+	public void addSource(Connection connection) {
+		sourceOf.add(connection);
+	}
+	public void addTarget(Connection connection) {
+		targetOf.add(connection);
 	}
 }

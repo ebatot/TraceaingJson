@@ -21,11 +21,11 @@ import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
 import model.AnnotatingFeature;
 import model.Connection;
-import model.ElementFactory;
 import model.MetadataFeature;
 import model.Trace;
 import net.thisptr.jackson.jq.exception.JsonQueryException;
 import transform.ConnectionFactory;
+import transform.ElementFactory;
 import transform.JSonTransformer;
 
 public class Transformer {
@@ -114,7 +114,7 @@ public class Transformer {
 		mf_typeC.addStringValue("ADDED-LR-0001", "typeC");
 		af_typeC.addMetatadataFeature(mf_typeC);
 		link1.addAnnotatingFeature(af_typeC);
-		System.out.println("  Link1 tracetypes: "+link1.getTracetypeValues());
+		System.out.println("  Link1 tracetypes: "+link1.getTracetypes());
 		System.out.println("  Link1 confidence: "+link1.getConfidenceValue());
 		System.out.println("- end\n");
 		

@@ -1,9 +1,10 @@
-package model;
+package transform;
 
 import java.io.IOException;
 import java.util.HashMap;
 
-import transform.JSonTransformer;
+import model.Element;
+import model.UndefinedDataException;
 
 public class ElementFactory {
 	String datamodel;

@@ -17,7 +17,6 @@ import com.google.gson.JsonObject;
 import model.AnnotatingFeature;
 import model.Connection;
 import model.Element;
-import model.ElementFactory;
 import model.MetadataFeature;
 import model.UndefinedDataException;
 import net.thisptr.jackson.jq.exception.JsonQueryException;
