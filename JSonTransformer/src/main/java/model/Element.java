@@ -15,20 +15,17 @@ public class Element extends TracingElement {
 	}
 	
 	/**
-	 * NOT TESTES !!! NOT TRIED !!
 	 * 
 	 * @param e
 	 * @return
 	 */
 	public boolean connects(Element e) {
-		System.out.println("Element.connects()  NOT IMPLEMENTED");
 		for (Connection c : sourceOf)
 			if (c.getSourceElements().contains(e) || c.getTargetElements().contains(e))
 				return true;
 		for (Connection c : targetOf)
 			if (c.getSourceElements().contains(e) || c.getTargetElements().contains(e))
 				return true;
-
 		return false;
 	}
 

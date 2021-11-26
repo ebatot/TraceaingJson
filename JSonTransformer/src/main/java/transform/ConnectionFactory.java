@@ -24,7 +24,13 @@ import net.thisptr.jackson.jq.exception.JsonQueryException;
 public class ConnectionFactory {
 	static HashMap<String, Connection> allConnections = new HashMap<>();
 	
-
+	public static enum TypeOfTraceTypes {STRING_TRACETYPES, ENUM_TRACETYPES};
+	private static TypeOfTraceTypes TYPE_OF_TRACETYPE = TypeOfTraceTypes.STRING_TRACETYPES;
+	
+	public void setTypeOfTraceType(TypeOfTraceTypes typeOfTraceType) {
+		TYPE_OF_TRACETYPE = typeOfTraceType;
+	}
+	
 	ElementFactory eltFactory;
 	String datamodel;
 	
@@ -43,6 +49,9 @@ public class ConnectionFactory {
 		this.datamodel = datamodel;
 	}
 
+	public String getDatamodel() {
+		return datamodel;
+	}
 	
 	/**
 	 * Get a connection from the existing list of connections 
@@ -162,8 +171,18 @@ public class ConnectionFactory {
 		try {
 			if(mf.isConfidence()) 
 				affectDoubleValueToMetadataFeature(mf);
-			if(mf.isTraceType())
-				affectEnumValueToMetadataFeature(mf);
+			if(mf.isTraceType()) {
+				switch (TYPE_OF_TRACETYPE) {
+				case ENUM_TRACETYPES:
+					affectEnumValueToMetadataFeature(mf);					
+					break;
+				case STRING_TRACETYPES:
+					affectStringValueToMetadataFeature(mf);
+					break;
+				default:
+					throw new IllegalArgumentException("Type of tracetypes not recognized. Use enum operators please.");
+				}
+			}
 		} catch (JsonQueryException e) {
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
@@ -269,6 +288,8 @@ public class ConnectionFactory {
 			throws JsonQueryException, JsonProcessingException, IOException, JsonMappingException {
 		
 		String id = mf.getID();
+		System.out.println("ConnectionFactory.affectEnumValueToMetadataFeature()");
+		System.out.println(id);
 		String s_mf = JSonTransformer.getElementSpecificFieldFromID(datamodel, id, ".payload.ownedFeature[].AAAid");
 		
 		List<String> ss = new ObjectMapper().readValue(s_mf, new TypeReference<List<String>>() {});
@@ -294,6 +315,26 @@ public class ConnectionFactory {
 	
 	
 	
+	
+	private boolean affectStringValueToMetadataFeature(MetadataFeature mf)
+			throws JsonQueryException, JsonProcessingException, IOException, JsonMappingException {
+		
+		String id = mf.getID();
+		String literalRational_str = JSonTransformer.getElementSpecificFieldFromID(datamodel, id, ".payload.ownedFeature[].AAAid");
+		List<String> lr_list = new ObjectMapper().readValue(literalRational_str, new TypeReference<List<String>>() {});
+		String lr_s = JSonTransformer.getElementRawJsonFromID(datamodel, lr_list.get(0));
+		
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		JsonElement jelem = gson.fromJson(lr_s.substring(1, lr_s.length()-1), JsonElement.class);
+		JsonObject jobj = jelem.getAsJsonObject(); 
+		JsonElement elt = jobj.get("payload").getAsJsonObject().get("value"); 
+		
+		if (elt != null) 
+			mf.addStringValue(id, elt.getAsString());
+		
+		return elt != null;
+		
+	}
 	
 
 }

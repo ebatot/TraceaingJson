@@ -12,35 +12,44 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
-import io.burt.jmespath.Expression;
-import io.burt.jmespath.JmesPath;
-import io.burt.jmespath.jackson.JacksonRuntime;
 import model.AnnotatingFeature;
 import model.Connection;
 import model.MetadataFeature;
 import model.Trace;
 import net.thisptr.jackson.jq.exception.JsonQueryException;
 import transform.ConnectionFactory;
+import transform.ConnectionFactory.TypeOfTraceTypes;
 import transform.ElementFactory;
 import transform.JSonTransformer;
 
 public class Transformer {
 	// Test git
+	
+	static Object[] test_configuration_enum = new Object[] {
+			"inout/in/Tracing_FilterExample_orginial_20211126.json",
+			"3c367802-9e00-4e95-983b-e00501307c9e",
+			TypeOfTraceTypes.ENUM_TRACETYPES
+		};
+	
+	static Object[] test_configuration_string = new Object[] {
+				"inout/in/Tracing_FilterExample_StrTypes.json",
+				"5a5c47cc-e02e-429e-ba1a-d66712d3973a",
+				TypeOfTraceTypes.STRING_TRACETYPES
+			};
+	
+	
 	public static void main(String[] args) throws IOException {
 //		printLOC();
 //		System.exit(0);
 		
-		/* ARGS : 
-		 * 		[0: fileIn_name]
-		 * 		[1: fileOut_name]
-		 * 		[2: query]
-		 */
+		Object[] configuration = test_configuration_string;
 		
-		String fileIn_name = 	"inout/in/Tracing_FilterExample.json";//Tracing_FilterExample  EXAMPLE-IN
+		String fileIn_name = (String)configuration[0];
+		String link1_id = (String)configuration[1];
+		TypeOfTraceTypes tracetypesType = (TypeOfTraceTypes)configuration[2];
+		
+		
 		String fileOut_lne_name = 	"inout/out/Tracing_FilterExample-lne.json";
 		String fileOut_lne_raw_name = 	"inout/out/Tracing_FilterExample-lne-raw.json";
 		String fileOut_meta_name = 	"inout/out/Tracing_FilterExample-meta.json";
@@ -54,7 +63,7 @@ public class Transformer {
 		ElementFactory eltFactory = ElementFactory.getInstance(); 
 		eltFactory.setDatamodel(datamodel); // Same as the one used by the connection factory.
 		connectionFactory.setDatamodel(datamodel); // Same as the one used by the element factory.
-	
+		connectionFactory.setTypeOfTraceType(tracetypesType);
 		
 
 		System.out.println("\n    **** * * * Links and Elements RAW:");
@@ -88,9 +97,14 @@ public class Transformer {
 		
 		
 		System.out.println("* One Connection (specific ID) build up:");
-		String link_id = "3c367802-9e00-4e95-983b-e00501307c9e";
-		Connection link1 = connectionFactory.getConnection(link_id);
-		System.out.println(link1.toStringPretty());
+		Connection link1 = null;
+		try {
+			link1 = connectionFactory.getConnection(link1_id);
+			System.out.println(link1.toStringPretty());
+		} catch (Exception e) {
+			System.err.println("Check the ID '"+link1_id+"' points to a ConnectionUsage ID in the datamodel.");
+			e.printStackTrace();
+		}
 		System.out.println("- end");
 		System.out.println();
 
@@ -109,13 +123,17 @@ public class Transformer {
 		
 		
 		System.out.println("* Add extra-tracetype 'typeC' to Link1.");
-		AnnotatingFeature af_typeC = new AnnotatingFeature("ADDED-AF-0001");
-		MetadataFeature mf_typeC = new MetadataFeature("ADDED-MF-CONF-0001", "tracetype");
-		mf_typeC.addStringValue("ADDED-LR-0001", "typeC");
-		af_typeC.addMetatadataFeature(mf_typeC);
-		link1.addAnnotatingFeature(af_typeC);
-		System.out.println("  Link1 tracetypes: "+link1.getTracetypes());
-		System.out.println("  Link1 confidence: "+link1.getConfidenceValue());
+		if(link1 == null) {
+			System.out.println("Something wrong with link1, confront ID with datamodel to run this section.");
+		} else {
+			AnnotatingFeature af_typeC = new AnnotatingFeature("ADDED-AF-0001");
+			MetadataFeature mf_typeC = new MetadataFeature("ADDED-MF-CONF-0001", "tracetype");
+			mf_typeC.addStringValue("ADDED-LR-0001", "typeC");
+			af_typeC.addMetatadataFeature(mf_typeC);
+			link1.addAnnotatingFeature(af_typeC);
+			System.out.println("  Link1 tracetypes: " + link1.getTracetypes());
+			System.out.println("  Link1 confidence: " + link1.getConfidenceValue());
+		}
 		System.out.println("- end\n");
 		
 		
@@ -138,8 +156,11 @@ public class Transformer {
 		links_map.forEach((id,c)->{t.addConnection(c);});
 		System.out.println(t.toStringPretty());
 		File fileOut_lne = checkOutFileName(fileOut_lne_name);
-		JSonTransformer.getAndStoreConnectionsAndElements(t, fileOut_lne);
-		System.out.println("Trace stored in '"+fileOut_lne.getAbsolutePath()+"'.");
+		boolean success = JSonTransformer.storeConnectionsAndElements(t, fileOut_lne);
+		if(success)
+			System.out.println("Trace stored in '"+fileOut_lne.getAbsolutePath()+"'.");
+		else
+			System.out.println("¡¡¡¡ Trace not stored, problem encountered !!!!");
 		System.out.println(t.toStringMatrix());
 		System.out.println("- end\n");
 
@@ -148,43 +169,6 @@ public class Transformer {
 		System.out.println("\nExit !");
 		System.exit(0);
 		
-		
-		
-		
-		
-		
-		//Get their owner as MetadataFeature MDF
-		String links_af_id = JSonTransformer.executeJQuery(datamodel,
-				".[].payload "
-						+ "| select((.AAAtype ==  \"MetadataFeature\") and "
-//						+ " ((.owner.AAAid  == \"afbd0bd8-e341-4cc1-8f85-70f049012777\") or "
-//						+ "  (.owner.AAAid  == \"187755de-aeb7-4a31-8d1d-449a4544cc30\"))"
-						+ " ((.effectiveName  == \"confidence\") or "
-						+ "  (.effectiveName  == \"tracetype\"))"
-						+ ") "// | "
-//						+ "((.annotatedElement[].AAAid  == \"3c367802-9e00-4e95-983b-e00501307c9e\") or (.annotatedElement[].AAAid  == \\\"3c367802-9e00-4e95-983b-e00501307c9e\\\"))) "// | "
-				);
-//		System.out.println(links_id);
-		FileWriter fwtest = new FileWriter(checkOutFileName("inout/out/Tracing_FilterExample-test3.json"));
-		fwtest.write(links_af_id);
-		fwtest.close();
-
-		
-		
-		System.out.println("\n    **** * * * Test batch:");
-		fwtest = new FileWriter(checkOutFileName("inout/out/Tracing_FilterExample-test.json"));
-		fwtest.write(JSonTransformer.executeJQuery(datamodel,
-				".[].payload "
-						+ "| select((.effectiveName != null)) | "
-						+ "{ "
-						+ "\"effectiveName\": .effectiveName, "
-						+ "\"type\": .AAAtype, "
-						+ "\"id\": .identifier, "
-						+ "\"owner\": .owner.AAAid"
-						+ "} " 
-				));
-		fwtest.close();
-
 	}
 
 

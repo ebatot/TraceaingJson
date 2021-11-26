@@ -83,6 +83,6 @@ public class Trace {
 				res2 += (e2.connects(e)?"  x  ":"     ") + "";
 			res2 += "\n";
 		}
-		return res + "\n" + res2 + "\n";
+		return res + "\n" + res2 ;
 	}
 }

@@ -59,7 +59,26 @@ public class JSonTransformer {
 		return links_af;
 	}
 
+	public static String getRawConfidenceAndTracetypeMetadataFeatures(String datamodel) {
+		
+		//Get their owner as MetadataFeature MDF
+		String mfs_raw = null;
+		try {
+			mfs_raw = JSonTransformer.executeJQuery(datamodel,
+					".[].payload "
+							+ "| select((.AAAtype ==  \"MetadataFeature\") and "
+							+ " ((.effectiveName  == \"confidence\") or "
+							+ "  (.effectiveName  == \"tracetype\"))"
+							+ ") "
+					);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return mfs_raw;
 
+	}
+	
 	/**
 	 * Returns the raw JSon expression of IDentified elements of the model
 	 * @param datamodel A SysMLv2 model written in JSon
@@ -295,13 +314,18 @@ public class JSonTransformer {
 	 * @throws JsonQueryException
 	 * @throws JsonProcessingException
 	 */
-	public static String getAndStoreConnectionsAndElements(Trace t, File fileOut_lne)
-			throws IOException, JsonQueryException, JsonProcessingException {
-		FileWriter fw = new FileWriter(fileOut_lne);
-		String t_string = t.toStringJSonD3();
-		fw.write(t_string);
-		fw.close();
-		return t_string;
+	public static boolean storeConnectionsAndElements(Trace t, File fileOut_lne) {
+		try {
+			FileWriter fw = new FileWriter(fileOut_lne);
+			String t_string = t.toStringJSonD3();
+			fw.write(t_string);
+			fw.close();
+		} catch (IOException e) {
+			System.out.println("Something went wrong when writing in '"+fileOut_lne.getAbsolutePath()+"'.");
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 
