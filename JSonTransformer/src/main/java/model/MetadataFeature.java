@@ -5,6 +5,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * An abstracted MetadataFeature in SysMLv2 terminology.
+ * 
+ * @author Edouard
+ *
+ */
 public class MetadataFeature extends TracingElement {
 	
 	public static HashMap<MetadataFeature, Object> allMetadataFeatureValues = new HashMap<>();

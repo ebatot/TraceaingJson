@@ -4,7 +4,6 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -17,6 +16,7 @@ import model.AnnotatingFeature;
 import model.Connection;
 import model.MetadataFeature;
 import model.Trace;
+import model.Trace.FormatForPrintingMetadatas;
 import net.thisptr.jackson.jq.exception.JsonQueryException;
 import transform.ConnectionFactory;
 import transform.ConnectionFactory.TypeOfTraceTypes;
@@ -24,40 +24,46 @@ import transform.ElementFactory;
 import transform.JSonTransformer;
 
 public class Transformer {
-	// Test git
 	
 	static Object[] test_configuration_enum = new Object[] {
+			"Tracetypes as ENUM, conf&types separated",
 			"inout/in/Tracing_FilterExample_orginial_20211126.json",
 			"3c367802-9e00-4e95-983b-e00501307c9e",
-			TypeOfTraceTypes.ENUM_TRACETYPES
+			TypeOfTraceTypes.ENUM_TRACETYPES,
+			"inout/out/Tracing_FilterExample_orginial_20211126_OUT.json"
 		};
 	
 	static Object[] test_configuration_string = new Object[] {
-				"inout/in/Tracing_FilterExample_StrTypes.json",
-				"5a5c47cc-e02e-429e-ba1a-d66712d3973a",
-				TypeOfTraceTypes.STRING_TRACETYPES
-			};
+			"Tracetypes as STRING, conf&types separated",
+			"inout/in/Tracing_FilterExample_StrTypes.json",
+			"5a5c47cc-e02e-429e-ba1a-d66712d3973a",
+			TypeOfTraceTypes.STRING_TRACETYPES,
+			"inout/out/Tracing_FilterExample_StrTypes_OUT.json"
+		};
 	
 	
 	public static void main(String[] args) throws IOException {
 //		printLOC();
 //		System.exit(0);
 		
+		System.out.println("SysMLv2-JSon Transformer v0.1");
+		System.out.println("*  *  *  *  *  *  *  *  *  * ");
+		System.out.println();
+		
 		Object[] configuration = test_configuration_string;
+		String fileIn_name = (String)configuration[1];
+		String link1_id = (String)configuration[2];
+		TypeOfTraceTypes tracetypesType = (TypeOfTraceTypes)configuration[3];
+		String fileOut_lne_name = 	(String)configuration[4];
 		
-		String fileIn_name = (String)configuration[0];
-		String link1_id = (String)configuration[1];
-		TypeOfTraceTypes tracetypesType = (TypeOfTraceTypes)configuration[2];
-		
-		
-		String fileOut_lne_name = 	"inout/out/Tracing_FilterExample-lne.json";
-		String fileOut_lne_raw_name = 	"inout/out/Tracing_FilterExample-lne-raw.json";
-		String fileOut_meta_name = 	"inout/out/Tracing_FilterExample-meta.json";
-		
+		System.out.println("Configuration: "+configuration[0]);
+		System.out.println("  Model file:         " + configuration[1]);
+		System.out.println("  Test connection ID: " + configuration[2]);
+		System.out.println("  Tracetype type:     " + configuration[3]);
+		System.out.println("  Output file:        " + configuration[4]);
+		System.out.println();
 		
 		String datamodel = checkAndCleanFileInput(fileIn_name);
-		
-		
 		
 		ConnectionFactory connectionFactory = ConnectionFactory.getInstance();
 		ElementFactory eltFactory = ElementFactory.getInstance(); 
@@ -66,19 +72,21 @@ public class Transformer {
 		connectionFactory.setTypeOfTraceType(tracetypesType);
 		
 
-		System.out.println("\n    **** * * * Links and Elements RAW:");
-		String outText_lne_raw = JSonTransformer.getPartsAndLinksRaw(datamodel); 
-		FileWriter fw0 = new FileWriter(checkOutFileName(fileOut_lne_raw_name));
-		fw0.write(outText_lne_raw);
-		fw0.close();
+//		System.out.println("\n    **** * * * Links and Elements RAW:");
+//		String fileOut_lne_raw_name = 	"inout/out/Tracing_FilterExample-lne-raw.json";
+//		String outText_lne_raw = JSonTransformer.getPartsAndLinksRaw(datamodel); 
+//		FileWriter fw0 = new FileWriter(checkOutFileName(fileOut_lne_raw_name));
+//		fw0.write(outText_lne_raw);
+//		fw0.close();
 		
 		
-		System.out.println("\n    **** * * * Meta batch:");
-		File fileOut_meta = checkOutFileName(fileOut_meta_name);
-		String outText_meta = getTracingmetas(datamodel);
-		FileWriter fw2 = new FileWriter(fileOut_meta);
-		fw2.write(outText_meta);
-		fw2.close();
+//		System.out.println("\n    **** * * * Meta batch:");
+//		String fileOut_meta_name = 	"inout/out/Tracing_FilterExample-meta.json";
+//		File fileOut_meta = checkOutFileName(fileOut_meta_name);
+//		String outText_meta = getTracingmetas(datamodel);
+//		FileWriter fw2 = new FileWriter(fileOut_meta);
+//		fw2.write(outText_meta);
+//		fw2.close();
 		
 		
 		
@@ -161,9 +169,10 @@ public class Transformer {
 			System.out.println("Trace stored in '"+fileOut_lne.getAbsolutePath()+"'.");
 		else
 			System.out.println("¡¡¡¡ Trace not stored, problem encountered !!!!");
+		System.out.println();
 		System.out.println(t.toStringMatrix());
+		System.out.println(t.toStringSysML(FormatForPrintingMetadatas.WITH_AEROBASE));
 		System.out.println("- end\n");
-
 		
 		
 		System.out.println("\nExit !");
@@ -213,7 +222,7 @@ public class Transformer {
 	 * @throws JsonQueryException
 	 * @throws JsonProcessingException
 	 */
-	private static String getTracingmetas(String strIn) throws IOException, JsonQueryException, JsonProcessingException {
+	public static String getTracingmetas(String strIn) throws IOException, JsonQueryException, JsonProcessingException {
 //		String metasFields_strings = 
 //				" {"
 //				+ " \"id\" : .identifier,"

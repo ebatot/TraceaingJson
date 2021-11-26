@@ -2,6 +2,12 @@ package model;
 
 import java.util.HashMap;
 
+/**
+ * An abstracted AnnotatingFeature in SysMLv2 terminology. The idea is to keep track of the intermediary AnnotatingFeature (and its ID) between a ConenctionUsage and a MeatadataFeature.
+ * 
+ * @author Edouard
+ *
+ */
 public class AnnotatingFeature extends TracingElement {
 	HashMap<String, MetadataFeature> metadatas = new HashMap<>();
 	

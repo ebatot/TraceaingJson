@@ -184,11 +184,7 @@ public class Connection extends TracingElement {
 	}
 
 	public String toStringPretty() {
-		String res  = "Con. "+effectiveName+": { \n";
-		for (MetadataFeature mf : getMetadatas()) {
-			res += "  " + mf.toStringPretty() +",\n";
-		}
-		return res += "}";
+		return toStringPretty("");
 	}
 	
 	public String toStringPretty(String prefix) {

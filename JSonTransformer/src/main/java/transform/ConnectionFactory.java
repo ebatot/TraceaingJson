@@ -22,17 +22,13 @@ import model.UndefinedDataException;
 import net.thisptr.jackson.jq.exception.JsonQueryException;
 
 public class ConnectionFactory {
-	static HashMap<String, Connection> allConnections = new HashMap<>();
+	private static HashMap<String, Connection> allConnections = new HashMap<>();
 	
 	public static enum TypeOfTraceTypes {STRING_TRACETYPES, ENUM_TRACETYPES};
 	private static TypeOfTraceTypes TYPE_OF_TRACETYPE = TypeOfTraceTypes.STRING_TRACETYPES;
-	
 	public void setTypeOfTraceType(TypeOfTraceTypes typeOfTraceType) {
 		TYPE_OF_TRACETYPE = typeOfTraceType;
 	}
-	
-	ElementFactory eltFactory;
-	String datamodel;
 	
 	static ConnectionFactory instance;
 	public ConnectionFactory(ElementFactory eltFactory) {
@@ -44,6 +40,10 @@ public class ConnectionFactory {
 			instance = new ConnectionFactory(ElementFactory.getInstance());
 		return instance;
 	}
+	
+	private ElementFactory eltFactory;
+	private String datamodel;
+	
 	
 	public void setDatamodel(String datamodel) {
 		this.datamodel = datamodel;
@@ -102,9 +102,7 @@ public class ConnectionFactory {
 			if (qname != null) {
 				c.setQualifiedName(qname.getAsString());
 			}
-
 			
-			// TODO make it multi ended ! 
 			String source_id = JSonTransformer.executeJQuery(elt_con.getAsJsonObject().toString(), ".source[0].AAAid");
 			source_id = JSonTransformer.oneValueJsonArrayToString(source_id);
 			Element source = ElementFactory.getInstance().getElement(source_id);
@@ -117,11 +115,9 @@ public class ConnectionFactory {
 			
 			affectAnnotatingFeaturesToConnection(c);
 			affectMetadataFeatureValueToConnection(c);
-
 			
 			return c;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -56,4 +56,9 @@ public class ElementFactory {
 			instance = new ElementFactory();
 		return instance;
 	}
+
+
+	public String getDatamodel() {
+		return datamodel;
+	}
 }
