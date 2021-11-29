@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 public class Trace {
@@ -67,7 +68,7 @@ public class Trace {
 	 * 
 	 * @return
 	 */
-	public String toStringMatrix() {
+	public String toStringMatrixText() {
 		String res = "     ";
 		for (Element e : getAllElements()) {
 			res += e.getName() +" ";
@@ -83,6 +84,70 @@ public class Trace {
 		return res + "\n" + res2 ;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public String toStringMatrixHTML() {
+		String res = "\t<tr>\n\t\t<th></th>\n";
+		for (Element e : getAllElements()) 
+			res += "\t\t<th class=\"linkName\">"+e.getName() +"</th>\n";
+		res += "\t</tr>\n";
+		
+		String res2 = "";
+		for (Element e : getAllElements()) {
+			res2 += "\t<tr>\n";
+			res2 += "\t\t<td class=\"linkName\" width=\"150px\">"+e.getName() + "</td>\n";
+			for (Element e2 : getAllElements()) {
+				res2 += "\t\t<td class=\"linkCell\" width=\"150px\">";
+				HashSet<String> cs = e2.connectionTypes(e);
+				if (cs.isEmpty()) {
+				} else {
+					for (String type : cs) 
+						res2 += type + ", ";
+					if(res2.endsWith(", "))
+						res2 = res2.substring(0, res2.length()-2);
+					
+				}
+				res2 += "</td>\n";
+			}
+			res2 += "\t</tr>\n";
+		}
+		res2 += "\n";
+		String table = "<table border=1 style=\"border-collapse: collapse;\">\n" + res + res2 + "</table>";
+		String HEADER  = "<html>\r\n"
+				+ "<head>\r\n"
+				+ "<style>\r\n"
+				+ "table {\r\n"
+				+ "  width: 100%;\r\n"
+				+ "  border: 1px solid black;\r\n"
+				+ "  border-collapse: collapse;\r\n"
+				+ "}\r\n"
+				+ "th {\r\n"
+				+ "  background-color: #04AA6D;\r\n"
+				+ "  color: white;\r\n"
+				+ "}\r\n"
+				+ "tr { width:100px; }\r\n"
+				+ "tr:hover {background-color: yellow;}\r\n"
+				+ "tr:nth-child(even) {background-color: #f2f2f2;}\r\n"
+				+ ".linkName{\r\n"
+				+ "  font-family: verdana;\r\n"
+				+ "  font-size: 15px;\r\n"
+				+ "  font-style: bold;\r\n"
+				+ "}\r\n"
+				+ "\r\n"
+				+ "</style>\r\n"
+				+ "</head>\r\n"
+				+ "<body>\n"
+				+ "<h1>Trace matrix</h1>\n"
+				+ "\t<div style=\"overflow-x:auto;\">\n";
+		return  HEADER + table + "\n\t</div>\n</body>" ;
+	}
+	/*
+	 * 
+
+
+	 */
 	public String toStringSysML(FormatForPrintingMetadatas format) {
 		String res = "";
 		int i = 0;

@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Element extends TracingElement {
 	private  String name, qualifiedName;
@@ -27,6 +28,24 @@ public class Element extends TracingElement {
 			if (c.getSourceElements().contains(e) || c.getTargetElements().contains(e))
 				return true;
 		return false;
+	}
+
+	public HashSet<Connection> connections(Element e) {
+		HashSet<Connection> res = new HashSet<>(1);
+		for (Connection c : sourceOf)
+			if (c.getSourceElements().contains(e) || c.getTargetElements().contains(e))
+				res.add(c);
+		for (Connection c : targetOf)
+			if (c.getSourceElements().contains(e) || c.getTargetElements().contains(e))
+				res.add(c);
+		return res;
+	}
+
+	public HashSet<String> connectionTypes(Element e) {
+		HashSet<String> res = new HashSet<>();
+		for (Connection c : connections(e)) 
+			res.addAll(c.getTracetypes());
+		return res;
 	}
 
 	public ArrayList<Connection> getSourceOf() {

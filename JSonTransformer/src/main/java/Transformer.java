@@ -170,7 +170,8 @@ public class Transformer {
 		else
 			System.out.println("¡¡¡¡ Trace not stored, problem encountered !!!!");
 		System.out.println();
-		System.out.println(t.toStringMatrix());
+		System.out.println(t.toStringMatrixText());
+		System.out.println(t.toStringMatrixHTML());
 		System.out.println(t.toStringSysML(FormatForPrintingMetadatas.WITH_AEROBASE));
 		System.out.println("- end\n");
 		
