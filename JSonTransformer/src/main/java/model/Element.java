@@ -5,7 +5,7 @@ import java.util.HashSet;
 
 public class Element extends TracingElement {
 	private  String name, qualifiedName;
-	private  String type;
+	private  String sysmlType;
 	
 	private  ArrayList<Connection> sourceOf, targetOf; 
 	
@@ -63,8 +63,8 @@ public class Element extends TracingElement {
 		this.qualifiedName = qualifiedName;
 	}
 	
-	public void setType(String type) {
-		this.type = type;
+	public void setSysmlType(String type) {
+		this.sysmlType = type;
 	}
 	
 	public String getName() {
@@ -75,22 +75,22 @@ public class Element extends TracingElement {
 		return qualifiedName;
 	}
 	
-	public String getType() {
-		return type;
+	public String getSysmlType() {
+		return sysmlType;
 	}
 
 	public String toStringJSon() {
 		String res = "{ "
 				+ "\"id\": \"" 	 + ID    + "\", "
 				+ "\"name\": \"" + name  + "\", "
-				+ "\"type\": \"" + type  + "\""
+				+ "\"sysmltype\": \"" + sysmlType  + "\""
 				+ "}";
 		return res ;
 	}
 	
 	@Override
 	public String toString() {
-		return "<"+type+"::"+name+">";
+		return "<"+sysmlType+"::"+name+">";
 	}
 
 	public void addSource(Connection connection) {

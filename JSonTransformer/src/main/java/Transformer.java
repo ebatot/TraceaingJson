@@ -1,250 +1,239 @@
-
-
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.OptionBuilder;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 
-import model.AnnotatingFeature;
-import model.Connection;
 import model.MetadataFeature;
 import model.Trace;
 import model.Trace.FormatForPrintingMetadatas;
-import net.thisptr.jackson.jq.exception.JsonQueryException;
 import transform.ConnectionFactory;
-import transform.ConnectionFactory.TypeOfTraceTypes;
+import transform.ConnectionFactory.TraceTypesEncoding;
 import transform.ElementFactory;
 import transform.JSonTransformer;
 
+@SuppressWarnings("deprecation")
 public class Transformer {
-	
-	static Object[] test_configuration_enum = new Object[] {
-			"Tracetypes as ENUM, conf&types separated",
-			"inout/in/Tracing_FilterExample_orginial_20211126.json",
-			"3c367802-9e00-4e95-983b-e00501307c9e",
-			TypeOfTraceTypes.ENUM_TRACETYPES,
-			"inout/out/Tracing_FilterExample_orginial_20211126_OUT.json"
-		};
-	
-	static Object[] test_configuration_string = new Object[] {
-			"Tracetypes as STRING, conf&types separated",
-			"inout/in/Tracing_FilterExample_StrTypes.json",
-			"5a5c47cc-e02e-429e-ba1a-d66712d3973a",
-			TypeOfTraceTypes.STRING_TRACETYPES,
-			"inout/out/Tracing_FilterExample_StrTypes_OUT.json"
-		};
-	
-	
+
 	public static void main(String[] args) throws IOException {
 //		printLOC();
 //		System.exit(0);
 		
-		System.out.println("SysMLv2-JSon Transformer v0.1");
-		System.out.println("*  *  *  *  *  *  *  *  *  * ");
+		System.out.println("    * SysMLv2-JSon Transformer v0.1 *");
+		System.out.println("    * *  *  *  *  *  *  *  *  *  *  *");
 		System.out.println();
 		
-		Object[] configuration = test_configuration_string;
+		Object[] configuration = getCommandLineArguments(args);
+		
 		String fileIn_name = (String)configuration[1];
-		String link1_id = (String)configuration[2];
-		TypeOfTraceTypes tracetypesType = (TypeOfTraceTypes)configuration[3];
-		String fileOut_lne_name = 	(String)configuration[4];
+		TraceTypesEncoding tracetypesType = (TraceTypesEncoding)configuration[2];
+		String fileOut_sysml_name = 	(String)configuration[3];
+		String fileOut_json_name = 	(String)configuration[4];
+		String fileOut_html_name = 	(String)configuration[5];
+		String output_style = 	(String)configuration[6];
+		
+		
+		boolean out_sysml = output_style.contains("s");
+		boolean out_html = output_style.contains("h");
+		boolean out_json = output_style.contains("j");
 		
 		System.out.println("Configuration: "+configuration[0]);
-		System.out.println("  Model file:         " + configuration[1]);
-		System.out.println("  Test connection ID: " + configuration[2]);
-		System.out.println("  Tracetype type:     " + configuration[3]);
-		System.out.println("  Output file:        " + configuration[4]);
+		System.out.println("  Model file:     " + fileIn_name);
+		System.out.println("  Tracetype type: " + tracetypesType);
+		System.out.println("  Output: '"+output_style+"' (available are 'jsh')");
+		if(out_sysml)
+			System.out.println("    sysml: " + fileOut_sysml_name );
+		if(out_json)
+			System.out.println("    json:  " + fileOut_json_name );
+		if(out_html)
+			System.out.println("    html:  " + fileOut_html_name );
 		System.out.println();
 		
-		String datamodel = checkAndCleanFileInput(fileIn_name);
+		File fileOut_lne = null, fileOut_sml = null, fileOut_html = null;
+		System.out.println("* Check file names...");
+		if(out_sysml)
+			fileOut_sml = checkOutFileName(fileOut_sysml_name);
+		if(out_json)
+			fileOut_lne = checkOutFileName(fileOut_json_name);
+		if(out_html)
+			fileOut_html = checkOutFileName(fileOut_sysml_name);
 		
+		/*
+		 * Initialization
+		 */
+		String datamodel = JSonTransformer.checkAndCleanFileInput(fileIn_name);
 		ConnectionFactory connectionFactory = ConnectionFactory.getInstance();
 		ElementFactory eltFactory = ElementFactory.getInstance(); 
 		eltFactory.setDatamodel(datamodel); // Same as the one used by the connection factory.
 		connectionFactory.setDatamodel(datamodel); // Same as the one used by the element factory.
-		connectionFactory.setTypeOfTraceType(tracetypesType);
+		connectionFactory.setTracetypeEncoding(tracetypesType);
 		
-
-//		System.out.println("\n    **** * * * Links and Elements RAW:");
-//		String fileOut_lne_raw_name = 	"inout/out/Tracing_FilterExample-lne-raw.json";
-//		String outText_lne_raw = JSonTransformer.getPartsAndLinksRaw(datamodel); 
-//		FileWriter fw0 = new FileWriter(checkOutFileName(fileOut_lne_raw_name));
-//		fw0.write(outText_lne_raw);
-//		fw0.close();
+		System.out.println("\n* Building up trace connections...");
+		Trace t = ConnectionFactory.buildTrace(datamodel);
+		System.out.println("... done.\n* "+t.getConnections().size()+" connections found.\n");
 		
-		
-//		System.out.println("\n    **** * * * Meta batch:");
-//		String fileOut_meta_name = 	"inout/out/Tracing_FilterExample-meta.json";
-//		File fileOut_meta = checkOutFileName(fileOut_meta_name);
-//		String outText_meta = getTracingmetas(datamodel);
-//		FileWriter fw2 = new FileWriter(fileOut_meta);
-//		fw2.write(outText_meta);
-//		fw2.close();
-		
-		
-		
-		List<String> links_id = JSonTransformer.getLinksIDs(datamodel);
-		System.out.println("* Connections IDs retrieval: ");
-		links_id.forEach(System.out::println);
-		System.out.println("- end");
-		System.out.println();
-		
-//		Map<String,String> mapOfElements = JSonTransformer.getMapOfElementsRawJsonFromIDs(datamodel, (String[]) links_id.toArray(new String[links_id.size()]));
-//		mapOfElements.forEach((key, value) -> {
-//		    System.out.println("Key : " + key + " Value : " );
-//		});
-//		links_af.forEach(System.out::println);
-		
-		
-		
-		System.out.println("* One Connection (specific ID) build up:");
-		Connection link1 = null;
-		try {
-			link1 = connectionFactory.getConnection(link1_id);
-			System.out.println(link1.toStringPretty());
-		} catch (Exception e) {
-			System.err.println("Check the ID '"+link1_id+"' points to a ConnectionUsage ID in the datamodel.");
-			e.printStackTrace();
-		}
-		System.out.println("- end");
-		System.out.println();
-
-		
-		
-		System.out.println("* Building up all connections:");
-		HashMap<String, Connection> links_map = new HashMap<>(); // Un ID a su Link-object
-		links_id.forEach((id)-> {
-			Connection c = connectionFactory.getConnection(id);
-			links_map.put(id, c);
-			System.out.println(c.toStringPretty());
-		});
-		System.out.println(" --> "+links_map.values().size()+" connections found.");
-		System.out.println("- end\n");
-		
-		
-		
-		System.out.println("* Add extra-tracetype 'typeC' to Link1.");
-		if(link1 == null) {
-			System.out.println("Something wrong with link1, confront ID with datamodel to run this section.");
-		} else {
-			AnnotatingFeature af_typeC = new AnnotatingFeature("ADDED-AF-0001");
-			MetadataFeature mf_typeC = new MetadataFeature("ADDED-MF-CONF-0001", "tracetype");
-			mf_typeC.addStringValue("ADDED-LR-0001", "typeC");
-			af_typeC.addMetatadataFeature(mf_typeC);
-			link1.addAnnotatingFeature(af_typeC);
-			System.out.println("  Link1 tracetypes: " + link1.getTracetypes());
-			System.out.println("  Link1 confidence: " + link1.getConfidenceValue());
-		}
-		System.out.println("- end\n");
-		
-		
-		
-		System.out.println("* Playing with metadata values:");
-		System.out.println("  Metafeatures: " + MetadataFeature.getAllEffectiveNames());
-		System.out.println("  Tracetypes:   " + MetadataFeature.getAllTraceTypes());
-		System.out.print("  Metafeatures values: {");
+		System.out.println("* Metadata values found:");
+		System.out.println("   Metafeatures: " + MetadataFeature.getAllEffectiveNames());
+		System.out.println("   Tracetypes:   " + MetadataFeature.getAllTraceTypes());
+		System.out.print("   Metafeatures values: {");
 //		System.out.println(MetadataFeature.getAllMetadataFeatureValues());
 		MetadataFeature.getAllMetadataFeatureValues().forEach((mf, v) -> {
 			System.out.print( mf.getEffectiveName() + " -> " + v + ", ");
 		});
 		System.out.println("}");
-		System.out.println("- end\n");
-
-		
-		
-		System.out.println("* Building up a trace:");
-		Trace t = new Trace();
-		links_map.forEach((id,c)->{t.addConnection(c);});
-		System.out.println(t.toStringPretty());
-		File fileOut_lne = checkOutFileName(fileOut_lne_name);
-		boolean success = JSonTransformer.storeConnectionsAndElements(t, fileOut_lne);
-		if(success)
-			System.out.println("Trace stored in '"+fileOut_lne.getAbsolutePath()+"'.");
-		else
-			System.out.println("　　 Trace not stored, problem encountered !!!!");
 		System.out.println();
-		System.out.println(t.toStringMatrixText());
-		System.out.println(t.toStringMatrixHTML());
-		System.out.println(t.toStringSysML(FormatForPrintingMetadatas.WITH_AEROBASE));
-		System.out.println("- end\n");
 		
+		if(out_json) {
+			System.out.println("* Transforming the trace to Tracea-JSon...");
+			boolean success = true;
+			try {
+				FileWriter fw = new FileWriter(fileOut_lne);
+				String t_string = t.toStringJSonD3();
+				fw.write(t_string);
+				fw.close();
+			} catch (IOException e) {
+				System.out.println("Something went wrong when writing in '"+fileOut_lne.getAbsolutePath()+"'.");
+				e.printStackTrace();
+				success = false;
+			}
+			if(success)
+				System.out.println("Done. Trace JSon stored in '"+fileOut_lne.getAbsolutePath()+"'.");
+			else
+				System.out.println("　　 Trace not stored, problem encountered !!!!");
+		}
+
+		if (out_sysml) {
+			System.out.println("* Transforming the trace to SysMLv2...");
+			FileWriter fw = new FileWriter(fileOut_sml);
+			// TODO Option to chose the type of SysML print : Aerobase, separated, metas only.
+			fw.write(t.toStringSysML(FormatForPrintingMetadatas.SEPARATED));
+			fw.close();
+			System.out.println("Done. Trace SysMLv2 stored in '" + fileOut_sml.getAbsolutePath() + "'.");
+		}
+
+		if (out_html) {
+			System.out.println("* Transforming the trace to HTML matrix table...");
+			FileWriter fw2 = new FileWriter(fileOut_html);
+			fw2.write(t.toStringMatrixHTML());
+			fw2.close();
+			System.out.println("Done. Trace matrix in HTML stored in '" + fileOut_html.getAbsolutePath() + "'.");
+		}
 		
-		System.out.println("\nExit !");
+		System.out.println("\nExit successful!");
 		System.exit(0);
-		
 	}
-
-
-
-	/** 
-	 * Verify that the file exists and replaces the @symbol that plagues SysMLv2 JSon persistence. They are replaced with an arbitrary "AAA" sequence.
-	 * @param fileIn_name
-	 * @return
-	 * @throws IOException
-	 */
-	private static String checkAndCleanFileInput(String fileIn_name) throws IOException {
-		File fileIn = new File(fileIn_name);
-		if(!fileIn.exists()) {
-			System.out.println("File '"+fileIn.getAbsolutePath()+"' does not exist.");
-			System.out.println("Exit.");
-			System.exit(0);
-		} else {
-			System.out.println("In file:  "+fileIn.getAbsolutePath());
-		}	
-		String strIn = stripApartAerobases(fileIn);
-		return strIn;
-	}
-
-
-
-
-	private static String stripApartAerobases(File fileIn) throws IOException {
-		String strIn  = "";
-		strIn = Files.readString(Paths.get(fileIn.getAbsolutePath()));
-		strIn = strIn.replaceAll("@", "AAA");
-		return strIn;
-	}
-
-
-
-
-	/**
-	 * Returns in a String the elements of the model that are either MetadataFeature, or MetadataFeatureValue
-	 * @param strIn A SysMLv2 model written in JSon
-	 * @return
-	 * @throws IOException
-	 * @throws JsonQueryException
-	 * @throws JsonProcessingException
-	 */
-	public static String getTracingmetas(String strIn) throws IOException, JsonQueryException, JsonProcessingException {
-//		String metasFields_strings = 
-//				" {"
-//				+ " \"id\" : .identifier,"
-//				+ " \"name\" : .name,"
-//				+ " \"type\" : .type,"
-//				+ " \"qualifiedname\" : .qualifiedName"
-//				+ "}";
-		
-		
-		String jqQuery_meta = 			".[] "
-				+ "| select(.payload | (.AAAtype == \"MetadataFeature\") or (.AAAtype == \"MetadataFeatureValue\") ) " 
-				+ "| select(.payload | (.qualifiedName != null)  ) "; //and (.qualifiedName | contains(\"Link95\"))
-//				+ "| "+metasFields_strings;
-
-		
-		
-		String outText_metas = JSonTransformer.executeJQuery(strIn, jqQuery_meta);
-		return outText_metas;
-	}
-
 	
+	public static Object[] getCommandLineArguments(String[] args) throws IOException {
+		Options options = configureOptions();
+		CommandLineParser parser = new DefaultParser();
+		CommandLine commandLine;
+		String confName = "", imf = null, osf = null, ojf = null, ohf = null;
+		String output = "s";
+		TraceTypesEncoding tt = ConnectionFactory.TraceTypesEncoding.STRING;
+		boolean run = true;
+		try {
+			commandLine = parser.parse(options, args);
+			if (commandLine.hasOption(O_CONFIGURATION_NAME)) {
+				confName = commandLine.getOptionValue(O_CONFIGURATION_NAME);
+			}
+			if (commandLine.hasOption(O_INPUT_MODEL_FILE)) {
+				imf = commandLine.getOptionValue(O_INPUT_MODEL_FILE);
+				File tmp = new File(imf);
+				if (!tmp.exists()) {
+					System.out.println("Input model specified '" + tmp.getAbsolutePath() + "' does not exists. "
+							+ "\nExit.");
+					run = false;
+				}
+
+			} else {
+				System.out.println("No input model specified. The program needs one. \nExit.");
+				run = false;
+			}
+			if (commandLine.hasOption(O_TRACETYPE)) {
+				String ttt = commandLine.getOptionValue(O_TRACETYPE);
+				if (ttt.equals("String"))
+					tt = ConnectionFactory.TraceTypesEncoding.STRING;
+				else if (ttt.equals("Enum"))
+					tt = ConnectionFactory.TraceTypesEncoding.ENUM;
+				else {
+					System.out.println("Unrecognized tracetype kind '" + ttt
+							+ "'. Possible values are 'String' or 'Enum'. Default value selected : " + tt);
+				}
+			} else {
+				System.out.println("Undefined tracetype kind. Default value selected : " + tt);
+			}
+
+			if (commandLine.hasOption(O_OUTPUT_JSON_FILE)) {
+				ojf = commandLine.getOptionValue(O_OUTPUT_JSON_FILE);
+			} else {
+				System.out.println("No output Json file specified. Default: 'input-model-filename'_out.json");
+				ojf = JSonTransformer.convertNameTo(imf, "json");
+			}
+
+			if (commandLine.hasOption(O_OUTPUT_SYSML_FILE)) {
+				osf = commandLine.getOptionValue(O_OUTPUT_SYSML_FILE);
+			} else {
+				System.out.println("No output Sysml file specified. Default: 'input-model-filename'_out.sysml");
+				osf = JSonTransformer.convertNameTo(imf, "sysml");
+			}
+
+			if (commandLine.hasOption(O_OUTPUT_HTML_FILE)) {
+				ohf = commandLine.getOptionValue(O_OUTPUT_HTML_FILE);
+			} else {
+				System.out.println("No output HTML file specified. Default: 'input-model-filename'_out.html");
+				ohf = JSonTransformer.convertNameTo(imf, "html");
+			}
+			
+			if (commandLine.hasOption(O_OUTPUT_OPTION)) {
+				String output_tmp = commandLine.getOptionValue(O_OUTPUT_OPTION).toLowerCase();
+				output = "";
+				if(output.equalsIgnoreCase("json"))
+					output = "j";
+				else if ( output.equalsIgnoreCase("sysml"))
+					output = "s";
+				else if ( output.equalsIgnoreCase("html"))
+					output = "h";
+				else {
+					if (output_tmp.contains("j"))
+						output += "j";
+					if (output_tmp.contains("h"))
+						output += "h";
+					if (output_tmp.contains("s"))
+						output += "s";
+				}
+				if(output.isEmpty()) {
+					System.out.println("Output is empty, default is: 's'");
+					output = "s";
+				}
+			} else {
+				
+			}
+
+		} catch (ParseException e) {
+			HelpFormatter formatter = new HelpFormatter();
+			formatter.setWidth(120);
+			System.out.println();
+			formatter.printHelp("java -jar JSonTransformer.jar", options, true);
+		}
+
+		if (!run) {
+			System.out.println("Something went wrong :(\nExit.");
+		} else {
+			return new Object[] { confName, imf, tt, osf, ojf, ohf, output };
+		}
+		return null;
+	}
+	
+
 	/**
 	 * If the file exists it is blanked, if not it is created.
 	 * @param fileOutLinksAndElements_name
@@ -260,7 +249,7 @@ public class Transformer {
 		}
 		return fileOutLinksAndElements;
 	}
-
+	
 
 	public static void printLOC(){
 		int[] i;
@@ -298,5 +287,82 @@ public class Transformer {
 		}
 		return res;
 	}
+	
+	static String O_INPUT_MODEL_FILE = "imf";
+	static String O_TRACETYPE = "tt";
+	static String O_OUTPUT_SYSML_FILE = "osf";
+	static String O_OUTPUT_JSON_FILE = "ojf";
+	static String O_OUTPUT_HTML_FILE = "ohf";
+	static String O_CONFIGURATION_NAME = "cn";
+	static String O_OUTPUT_OPTION = "o";
+
+	private static Options configureOptions() {
+		// Configuration name/specs
+		Option configurationNameOption = OptionBuilder.create(O_CONFIGURATION_NAME);
+		configurationNameOption.setLongOpt("configuration-name");
+		configurationNameOption.setArgName("configuration-name");
+		configurationNameOption.setDescription("use <configuration-name>. Give this configuration a name/spec.");
+		configurationNameOption.setType(String.class);
+		configurationNameOption.setArgs(1);
+
+		// File in SysMLv2 model
+		Option inputModelFileOption = OptionBuilder.create(O_INPUT_MODEL_FILE);
+		inputModelFileOption.setLongOpt("input-model-file");
+		inputModelFileOption.setArgName("input-model-file");
+		inputModelFileOption.setDescription("use <input-model-file>. ");
+		inputModelFileOption.setType(String.class);
+		inputModelFileOption.setArgs(1);
+		inputModelFileOption.setRequired(true);
+
+		// Kind of tracetypes (String or Enum)
+		Option traceTypeKindOption = OptionBuilder.create(O_TRACETYPE);
+		traceTypeKindOption.setLongOpt("tracetype-kind");
+		traceTypeKindOption.setArgName("tracetype-kind");
+		traceTypeKindOption.setDescription("use <tracetype-kind>. Either 'String' or 'Enum' (defaults use 'String')");
+		traceTypeKindOption.setType(String.class);
+		traceTypeKindOption.setArgs(1);
+
+		// Output file for SysML reinjection
+		Option outputSysmlFileOption = OptionBuilder.create(O_OUTPUT_SYSML_FILE);
+		outputSysmlFileOption.setLongOpt("output-sysml-file");
+		outputSysmlFileOption.setArgName("output-sysml-file");
+		outputSysmlFileOption.setDescription("use <output-sysml-file>. (defaults use 'input-model-file'_out.sysml)");
+		outputSysmlFileOption.setType(String.class);
+		outputSysmlFileOption.setArgs(1);
+
+		// Output file for Tracea-JSon
+		Option outputJSonFileOption = OptionBuilder.create(O_OUTPUT_JSON_FILE);
+		outputJSonFileOption.setLongOpt("output-json-file");
+		outputJSonFileOption.setArgName("output-json-file");
+		outputJSonFileOption.setDescription("use <output-json-file>. (defaults use 'input-model-file'_out.json)");
+		outputJSonFileOption.setType(String.class);
+		outputJSonFileOption.setArgs(1);
+
+		// Output file for HTML
+		Option outputHTMLFileOption = OptionBuilder.create(O_OUTPUT_HTML_FILE);
+		outputHTMLFileOption.setLongOpt("output-html-file");
+		outputHTMLFileOption.setArgName("output-html-file");
+		outputHTMLFileOption.setDescription("use <output-html-file>. (defaults use 'input-model-file'_out.html)");
+		outputHTMLFileOption.setType(String.class);
+		outputHTMLFileOption.setArgs(1);
+
+		// Output file for HTML
+		Option outputOption = OptionBuilder.create(O_OUTPUT_OPTION);
+		outputOption.setLongOpt("output");
+		outputOption.setArgName("output");
+		outputOption.setDescription("use <output>. 'jsh' j:json, s:sysml, h:html (default is 'j': only JSon written in file.)");
+		outputOption.setType(String.class);
+		outputOption.setArgs(1);
+
+		Options options = new Options();
+		options.addOption(inputModelFileOption);
+		options.addOption(traceTypeKindOption);
+		options.addOption(outputSysmlFileOption);
+		options.addOption(outputJSonFileOption);
+		options.addOption(outputOption);
+		return options;
+	}
+		
+
 
 }

@@ -3,6 +3,8 @@ package transform;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -242,6 +244,8 @@ public class JSonTransformer {
 	}
 	
 	/**
+	 * TODO Cuidado con el "ConnectionUsage" !! We want also other subkinds.
+	 * 
 	 * Returns the IDs of ConnectionUsages in the model
 	 * @param datamodel A SysMLv2 model written in JSon
 	 * @return IDs of Connections
@@ -305,33 +309,51 @@ public class JSonTransformer {
 		return outText;
 	}
 	
+
+
+
+
 	/**
-	 * Write in a file and returns a String containing the pretty version of the Connections and Elements of the model passed in parameter.
-	 * @param datamodel A SysMLv2 model written in JSon
-	 * @param fileOut_lne
-	 * @return
-	 * @throws IOException
-	 * @throws JsonQueryException
-	 * @throws JsonProcessingException
+	 * Add "_out" at the end of the filename and put the specified extension
+	 * @param filename
+	 * @param ext
+	 * @return filename[-extension].ext
 	 */
-	public static boolean storeConnectionsAndElements(Trace t, File fileOut_lne) {
-		try {
-			FileWriter fw = new FileWriter(fileOut_lne);
-			String t_string = t.toStringJSonD3();
-			fw.write(t_string);
-			fw.close();
-		} catch (IOException e) {
-			System.out.println("Something went wrong when writing in '"+fileOut_lne.getAbsolutePath()+"'.");
-			e.printStackTrace();
-			return false;
-		}
-		return true;
+	public static String convertNameTo(String filename, String ext) {
+		String ojf;
+		int point = filename.lastIndexOf('.');
+		ojf = filename.substring(0, point) + "_out."+ext;
+		return ojf;
 	}
 
 
 
+	public static String stripApartAerobases(File fileIn) throws IOException {
+		String strIn  = "";
+		strIn = Files.readString(Paths.get(fileIn.getAbsolutePath()));
+		strIn = strIn.replaceAll("@", "AAA");
+		return strIn;
+	}
 
 
 
+	/** 
+	 * Verify that the file exists and replaces the @symbol that plagues SysMLv2 JSon persistence. They are replaced with an arbitrary "AAA" sequence.
+	 * @param fileIn_name
+	 * @return
+	 * @throws IOException
+	 */
+	public static String checkAndCleanFileInput(String fileIn_name) throws IOException {
+		File fileIn = new File(fileIn_name);
+		if(!fileIn.exists()) {
+			System.out.println("File '"+fileIn.getAbsolutePath()+"' does not exist.");
+			System.out.println("Exit.");
+			System.exit(0);
+		} else {
+			//System.out.println("In file:  "+fileIn.getAbsolutePath());
+		}	
+		String strIn = stripApartAerobases(fileIn);
+		return strIn;
+	}
 
 }

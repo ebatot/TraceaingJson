@@ -18,30 +18,30 @@ import model.AnnotatingFeature;
 import model.Connection;
 import model.Element;
 import model.MetadataFeature;
+import model.Trace;
 import model.UndefinedDataException;
 import net.thisptr.jackson.jq.exception.JsonQueryException;
 
 public class ConnectionFactory {
 	private static HashMap<String, Connection> allConnections = new HashMap<>();
 	
-	public static enum TypeOfTraceTypes {STRING_TRACETYPES, ENUM_TRACETYPES};
-	private static TypeOfTraceTypes TYPE_OF_TRACETYPE = TypeOfTraceTypes.STRING_TRACETYPES;
-	public void setTypeOfTraceType(TypeOfTraceTypes typeOfTraceType) {
-		TYPE_OF_TRACETYPE = typeOfTraceType;
+	public static enum TraceTypesEncoding {STRING, ENUM};
+
+	private static TraceTypesEncoding TRACETYPE_ENCODING = TraceTypesEncoding.STRING;
+	public void setTracetypeEncoding(TraceTypesEncoding tracetypeEncoding) {
+		TRACETYPE_ENCODING = tracetypeEncoding;
 	}
 	
 	static ConnectionFactory instance;
-	public ConnectionFactory(ElementFactory eltFactory) {
-		this.eltFactory = eltFactory;
+	public ConnectionFactory() {
 	}
 
 	public static ConnectionFactory getInstance() {
 		if(instance == null)
-			instance = new ConnectionFactory(ElementFactory.getInstance());
+			instance = new ConnectionFactory();
 		return instance;
 	}
 	
-	private ElementFactory eltFactory;
 	private String datamodel;
 	
 	
@@ -58,7 +58,7 @@ public class ConnectionFactory {
 	 * or, if the ID has not been used yet creates a new one then affects attributes (name, source, target, type...) to the new connection.
 	 * 
 	 * @param datamodel A SysMLv2 model written in JSon
-	 * @param connection_id the id of the conneciton to get or create.
+	 * @param connection_id the id of the connection to get or create.
 	 */
 	public Connection getConnection(String connection_id)  {
 		return getConnection(connection_id, false);
@@ -69,7 +69,7 @@ public class ConnectionFactory {
 	 * or, if the ID has not been used yet creates a new one then affects attributes (name, source, target, type...) to the new connection.
 	 * 
 	 * @param datamodel A SysMLv2 model written in JSon
-	 * @param connection_id the id of the conneciton to get or create.
+	 * @param connection_id the id of the connection to get or create.
 	 * @param a flag to force the rereading of the data.
 	 *  
 	 */
@@ -103,16 +103,13 @@ public class ConnectionFactory {
 				c.setQualifiedName(qname.getAsString());
 			}
 			
-			String source_id = JSonTransformer.executeJQuery(elt_con.getAsJsonObject().toString(), ".source[0].AAAid");
-			source_id = JSonTransformer.oneValueJsonArrayToString(source_id);
-			Element source = ElementFactory.getInstance().getElement(source_id);
-			c.addSourceElement(source);
 			
-			String target_id = JSonTransformer.executeJQuery(elt_con.getAsJsonObject().toString(), ".target[0].AAAid");
-			target_id = JSonTransformer.oneValueJsonArrayToString(target_id);
-			Element target = ElementFactory.getInstance().getElement(target_id);
-			c.addTargetElement(target);
-			
+			try {
+				affectConnectionDefinition(c, gson, elt_con);
+			} catch (Exception e) {
+				//Connections may have no Definition
+			}
+			affectSourceAndTarget(c, elt_con);
 			affectAnnotatingFeaturesToConnection(c);
 			affectMetadataFeatureValueToConnection(c);
 			
@@ -125,7 +122,15 @@ public class ConnectionFactory {
 		return null;
 	}
 
-
+	/**
+	 * Return the list of metadatafeature IDs which AnnotatingFeature has name "tracetype"
+	 * @param af
+	 * @return
+	 * @throws IOException
+	 * @throws JsonQueryException
+	 * @throws JsonProcessingException
+	 * @throws JsonMappingException
+	 */
 	public List<String> getTracetypeFeaturesFromJSon(AnnotatingFeature af)
 			throws IOException, JsonQueryException, JsonProcessingException, JsonMappingException {
 		String tmp2 = JSonTransformer.executeJQuery(datamodel,
@@ -140,6 +145,15 @@ public class ConnectionFactory {
 	}
 
 
+	/**
+	 * Return the list of metadatafeature IDs which AnnotatingFeature has name "confidence"
+	 * @param af
+	 * @return
+	 * @throws IOException
+	 * @throws JsonQueryException
+	 * @throws JsonProcessingException
+	 * @throws JsonMappingException
+	 */
 	public List<String> getConfidenceFeaturesFromJSon(AnnotatingFeature af)
 			throws IOException, JsonQueryException, JsonProcessingException, JsonMappingException {
 		String tmp1 = JSonTransformer.executeJQuery(datamodel,
@@ -154,6 +168,51 @@ public class ConnectionFactory {
 	}
 
 	/**
+	 * Get the connection definition of a connection (in the datamodel) and affect it to the connection (means to get its type)
+	 * @param c
+	 * @param gson
+	 * @param elt_con
+	 * @throws IOException
+	 * @throws JsonQueryException
+	 * @throws JsonProcessingException
+	 */
+	private void affectConnectionDefinition(Connection c, Gson gson, JsonElement elt_con)
+			throws IOException, JsonQueryException, JsonProcessingException {
+		String def_id = JSonTransformer.executeJQuery(elt_con.getAsJsonObject().toString(), ".connectionDefinition[0].AAAid");
+		def_id = JSonTransformer.oneValueJsonArrayToString(def_id);
+		
+		String def = JSonTransformer.getElementRawJsonFromID(datamodel, def_id);
+		def = def.substring(1, def.length()-1);
+		
+		JsonElement jelem2 = gson.fromJson(def, JsonElement.class);
+		JsonObject jobj2 = jelem2.getAsJsonObject();
+		JsonElement elt_defname = jobj2.get("payload").getAsJsonObject().get("effectiveName");
+		JsonElement elt_qname = jobj2.get("payload").getAsJsonObject().get("qualifiedName");
+		c.setDefinition(def_id, elt_defname.getAsString(), elt_qname.getAsString());
+	}
+
+	/**
+	 * Get sources and targets of a connection from the datamodel and affect them to the connection.
+	 * @param c
+	 * @param elt_con
+	 * @throws IOException
+	 * @throws JsonQueryException
+	 * @throws JsonProcessingException
+	 */
+	private void affectSourceAndTarget(Connection c, JsonElement elt_con)
+			throws IOException, JsonQueryException, JsonProcessingException {
+		String source_id = JSonTransformer.executeJQuery(elt_con.getAsJsonObject().toString(), ".source[0].AAAid");
+		source_id = JSonTransformer.oneValueJsonArrayToString(source_id);
+		Element source = ElementFactory.getInstance().getElement(source_id);
+		c.addSourceElement(source);
+		
+		String target_id = JSonTransformer.executeJQuery(elt_con.getAsJsonObject().toString(), ".target[0].AAAid");
+		target_id = JSonTransformer.oneValueJsonArrayToString(target_id);
+		Element target = ElementFactory.getInstance().getElement(target_id);
+		c.addTargetElement(target);
+	}
+
+	/**
 	 * Get the values of metadatafeature of a connection from the model and affect them to the Connection object.
 	 * @param l a Connection
 	 */
@@ -163,20 +222,24 @@ public class ConnectionFactory {
 		});
 	}
 
+	/**
+	 * Get and affect the value of a MetadataFeature.
+	 * @param mf
+	 */
 	private void affectValueToMetadataFeature(MetadataFeature mf) {
 		try {
 			if(mf.isConfidence()) 
 				affectDoubleValueToMetadataFeature(mf);
 			if(mf.isTraceType()) {
-				switch (TYPE_OF_TRACETYPE) {
-				case ENUM_TRACETYPES:
+				switch (TRACETYPE_ENCODING) {
+				case ENUM:
 					affectEnumValueToMetadataFeature(mf);					
 					break;
-				case STRING_TRACETYPES:
+				case STRING:
 					affectStringValueToMetadataFeature(mf);
 					break;
 				default:
-					throw new IllegalArgumentException("Type of tracetypes not recognized. Use enum operators please.");
+					throw new IllegalArgumentException("Type of tracetypes not recognized. Use Enum or String operators please.");
 				}
 			}
 		} catch (JsonQueryException e) {
@@ -269,7 +332,6 @@ public class ConnectionFactory {
 		
 		if (elt != null) 
 			mf.addDoubleValue(id, elt.getAsDouble());
-		
 		return elt != null;
 	}
 
@@ -284,8 +346,6 @@ public class ConnectionFactory {
 			throws JsonQueryException, JsonProcessingException, IOException, JsonMappingException {
 		
 		String id = mf.getID();
-		System.out.println("ConnectionFactory.affectEnumValueToMetadataFeature()");
-		System.out.println(id);
 		String s_mf = JSonTransformer.getElementSpecificFieldFromID(datamodel, id, ".payload.ownedFeature[].AAAid");
 		
 		List<String> ss = new ObjectMapper().readValue(s_mf, new TypeReference<List<String>>() {});
@@ -299,17 +359,13 @@ public class ConnectionFactory {
 		String referent_name_str = JSonTransformer.getElementSpecificFieldFromID(datamodel, referentid, ".payload.name");
 		jelem = gson.fromJson(referent_name_str, JsonElement.class); //Remove the "[]"
 		 
-		 
 		String name = jelem.getAsString();
 		
 		if (jelem != null) {
 			mf.addStringValue(id, name);
 		}
 		return elt != null;
-		
 	}
-	
-	
 	
 	
 	private boolean affectStringValueToMetadataFeature(MetadataFeature mf)
@@ -331,6 +387,15 @@ public class ConnectionFactory {
 		return elt != null;
 		
 	}
-	
 
+	public static Trace buildTrace(String datamodel)
+			throws JsonQueryException, JsonProcessingException, IOException {
+		Trace t = new Trace();
+		List<String> links_id = JSonTransformer.getLinksIDs(datamodel);
+		links_id.forEach((id)-> {
+			Connection c = getInstance().getConnection(id);
+			t.addConnection(c);
+		});
+		return t;
+	}
 }

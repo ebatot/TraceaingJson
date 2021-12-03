@@ -2,14 +2,16 @@ package model;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 public class Trace {
+	public enum FormatForPrintingMetadatas {WITH_AEROBASE, SEPARATED};
 	
+
 	List<Connection> connections = new ArrayList<>();
+	
 	public Trace() {
-		
 	}
 	
 	public boolean addConnection(Connection c){
@@ -45,6 +47,26 @@ public class Trace {
 		String res = "{\n " + links + ", "+nodes+"\n}";
 		return res;
 	}
+	
+	
+	public String toStringJSonMultiEnds() {
+		HashSet<Element> elements = getAllElements();
+		
+		String links = "\"links\": [\n";
+		for (Connection c : connections) 
+			links += "  "+c.toStringJSonMultiEnds() + ",\n";
+		links = links.substring(0, links.length() - 2) +" \n]";
+
+		String nodes = "\"nodes\": [\n";
+		for (Element e : elements) {
+			nodes +=  "  "+e.toStringJSon() + ",\n";
+		}
+		nodes = nodes.substring(0, nodes.length() - 2) +" \n]";
+		
+		String res = "{\n " + links + ", "+nodes+"\n}";
+		return res;
+	}
+
 
 	public String toStringPretty() {
 		HashSet<Element> elements = getAllElements();
@@ -69,16 +91,29 @@ public class Trace {
 	 * @return
 	 */
 	public String toStringMatrixText() {
-		String res = "     ";
-		for (Element e : getAllElements()) {
-			res += e.getName() +" ";
-		}
+		ArrayList<String> eltsNames = new ArrayList<>(getAllElements().size());
+		int max = 0;
+		for (Element c : getAllElements()) 
+			if(c.getName().length() > max) max = c.getName().length();
+		
+		for (Element c : getAllElements()) 
+			eltsNames.add(missingSpaces(c.getName(), max));
+		
+		int n = (""+eltsNames.size()).length(); 
+		
+		
+		String res = "  " + missingSpaces("", max)+" ";
+		for (int i = 0; i < eltsNames.size(); i++) 
+			res += " "+ Trace.padLeftZeros(""+i, n)  + " ";
+		
+		
 		
 		String res2 = "";
+		int i = 0;
 		for (Element e : getAllElements()) {
-			res2 += e.getName()+"|";
+			res2 += Trace.padLeftZeros(""+i, n)  + " " + eltsNames.get(i++)+"|";
 			for (Element e2 : getAllElements()) 
-				res2 += (e2.connects(e)?"  x  ":"     ") + "";
+				res2 += (e2.connects(e)?" x ":"   ") + "";
 			res2 += "\n";
 		}
 		return res + "\n" + res2 ;
@@ -143,14 +178,14 @@ public class Trace {
 				+ "\t<div style=\"overflow-x:auto;\">\n";
 		return  HEADER + table + "\n\t</div>\n</body>" ;
 	}
-	/*
+
+	/**
 	 * 
-
-
+	 * @param format
+	 * @return
 	 */
 	public String toStringSysML(FormatForPrintingMetadatas format) {
 		String res = "";
-		int i = 0;
 		for (Connection c : connections) {
 			String sources = "";
 			for (Element e : c.getSourceElements()) 
@@ -163,16 +198,15 @@ public class Trace {
 					" connect " + sources.substring(0, sources.length()-2) + 
 					" to " + targets.substring(0, targets.length()-2) +"";
 			
-			String metaConfidence = "metadata m"+i+++": ConfidenceTracing about "+c.getEffectiveName() +
-					" { confidence = "+c.getConfidenceValue()+";}";
+			String tmpConfAndTracetype = getSysmlMetadataDeclaration(c);
 			
-			String metaTracetype = "";
-			for (String tt : c.getTracetypes()) {
-				metaTracetype += "metadata m"+i+++": TraceType about "+c.getEffectiveName() +
-					" { tracetype = \""+tt+"\";}";
+			String metaConfidence2 = "";
+			try {
+				metaConfidence2 = "  @ConfidenceTracing { confidence = "+c.getConfidenceValue()+";}";
+			} catch (Exception e1) {
+//				System.out.println("Connection "+c.getEffectiveName()+":"+c.getID()+" has no confidence value. SHOULD WE SET IT TO 1.0 ?");
+//				e1.printStackTrace();
 			}
-			
-			String metaConfidence2 = "  @ConfidenceTracing { confidence = "+c.getConfidenceValue()+";}";
 			
 			String metaTracetype2 = "";
 			for (String tt : c.getTracetypes()) {
@@ -188,7 +222,7 @@ public class Trace {
 				res += connection + "{\n" + metaConfidence2 + "\n" + metaTracetype2 + "}\n";
 				break;
 			case SEPARATED:
-				res += connection + ";\n" + metaConfidence + "\n" + metaTracetype + "\n";
+				res += connection + ";\n" + tmpConfAndTracetype + "\n";
 				break;
 			default:
 				throw new IllegalArgumentException("Not supposed to get here !");
@@ -196,5 +230,57 @@ public class Trace {
 		}
 		return res;
 	}
-	public enum FormatForPrintingMetadatas {WITH_AEROBASE, SEPARATED};
+
+	/**
+	 * 
+	 * @return
+	 */
+	public String toStringSysMLNoConnections() {
+		String res = "";
+		for (Connection c : connections) 
+			res += "" + getSysmlMetadataDeclaration( c) + "\n";
+		return res;
+	}
+
+	private String getSysmlMetadataDeclaration(Connection c) {
+		String tmpRes = "";
+		String metaConfidence = "";
+		try {
+			metaConfidence = "metadata m"+(new Random().nextInt(10000))+": ConfidenceTracing about "+c.getEffectiveName() +
+					" { confidence = "+c.getConfidenceValue()+";}";
+		} catch (Exception e1) {
+			//No confidence defined, no need for metadata definition
+//				System.out.println("Connection "+c.getEffectiveName()+":"+c.getID()+" has no confidence value. SHOULD WE SET IT TO 1.0 ?");
+//				e1.printStackTrace();
+		}
+		
+		String metaTracetype = "";
+		for (String tt : c.getTracetypes()) {
+			//No confidence defined, no need for metadata definition
+			metaTracetype += "metadata m"+(new Random().nextInt(10000))+": TraceType about "+c.getEffectiveName() +
+				" { tracetype = \""+tt+"\";}";
+		}
+		tmpRes = metaConfidence + "\n" + metaTracetype + "";
+		return tmpRes.trim();
+	}
+	
+	public static String padLeftZeros(String inputString, int length) {
+	    if (inputString.length() >= length) {
+	        return inputString;
+	    }
+	    StringBuilder sb = new StringBuilder();
+	    while (sb.length() < length - inputString.length()) {
+	        sb.append('0');
+	    }
+	    sb.append(inputString);
+	
+	    return sb.toString();
+	}
+
+	public static String missingSpaces(String o, int size) {
+		String res = o;
+		for (int i = 0; i < size-o.length(); i++) 
+			res += " ";
+		return res;
+	}
 }

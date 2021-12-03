@@ -1,0 +1,22 @@
+{
+ "links": [
+  { "id": "b258f108-35fc-4dbe-a87e-91e9324e6e35", "name": "reAx2reWh", "type": "Untyped", "source_id": "3adb1397-21a6-4788-bc35-e01a5ec34d06", "target_id": "671c12dd-60aa-4bbe-9a90-c4649e066e4f", "confidence": 1.0},
+  { "id": "6ad9831d-6e62-4bcc-a720-e5ce240e526b", "name": "frAx2frWh", "type": "Untyped", "source_id": "5c1849a3-72d9-403b-a007-4b6098363a10", "target_id": "78e64c1b-cd63-4219-bea2-9d8bf8231bbe", "confidence": 1.0},
+  { "id": "90f0b185-0144-4611-843a-0edf55ec659f", "name": "bod2eng", "type": "Untyped", "source_id": "745fdf04-9de6-4ce5-bbd2-6790d4dce121", "target_id": "b7393d23-a4f6-440b-950e-ec08898cbbc5", "confidence": 1.0},
+  { "id": "8918c8ca-2ea7-4060-b7a8-50ac508fff24", "name": "bod2frAx", "type": "Untyped", "source_id": "745fdf04-9de6-4ce5-bbd2-6790d4dce121", "target_id": "5c1849a3-72d9-403b-a007-4b6098363a10", "confidence": 1.0},
+  { "id": "4070a781-64fc-4dbf-aa29-bb1b42294842", "name": "bod2bat", "type": "Untyped", "source_id": "745fdf04-9de6-4ce5-bbd2-6790d4dce121", "target_id": "923117a0-9473-4650-aadc-9b852a16b2b8", "confidence": 1.0},
+  { "id": "658605ed-ad4c-4f58-9092-da73f52baa04", "name": "bod2reAx", "type": "Untyped", "source_id": "745fdf04-9de6-4ce5-bbd2-6790d4dce121", "target_id": "3adb1397-21a6-4788-bc35-e01a5ec34d06", "confidence": 1.0},
+  { "id": "4158b158-4110-4067-9d39-7ba17c16961c", "name": "eng2front", "type": "typeC", "source_id": "b7393d23-a4f6-440b-950e-ec08898cbbc5", "target_id": "5c1849a3-72d9-403b-a007-4b6098363a10", "confidence": 1.0},
+  { "id": "a47aaeaa-5201-436f-87fb-7fec6139d6ce", "name": "eng2bat_Typed", "type": "Untyped", "source_id": "47306400-721a-4a30-9c95-0b76eb76bc00", "target_id": "678f6769-37ab-4d78-b7ea-336957b000c7", "confidence": 1.0} 
+], "nodes": [
+  { "id": "78e64c1b-cd63-4219-bea2-9d8bf8231bbe", "name": "frontWheel", "sysmltype": "PartUsage"},
+  { "id": "745fdf04-9de6-4ce5-bbd2-6790d4dce121", "name": "body", "sysmltype": "PartUsage"},
+  { "id": "678f6769-37ab-4d78-b7ea-336957b000c7", "name": "ul", "sysmltype": "Feature"},
+  { "id": "47306400-721a-4a30-9c95-0b76eb76bc00", "name": "ul", "sysmltype": "Feature"},
+  { "id": "b7393d23-a4f6-440b-950e-ec08898cbbc5", "name": "engine", "sysmltype": "PartUsage"},
+  { "id": "671c12dd-60aa-4bbe-9a90-c4649e066e4f", "name": "rearWheel", "sysmltype": "PartUsage"},
+  { "id": "923117a0-9473-4650-aadc-9b852a16b2b8", "name": "battery", "sysmltype": "PartUsage"},
+  { "id": "3adb1397-21a6-4788-bc35-e01a5ec34d06", "name": "rearAxis", "sysmltype": "PartUsage"},
+  { "id": "5c1849a3-72d9-403b-a007-4b6098363a10", "name": "frontAxis", "sysmltype": "PartUsage"} 
+]
+}

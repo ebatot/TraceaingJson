@@ -15,12 +15,6 @@ public class AnnotatingFeature extends TracingElement {
 		super(ID);
 	}
 	
-//	public AnnotatingFeature(String ID, String metadataEffectiveName, String metadataID) {
-//		this.ID = ID;
-//		MetadataFeature mf = new MetadataFeature(metadataID, metadataEffectiveName);
-//		addMetatadataFeature(mf);
-//	}
-	
 	public MetadataFeature addMetatadataFeature(MetadataFeature mf) {
 		return metadatas.put(mf.effectiveName, mf);
 	}

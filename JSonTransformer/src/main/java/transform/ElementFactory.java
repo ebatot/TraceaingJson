@@ -39,7 +39,7 @@ public class ElementFactory {
 				String qname = JSonTransformer.getElementSpecificFieldFromID(lr_s, id, ".payload.qualifiedName");
 				res.setQualifiedName(JSonTransformer.oneValueJsonArrayToString(qname));
 				String type = JSonTransformer.getElementSpecificFieldFromID(lr_s, id, ".payload.AAAtype");
-				res.setType(JSonTransformer.oneValueJsonArrayToString(type));
+				res.setSysmlType(JSonTransformer.oneValueJsonArrayToString(type));
 				
 			} catch (IOException e) {
 				e.printStackTrace();

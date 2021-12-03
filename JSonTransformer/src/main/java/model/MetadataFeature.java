@@ -51,7 +51,7 @@ public class MetadataFeature extends TracingElement {
 	public void addStringValue(String literalRationalID, String value) {
 		stringValues.put(literalRationalID, value);
 		allMetadataFeatureValues.put(this, value);
-		if(effectiveName.equals("tracetype"))
+		if(isTraceType())
 			allTracetypes.add(value);
 	}
 	
@@ -95,6 +95,10 @@ public class MetadataFeature extends TracingElement {
 		return effectiveName.equals("confidence");
 	}
 	
+	public boolean isTraceType() {
+		return effectiveName.equals("tracetype");
+	}
+
 	
 	/**
 	 * Return the FIRST confidence found. If more than one, ATTENTION !!
@@ -124,9 +128,6 @@ public class MetadataFeature extends TracingElement {
 		}
 	}
 	
-	public boolean isTraceType() {
-		return effectiveName.equals("tracetype");
-	}
 
 //	public boolean isStringValue() {
 //		return isTraceType();
