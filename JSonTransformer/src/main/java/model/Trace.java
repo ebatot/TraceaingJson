@@ -124,15 +124,17 @@ public class Trace {
 	 * @return
 	 */
 	public String toStringMatrixHTML() {
+		boolean printEletNames = true;
+		
 		String res = "\t<tr>\n\t\t<th></th>\n";
 		for (Element e : getAllElements()) 
-			res += "\t\t<th class=\"linkName\">"+e.getName() +"</th>\n";
+			res += "\t\t<th class=\"linkName\">"+e.getName()+(printEletNames?"<br/>"+e.ID:"")+"</th>\n";
 		res += "\t</tr>\n";
 		
 		String res2 = "";
 		for (Element e : getAllElements()) {
 			res2 += "\t<tr>\n";
-			res2 += "\t\t<td class=\"linkName\" width=\"150px\">"+e.getName() + "</td>\n";
+			res2 += "\t\t<td class=\"linkName\" width=\"150px\">"+e.getName()+(printEletNames?"<br/>"+e.ID:"")+ "</td>\n";
 			for (Element e2 : getAllElements()) {
 				res2 += "\t\t<td class=\"linkCell\" width=\"150px\">";
 				HashSet<String> cs = e2.connectionTypes(e);

@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import transform.ConnectionFactory;
+import transform.ElementFactory;
+
 public class Element extends TracingElement {
 	private  String name, qualifiedName;
 	private  String sysmlType;
@@ -29,6 +32,14 @@ public class Element extends TracingElement {
 				return true;
 		return false;
 	}
+	
+//	@Override
+//	public boolean equals(Object obj) {
+//		//TODO ATTENTION !
+//		if(obj == null) return false;
+//		if(!obj.getClass().equals(this.getClass())) return false;
+//		return this.getName().equals(((Element)obj).getName());
+//	}
 
 	public HashSet<Connection> connections(Element e) {
 		HashSet<Connection> res = new HashSet<>(1);
@@ -83,7 +94,10 @@ public class Element extends TracingElement {
 		String res = "{ "
 				+ "\"id\": \"" 	 + ID    + "\", "
 				+ "\"name\": \"" + name  + "\", "
-				+ "\"sysmltype\": \"" + sysmlType  + "\""
+				+ "\"type\": \"" + sysmlType  + "\","
+				//D3 parameter
+				+ "\"size\": 100,"
+				+ "\"group\": "+ElementFactory.getGroup(this)+""
 				+ "}";
 		return res ;
 	}

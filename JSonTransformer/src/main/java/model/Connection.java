@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import transform.ConnectionFactory;
+
 /**
  * An abstracted ConnectionUsage in SysMLv2 terminology.
  * 
@@ -174,6 +176,10 @@ public class Connection extends TracingElement {
 			if(mf.isTraceType())
 				res.addAll(mf.getStringValues());
 		}
+		
+		if(res.isEmpty()) 
+			res.add(UNTYPED);
+		
 		return res;
 	}
 	
@@ -220,7 +226,10 @@ public class Connection extends TracingElement {
 				+ "\"type\": \""+getFirstTracetype() +"\", "
 				+ "\"source_id\": \""+getFirstSourceId()  +"\", "
 				+ "\"target_id\": \""+getFirstTargetId()  +"\", "
-				+ "\"confidence\": "+confidenceValue+""
+				+ "\"confidence\": "+confidenceValue*100+","
+				//D3 parameter
+				+ "\"group\": "+ConnectionFactory.getGroup(this)+""
+				
 				+ "}";
 		return res;
 	}

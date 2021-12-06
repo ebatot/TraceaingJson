@@ -37,8 +37,10 @@ public class ConnectionFactory {
 	}
 
 	public static ConnectionFactory getInstance() {
-		if(instance == null)
+		if(instance == null) {
 			instance = new ConnectionFactory();
+			addGroup(Connection.UNTYPED);
+		}
 		return instance;
 	}
 	
@@ -113,6 +115,8 @@ public class ConnectionFactory {
 			affectAnnotatingFeaturesToConnection(c);
 			affectMetadataFeatureValueToConnection(c);
 			
+			for (String s : c.getTracetypes()) 
+				addGroup(s);
 			return c;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -398,4 +402,20 @@ public class ConnectionFactory {
 		});
 		return t;
 	}
+
+	public static int getGroup(Connection connection) {
+		if(connection.getTracetypes().size() > 0) 
+			return groups.get(connection.getTracetypes().get(0));
+		return groups.get(Connection.UNTYPED);
+	}
+	
+	private static void addGroup(String s) {
+		if(groups.get(s) == null) {
+			groups.put(s, countGroup++);
+		}
+	}
+
+	static int countGroup = 0;	
+	public static HashMap<String, Integer> groups = new HashMap<>();
+	
 }

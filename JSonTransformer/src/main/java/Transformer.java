@@ -28,8 +28,9 @@ public class Transformer {
 //		printLOC();
 //		System.exit(0);
 		
-		System.out.println("    * SysMLv2-JSon Transformer v0.1 *");
-		System.out.println("    * *  *  *  *  *  *  *  *  *  *  *");
+		System.out.println("       * *  *  *  *  *  *  *  *  *  *  *");
+		System.out.println("       * SysMLv2-JSon Transformer v0.1 *");
+		System.out.println("       * *  *  *  *  *  *  *  *  *  *  *");
 		System.out.println();
 		
 		Object[] configuration = getCommandLineArguments(args);
@@ -46,7 +47,7 @@ public class Transformer {
 		boolean out_html = output_style.contains("h");
 		boolean out_json = output_style.contains("j");
 		
-		System.out.println("Configuration: "+configuration[0]);
+		System.out.println("\nConfiguration: "+configuration[0]);
 		System.out.println("  Model file:     " + fileIn_name);
 		System.out.println("  Tracetype type: " + tracetypesType);
 		System.out.println("  Output: '"+output_style+"' (available are 'jsh')");
@@ -65,7 +66,7 @@ public class Transformer {
 		if(out_json)
 			fileOut_lne = checkOutFileName(fileOut_json_name);
 		if(out_html)
-			fileOut_html = checkOutFileName(fileOut_sysml_name);
+			fileOut_html = checkOutFileName(fileOut_html_name);
 		
 		/*
 		 * Initialization

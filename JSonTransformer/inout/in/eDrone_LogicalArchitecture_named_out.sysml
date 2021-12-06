@@ -14,5 +14,3 @@ connection bod2reAx connect body to rearAxis;
 
 connection eng2bat_Typed connect ul to ul;
 
-connection rq1ToWing connect eDroneMaxSpeed to ul;
-

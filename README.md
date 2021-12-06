@@ -27,3 +27,10 @@ This project offres to take a SysMLv2 model written in JSon as input. It then ex
   * named links
   * separated files
 * Transformation from Tracea-JSon to into SysML
+
+## JSon Transformer command line
+
+* Input model file
+* Output style (jsh)
+* Tracetype encoding
+
