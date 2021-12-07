@@ -85,7 +85,7 @@ public class Trace {
 //			elements.addAll(c.getSourceElements());
 //			elements.addAll(c.getTargetElements());
 //		});
-		return ElementFactory.getInstance().getAllElements();
+		return ElementFactory.getInstance().getAllElementsByName();
 	}
 
 	/**

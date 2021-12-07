@@ -24,17 +24,23 @@ public class ElementFactory {
 	}
 	
 	private HashMap<String, Element> elementsMap;
+	private HashMap<String, List<String>> elementsMapReverseName;
 
 	public ElementFactory() {
 		elementsMap = new HashMap<>();
+		elementsMapReverseName = new HashMap<>();
 	}
 	
 	public HashMap<String, Element> getElementsMap() {
 		return elementsMap;
 	}
 	
-	public List<Element> getAllElements() {
-		ArrayList<Element> res = new ArrayList<>(elementsMap.values());
+	public List<Element> getAllElementsByName() {
+		ArrayList<Element> res = new ArrayList<>(elementsMap.values().size());
+		for (Element element : elementsMap.values()) {
+			if(!res.contains(element))
+				res.add(element);
+		}
 		Collections.sort(res, new Comparator<Element>() {
 			@Override
 			public int compare(Element o1, Element o2) {
@@ -42,6 +48,10 @@ public class ElementFactory {
 			}
 		});
 		return res;
+	}
+	
+	public List<String> getIDsByName(Element e){
+		return elementsMapReverseName.get(e.getName());
 	}
 	
 	public Element getElement(String id) {
@@ -112,42 +122,33 @@ public class ElementFactory {
 //					System.out.println(lr_s);
 //					System.exit(0);
 				}			
-			
-			
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			addGroup(res.getSysmlType());
 			addElement(res);
-			
 		}
 		return res;
 	}
 	
 	/**
-	 * @param res
+	 * @param elt
 	 */
-	private void addElement(Element res) {
-		elementsMap.put(res.getID(), res);
+	private void addElement(Element elt) {
+		elementsMap.put(elt.getID(), elt);
+		storeElementByName(elt);
 	}
-	
+
 	/**
 	 * Attention, this works to overcome the multi IDs of features in SysML. 
 	 * We compare names for the sake of the prototype - this is HAZARDOUS !
 	 * Not to be used in production where only IDs matter.
-	 * @param res
+	 * @param elt
 	 */
-	private void addElementByName(Element res) {
-		Element eFound = null;
-		for (Element e : elementsMap.values()) {
-			if(e.equals(res)) {
-				eFound = e;
-				break;
-			}
-		}
-		if(eFound != null) {
-			elementsMap.put(res.getID(), eFound);
-		}
+	public void storeElementByName(Element elt) {
+		if(elementsMapReverseName.get(elt.getName()) == null)
+			elementsMapReverseName.put(elt.getName(), new ArrayList<>());
+		elementsMapReverseName.get(elt.getName()).add(elt.getID());
 	}
 	
 	/**
@@ -256,5 +257,9 @@ public static String showFieldsFromID(String datamodel, String id, String... fie
 
 	public String getDatamodel() {
 		return datamodel;
+	}
+
+	public static String getD3ID(Element element) {
+		return getInstance().getIDsByName(element).get(0);
 	}
 }
