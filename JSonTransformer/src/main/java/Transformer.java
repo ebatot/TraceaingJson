@@ -224,6 +224,7 @@ public class Transformer {
 			formatter.setWidth(120);
 			System.out.println();
 			formatter.printHelp("java -jar JSonTransformer.jar", options, true);
+			System.exit(0);
 		}
 
 		if (!run) {
