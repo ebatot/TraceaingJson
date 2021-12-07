@@ -163,7 +163,7 @@ public class Element extends TracingElement {
 
 	public String toStringJSon() {
 		String res = "{ "
-				+ "\"id\": \"" 	 + ElementFactory.getD3ID(this) + "\", "
+				+ "\"id\": \"" 	 + ID    + "\", "
 				+ "\"name\": \"" + name  + "\", "
 				+ "\"type\": \"" + sysmlType  + "\","
 				//D3 parameter
