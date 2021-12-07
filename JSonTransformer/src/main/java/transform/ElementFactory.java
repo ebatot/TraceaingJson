@@ -130,7 +130,26 @@ public class ElementFactory {
 	private void addElement(Element res) {
 		elementsMap.put(res.getID(), res);
 	}
-
+	
+	/**
+	 * Attention, this works to overcome the multi IDs of features in SysML. 
+	 * We compare names for the sake of the prototype - this is HAZARDOUS !
+	 * Not to be used in production where only IDs matter.
+	 * @param res
+	 */
+	private void addElementByName(Element res) {
+		Element eFound = null;
+		for (Element e : elementsMap.values()) {
+			if(e.equals(res)) {
+				eFound = e;
+				break;
+			}
+		}
+		if(eFound != null) {
+			elementsMap.put(res.getID(), eFound);
+		}
+	}
+	
 	/**
 	 * return the list of IDs of a specific field (potentially an array [{"AAAid": "value"}...]) of an identified element.
 	 * 

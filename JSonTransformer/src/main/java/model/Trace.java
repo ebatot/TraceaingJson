@@ -115,7 +115,7 @@ public class Trace {
 		for (Element e : getAllElements()) {
 			res2 += Trace.padLeftZeros(""+i, n)  + " " + eltsNames.get(i++)+"|";
 			for (Element e2 : getAllElements()) 
-				res2 += (e2.connects(e)?" x ":"   ") + "";
+				res2 += (e2.connectsByName(e)?" x ":"   ") + "";
 			res2 += "\n";
 		}
 		return res + "\n" + res2 ;
@@ -139,7 +139,7 @@ public class Trace {
 			res2 += "\t\t<td class=\"linkName\" width=\"150px\">"+e.getName()+(printEletNames?"<br/>"+e.ID:"")+ "</td>\n";
 			for (Element e2 : getAllElements()) {
 				res2 += "\t\t<td class=\"linkCell\" width=\"150px\">";
-				HashSet<String> cs = e2.connectionTypes(e);
+				HashSet<String> cs = e2.connectionByNameTypes(e);
 				if (cs.isEmpty()) {
 				} else {
 					for (String type : cs) 
