@@ -170,6 +170,12 @@ public class ElementFactory {
 	}
 
 public static String showFieldsFromID(String datamodel, String id, String... fields) {
+	/*
+	 * 
+	 * TODO Git branching test
+	 * 
+	 */
+
 	String res = "'"+id+"':\n";
 	try {
 		String lr_s = JSonTransformer.getElementRawJsonFromID(datamodel, id);
