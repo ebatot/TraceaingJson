@@ -2,17 +2,17 @@ package transform;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import model.Connection;
 import model.Element;
 import model.UndefinedDataException;
 
@@ -23,19 +23,33 @@ public class ElementFactory {
 		this.datamodel = datamodel;
 	}
 	
-	private HashMap<String, Element> allElements;
+	private HashMap<String, Element> elementsMap;
 
 	public ElementFactory() {
-		allElements = new HashMap<>();
+		elementsMap = new HashMap<>();
 	}
 	
+	public HashMap<String, Element> getElementsMap() {
+		return elementsMap;
+	}
+	
+	public List<Element> getAllElements() {
+		ArrayList<Element> res = new ArrayList<>(elementsMap.values());
+		Collections.sort(res, new Comparator<Element>() {
+			@Override
+			public int compare(Element o1, Element o2) {
+				return o1.getName().compareTo(o2.getName());
+			}
+		});
+		return res;
+	}
 	
 	public Element getElement(String id) {
 		if(datamodel == null) 
 			throw new UndefinedDataException("The datamodel has not been instantiated yet. \n"
 					+ "Use 'setDatamodel' with a valid SysMLv2 model written in JSon to continue.");
 		
-		Element res = allElements.get(id);
+		Element res = elementsMap.get(id);
 		if(res != null)
 			return res;
 		else {
@@ -104,11 +118,19 @@ public class ElementFactory {
 				e.printStackTrace();
 			}
 			addGroup(res.getSysmlType());
-			allElements.put(id, res);
+			addElement(res);
+			
 		}
 		return res;
 	}
 	
+	/**
+	 * @param res
+	 */
+	private void addElement(Element res) {
+		elementsMap.put(res.getID(), res);
+	}
+
 	/**
 	 * return the list of IDs of a specific field (potentially an array [{"AAAid": "value"}...]) of an identified element.
 	 * 
@@ -170,7 +192,7 @@ public static String showFieldsFromID(String datamodel, String id, String... fie
 	//			JsonElement elt_con = jobj.get("AAAid");
 				System.out.println(elt_con+"     -----");
 				
-				String lr_s2 = JSonTransformer.getElementRawJsonFromID(datamodel, id);
+//				String lr_s2 = JSonTransformer.getElementRawJsonFromID(datamodel, id);
 			
 			
 			}

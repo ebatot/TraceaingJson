@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import transform.ConnectionFactory;
 import transform.ElementFactory;
 
 public class Element extends TracingElement {
@@ -25,7 +24,7 @@ public class Element extends TracingElement {
 	 */
 	public boolean connects(Element e) {
 		for (Connection c : sourceOf)
-			if (c.getSourceElements().contains(e) || c.getTargetElements().contains(e))
+			if (c.getSourceElements().contains(e) || c.getTargetElements().contains(e)) //contains(TracingElement) uses ID.
 				return true;
 		for (Connection c : targetOf)
 			if (c.getSourceElements().contains(e) || c.getTargetElements().contains(e))
@@ -33,18 +32,10 @@ public class Element extends TracingElement {
 		return false;
 	}
 	
-//	@Override
-//	public boolean equals(Object obj) {
-//		//TODO ATTENTION !
-//		if(obj == null) return false;
-//		if(!obj.getClass().equals(this.getClass())) return false;
-//		return this.getName().equals(((Element)obj).getName());
-//	}
-
 	public HashSet<Connection> connections(Element e) {
 		HashSet<Connection> res = new HashSet<>(1);
 		for (Connection c : sourceOf)
-			if (c.getSourceElements().contains(e) || c.getTargetElements().contains(e))
+			if (c.getSourceElements().contains(e) || c.getTargetElements().contains(e)) //contains(TracingElement) uses ID.
 				res.add(c);
 		for (Connection c : targetOf)
 			if (c.getSourceElements().contains(e) || c.getTargetElements().contains(e))

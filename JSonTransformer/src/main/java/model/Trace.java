@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
+import transform.ElementFactory;
+
 public class Trace {
 	public enum FormatForPrintingMetadatas {WITH_AEROBASE, SEPARATED};
 	
@@ -31,7 +33,7 @@ public class Trace {
 	}
 
 	public String toStringJSonD3() {
-		HashSet<Element> elements = getAllElements();
+		List<Element> elements = getAllElements();
 		
 		String links = "\"links\": [\n";
 		for (Connection c : connections) 
@@ -50,7 +52,7 @@ public class Trace {
 	
 	
 	public String toStringJSonMultiEnds() {
-		HashSet<Element> elements = getAllElements();
+		List<Element> elements = getAllElements();
 		
 		String links = "\"links\": [\n";
 		for (Connection c : connections) 
@@ -69,7 +71,7 @@ public class Trace {
 
 
 	public String toStringPretty() {
-		HashSet<Element> elements = getAllElements();
+		List<Element> elements = getAllElements();
 		String res = "Trace ("+connections.size()+" links connect "+elements.size()+" elements.";
 		for (Connection c : connections) 
 			res += "\n"+ c.toStringPretty("  ");
@@ -77,13 +79,13 @@ public class Trace {
 		return res;
 	}
 
-	private HashSet<Element> getAllElements() {
-		HashSet<Element> elements = new HashSet<>(connections.size()*2);
-		connections.forEach(c -> {
-			elements.addAll(c.getSourceElements());
-			elements.addAll(c.getTargetElements());
-		});
-		return elements;
+	private List<Element> getAllElements() {
+//		HashSet<Element> elements = new HashSet<>(connections.size()*2);
+//		connections.forEach(c -> {
+//			elements.addAll(c.getSourceElements());
+//			elements.addAll(c.getTargetElements());
+//		});
+		return ElementFactory.getInstance().getAllElements();
 	}
 
 	/**
