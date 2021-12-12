@@ -238,4 +238,13 @@ public static String showFieldsFromID(String datamodel, String id, String... fie
 	public String getDatamodel() {
 		return datamodel;
 	}
+
+	/**
+	 * returns an ID used to populate D3-JSon models
+	 * @param element
+	 * @return
+	 */
+	public static String getD3ID(Element element) {
+		return element.getID();
+	}
 }

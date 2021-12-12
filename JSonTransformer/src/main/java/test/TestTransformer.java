@@ -253,7 +253,7 @@ public class TestTransformer {
 		boolean success = true; 
 		try {
 			FileWriter fw = new FileWriter(fileOut_lne);
-			String t_string = t.toStringJSonMultiEnds();
+			String t_string = t.generateTraceaJSon();
 			fw.write(t_string);
 			fw.close();
 		} catch (IOException e) {
@@ -269,7 +269,7 @@ public class TestTransformer {
 		
 		File fileOut_sml = checkOutFileName(fileOut_sysml_name);
 		FileWriter fw = new FileWriter(fileOut_sml);
-		fw.write(t.toStringSysML(FormatForPrintingMetadatas.SEPARATED));
+		fw.write(t.generateSysML(FormatForPrintingMetadatas.SEPARATED));
 		fw.close();
 		System.out.println("Trace SysMLv2 stored in '"+fileOut_sml.getAbsolutePath()+"'.");
 		
