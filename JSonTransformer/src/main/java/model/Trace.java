@@ -32,12 +32,12 @@ public class Trace {
 		return null;
 	}
 
-	public String toStringJSonD3() {
+	public String generateD3JSon() {
 		List<Element> elements = getAllElements();
 		
 		String links = "\"links\": [\n";
 		for (Connection c : connections) 
-			links += "  "+c.toStringJSon() + ",\n";
+			links += "  "+c.generateD3JSon() + ",\n";
 		links = links.substring(0, links.length() - 2) +" \n]";
 
 		String nodes = "\"nodes\": [\n";
@@ -51,12 +51,12 @@ public class Trace {
 	}
 	
 	
-	public String toStringJSonMultiEnds() {
+	public String generateTraceaJSon() {
 		List<Element> elements = getAllElements();
 		
 		String links = "\"links\": [\n";
 		for (Connection c : connections) 
-			links += "  "+c.toStringJSonMultiEnds() + ",\n";
+			links += "  "+c.generateTraceaJSon() + ",\n";
 		links = links.substring(0, links.length() - 2) +" \n]";
 
 		String nodes = "\"nodes\": [\n";
@@ -80,19 +80,14 @@ public class Trace {
 	}
 
 	private List<Element> getAllElements() {
-//		HashSet<Element> elements = new HashSet<>(connections.size()*2);
-//		connections.forEach(c -> {
-//			elements.addAll(c.getSourceElements());
-//			elements.addAll(c.getTargetElements());
-//		});
-		return ElementFactory.getInstance().getAllElementsByName();
+		return ElementFactory.getInstance().getAllElements();
 	}
 
 	/**
 	 * 
 	 * @return
 	 */
-	public String toStringMatrixText() {
+	public String generateMatrixText() {
 		ArrayList<String> eltsNames = new ArrayList<>(getAllElements().size());
 		int max = 0;
 		for (Element c : getAllElements()) 
@@ -103,12 +98,9 @@ public class Trace {
 		
 		int n = (""+eltsNames.size()).length(); 
 		
-		
 		String res = "  " + missingSpaces("", max)+" ";
 		for (int i = 0; i < eltsNames.size(); i++) 
 			res += " "+ Trace.padLeftZeros(""+i, n)  + " ";
-		
-		
 		
 		String res2 = "";
 		int i = 0;
@@ -118,6 +110,7 @@ public class Trace {
 				res2 += (e2.connectsByName(e)?" x ":"   ") + "";
 			res2 += "\n";
 		}
+		
 		return res + "\n" + res2 ;
 	}
 	
@@ -125,7 +118,7 @@ public class Trace {
 	 * 
 	 * @return
 	 */
-	public String toStringMatrixHTML() {
+	public String generateMatrixHTML() {
 		boolean printEletNames = true;
 		
 		String res = "\t<tr>\n\t\t<th></th>\n";
@@ -146,7 +139,6 @@ public class Trace {
 						res2 += type + ", ";
 					if(res2.endsWith(", "))
 						res2 = res2.substring(0, res2.length()-2);
-					
 				}
 				res2 += "</td>\n";
 			}
@@ -188,7 +180,7 @@ public class Trace {
 	 * @param format
 	 * @return
 	 */
-	public String toStringSysML(FormatForPrintingMetadatas format) {
+	public String generateSysML(FormatForPrintingMetadatas format) {
 		String res = "";
 		for (Connection c : connections) {
 			String sources = "";
@@ -216,10 +208,6 @@ public class Trace {
 			for (String tt : c.getTracetypes()) {
 				metaTracetype2 += "  @TraceType { tracetype = \""+tt+"\";}\n";
 			}
-			
-			
-//	        @ConfidenceTracing { confidence = 0.95; } 
-//	        @TraceType {tracetype = "typeA";}
 	    
 			switch (format) {
 			case WITH_AEROBASE:

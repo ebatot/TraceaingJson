@@ -215,7 +215,7 @@ public class Connection extends TracingElement {
 		return res += prefix + "}";
 	}
 	
-	public String toStringJSon() {
+	public String generateD3JSon() {
 		double confidenceValue  = DEFAULT_CONFIDENCE;
 		try {
 			confidenceValue = getConfidenceValue();
@@ -235,7 +235,7 @@ public class Connection extends TracingElement {
 		return res;
 	}
 	
-	public String toStringJSonMultiEnds() {
+	public String generateTraceaJSon() {
 		double confidenceValue  = DEFAULT_CONFIDENCE;
 		try {
 			confidenceValue = getConfidenceValue();
@@ -250,14 +250,19 @@ public class Connection extends TracingElement {
 		for (Element e : getSourceElements()) 
 			targets += "{ \"id\": \""+e.getID() + "\"}, ";
 		targets = "[" + targets.substring(0, targets.length()-2) + "]";
-		
+
+		String types = "";
+		for (String t : getTracetypes()) 
+			types += "\"" + t + "\", ";
+		types = "[" + types.substring(0, types.length()-2) + "]";
+
 		String res = "{ "
-				+ "\"id\": \""+ID+"\", "
-				+ "\"name\": \""+effectiveName  +"\", "
-				+ "\"type\": \""+getFirstTracetype() +"\", "
-				+ "\"sources\": "+sources  +", "
-				+ "\"targets\": "+targets  +", "
-				+ "\"confidence\": "+confidenceValue+""
+				+ "\"id\": \"" + ID + "\", "
+				+ "\"name\": \"" + effectiveName +"\", "
+				+ "\"types\": " + types +", "
+				+ "\"sources\": " + sources + ", " 
+				+ "\"targets\": " + targets + ", "
+				+ "\"confidence\": " + confidenceValue + ""
 				+ "}";
 		return res;
 	}

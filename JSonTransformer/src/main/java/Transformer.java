@@ -40,26 +40,30 @@ public class Transformer {
 		String fileOut_sysml_name = 	(String)configuration[3];
 		String fileOut_json_name = 	(String)configuration[4];
 		String fileOut_html_name = 	(String)configuration[5];
-		String output_style = 	(String)configuration[6];
+		String fileOut_tracea_name = 	(String)configuration[6];
+		String output_style = 	(String)configuration[7];
 		
 		
 		boolean out_sysml = output_style.contains("s");
 		boolean out_html = output_style.contains("h");
 		boolean out_json = output_style.contains("j");
+		boolean out_tracea = output_style.contains("t");
 		
 		System.out.println("\nConfiguration: "+configuration[0]);
 		System.out.println("  Model file:     " + fileIn_name);
 		System.out.println("  Tracetype type: " + tracetypesType);
-		System.out.println("  Output: '"+output_style+"' (available are 'jsh')");
+		System.out.println("  Output: '"+output_style+"' (available are 'jsht')");
 		if(out_sysml)
-			System.out.println("    sysml: " + fileOut_sysml_name );
+			System.out.println("    sysml:  " + fileOut_sysml_name );
 		if(out_json)
-			System.out.println("    json:  " + fileOut_json_name );
+			System.out.println("    json:   " + fileOut_json_name );
 		if(out_html)
-			System.out.println("    html:  " + fileOut_html_name );
+			System.out.println("    html:   " + fileOut_html_name );
+		if(out_tracea)
+			System.out.println("    tracea: " + fileOut_tracea_name );
 		System.out.println();
 		
-		File fileOut_lne = null, fileOut_sml = null, fileOut_html = null;
+		File fileOut_lne = null, fileOut_sml = null, fileOut_html = null, fileOut_tracea = null;
 		System.out.println("* Check file names...");
 		if(out_sysml)
 			fileOut_sml = checkOutFileName(fileOut_sysml_name);
@@ -67,6 +71,8 @@ public class Transformer {
 			fileOut_lne = checkOutFileName(fileOut_json_name);
 		if(out_html)
 			fileOut_html = checkOutFileName(fileOut_html_name);
+		if(out_tracea)
+			fileOut_tracea = checkOutFileName(fileOut_tracea_name);
 		
 		/*
 		 * Initialization
@@ -98,7 +104,7 @@ public class Transformer {
 			boolean success = true;
 			try {
 				FileWriter fw = new FileWriter(fileOut_lne);
-				String t_string = t.toStringJSonD3();
+				String t_string = t.generateD3JSon();
 				fw.write(t_string);
 				fw.close();
 			} catch (IOException e) {
@@ -116,7 +122,7 @@ public class Transformer {
 			System.out.println("* Transforming the trace to SysMLv2...");
 			FileWriter fw = new FileWriter(fileOut_sml);
 			// TODO Option to chose the type of SysML print : Aerobase, separated, metas only.
-			fw.write(t.toStringSysML(FormatForPrintingMetadatas.SEPARATED));
+			fw.write(t.generateSysML(FormatForPrintingMetadatas.SEPARATED));
 			fw.close();
 			System.out.println("Done. Trace SysMLv2 stored in '" + fileOut_sml.getAbsolutePath() + "'.");
 		}
@@ -124,9 +130,17 @@ public class Transformer {
 		if (out_html) {
 			System.out.println("* Transforming the trace to HTML matrix table...");
 			FileWriter fw2 = new FileWriter(fileOut_html);
-			fw2.write(t.toStringMatrixHTML());
+			fw2.write(t.generateMatrixHTML());
 			fw2.close();
 			System.out.println("Done. Trace matrix in HTML stored in '" + fileOut_html.getAbsolutePath() + "'.");
+		}
+		
+		if (out_tracea) {
+			System.out.println("* Writing the trace as a Tracea JSon persistence artefact...");
+			FileWriter fw2 = new FileWriter(fileOut_tracea);
+			fw2.write(t.generateTraceaJSon());
+			fw2.close();
+			System.out.println("Done. Tracea-JSon model stored in '" + fileOut_tracea.getAbsolutePath() + "'.");
 		}
 		
 		System.out.println("\nExit successful!");
@@ -137,7 +151,7 @@ public class Transformer {
 		Options options = configureOptions();
 		CommandLineParser parser = new DefaultParser();
 		CommandLine commandLine;
-		String confName = "", imf = null, osf = null, ojf = null, ohf = null;
+		String confName = "", imf = null, osf = null, ojf = null, ohf = null, otf = null;
 		String output = "s";
 		TraceTypesEncoding tt = ConnectionFactory.TraceTypesEncoding.STRING;
 		boolean run = true;
@@ -194,6 +208,13 @@ public class Transformer {
 				ohf = JSonTransformer.convertNameTo(imf, "html");
 			}
 			
+			if (commandLine.hasOption(O_OUTPUT_TRACEA_FILE)) {
+				otf = commandLine.getOptionValue(O_OUTPUT_TRACEA_FILE);
+			} else {
+				System.out.println("No output Tracea file specified. Default: 'input-model-filename'_out.tracea.html");
+				otf = JSonTransformer.convertNameTo(imf, "tracea.json");
+			}
+			
 			if (commandLine.hasOption(O_OUTPUT_OPTION)) {
 				String output_tmp = commandLine.getOptionValue(O_OUTPUT_OPTION).toLowerCase();
 				output = "";
@@ -203,6 +224,8 @@ public class Transformer {
 					output = "s";
 				else if ( output.equalsIgnoreCase("html"))
 					output = "h";
+				else if ( output.equalsIgnoreCase("tracea"))
+					output = "t";
 				else {
 					if (output_tmp.contains("j"))
 						output += "j";
@@ -210,6 +233,8 @@ public class Transformer {
 						output += "h";
 					if (output_tmp.contains("s"))
 						output += "s";
+					if (output_tmp.contains("t"))
+						output += "t";
 				}
 				if(output.isEmpty()) {
 					System.out.println("Output is empty, default is: 's'");
@@ -230,7 +255,7 @@ public class Transformer {
 		if (!run) {
 			System.out.println("Something went wrong :(\nExit.");
 		} else {
-			return new Object[] { confName, imf, tt, osf, ojf, ohf, output };
+			return new Object[] { confName, imf, tt, osf, ojf, ohf, otf, output };
 		}
 		return null;
 	}
@@ -295,6 +320,7 @@ public class Transformer {
 	static String O_OUTPUT_SYSML_FILE = "osf";
 	static String O_OUTPUT_JSON_FILE = "ojf";
 	static String O_OUTPUT_HTML_FILE = "ohf";
+	static String O_OUTPUT_TRACEA_FILE = "otf";
 	static String O_CONFIGURATION_NAME = "cn";
 	static String O_OUTPUT_OPTION = "o";
 
@@ -349,10 +375,18 @@ public class Transformer {
 		outputHTMLFileOption.setArgs(1);
 
 		// Output file for HTML
+		Option outputTraceaFileOption = OptionBuilder.create(O_OUTPUT_TRACEA_FILE);
+		outputTraceaFileOption.setLongOpt("output-tracea-file");
+		outputTraceaFileOption.setArgName("output-tracea-file");
+		outputTraceaFileOption.setDescription("use <output-tracea-file>. (defaults use 'input-model-file'_out.tracea.json)");
+		outputTraceaFileOption.setType(String.class);
+		outputTraceaFileOption.setArgs(1);
+		
+		// Output file for HTML
 		Option outputOption = OptionBuilder.create(O_OUTPUT_OPTION);
 		outputOption.setLongOpt("output");
 		outputOption.setArgName("output");
-		outputOption.setDescription("use <output>. 'jsh' j:json, s:sysml, h:html (default is 'j': only JSon written in file.)");
+		outputOption.setDescription("use <output>. 'jsh' j:json, s:sysml, h:html, t:tracea (default is 'j': only JSon written in file.)");
 		outputOption.setType(String.class);
 		outputOption.setArgs(1);
 
@@ -361,6 +395,8 @@ public class Transformer {
 		options.addOption(traceTypeKindOption);
 		options.addOption(outputSysmlFileOption);
 		options.addOption(outputJSonFileOption);
+		options.addOption(outputHTMLFileOption);
+		options.addOption(outputTraceaFileOption);
 		options.addOption(outputOption);
 		return options;
 	}
