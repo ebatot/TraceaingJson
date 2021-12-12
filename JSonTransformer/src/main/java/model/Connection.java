@@ -230,7 +230,6 @@ public class Connection extends TracingElement {
 				+ "\"confidence\": "+confidenceValue*100+","
 				//D3 parameter
 				+ "\"group\": "+ConnectionFactory.getGroup(this)+""
-				
 				+ "}";
 		return res;
 	}
@@ -259,6 +258,7 @@ public class Connection extends TracingElement {
 		String res = "{ "
 				+ "\"id\": \"" + ID + "\", "
 				+ "\"name\": \"" + effectiveName +"\", "
+				+ "\"qualifiedName\": \"" + qualifiedName  + "\", "
 				+ "\"types\": " + types +", "
 				+ "\"sources\": " + sources + ", " 
 				+ "\"targets\": " + targets + ", "

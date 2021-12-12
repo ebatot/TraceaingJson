@@ -81,7 +81,7 @@ public class Element extends TracingElement {
 		return sysmlType;
 	}
 
-	public String toStringJSon() {
+	public String generateJSon() {
 		String res = "{ "
 				+ "\"id\": \"" 	 + ID    + "\", "
 				+ "\"name\": \"" + name  + "\", "
@@ -89,6 +89,15 @@ public class Element extends TracingElement {
 				//D3 parameter
 				+ "\"size\": 100,"
 				+ "\"group\": "+ElementFactory.getGroup(this)+""
+				+ "}";
+		return res ;
+	}
+	
+	public String generateTraceaJSon() {
+		String res = "{ "
+				+ "\"id\": \"" 	 + ID    + "\", "
+				+ "\"name\": \"" + name  + "\", "
+				+ "\"type\": \"" + sysmlType  + "\""
 				+ "}";
 		return res ;
 	}

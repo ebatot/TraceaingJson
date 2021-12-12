@@ -42,7 +42,7 @@ public class Trace {
 
 		String nodes = "\"nodes\": [\n";
 		for (Element e : elements) {
-			nodes +=  "  "+e.toStringJSon() + ",\n";
+			nodes +=  "  "+e.generateJSon() + ",\n";
 		}
 		nodes = nodes.substring(0, nodes.length() - 2) +" \n]";
 		
@@ -61,7 +61,7 @@ public class Trace {
 
 		String nodes = "\"nodes\": [\n";
 		for (Element e : elements) {
-			nodes +=  "  "+e.toStringJSon() + ",\n";
+			nodes +=  "  "+e.generateTraceaJSon() + ",\n";
 		}
 		nodes = nodes.substring(0, nodes.length() - 2) +" \n]";
 		
