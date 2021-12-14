@@ -34,3 +34,7 @@ This project offres to take a SysMLv2 model written in JSon as input. It then ex
 * Output style (jsh)
 * Tracetype encoding
 
+## License
+
+JSonTransformer is licensed under [EPL 2.0](https://www.eclipse.org/legal/epl-v20.html).
+
