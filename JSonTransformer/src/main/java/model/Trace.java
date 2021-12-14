@@ -1,3 +1,32 @@
+/*****************************************************************************
+
+* Copyright (c) 2015, 2018 CEA LIST, Edouard Batot
+
+*
+
+* All rights reserved. This program and the accompanying materials
+
+* are made available under the terms of the Eclipse Public License 2.0
+
+* which accompanies this distribution, and is available at
+
+* https://www.eclipse.org/legal/epl-2.0/
+
+*
+
+* SPDX-License-Identifier: EPL-2.0
+
+*
+
+* Contributors:
+
+* CEA LIST - Initial API and implementation
+
+* Edouard Batot (UOC SOM) ebatot@uoc.edu 
+
+*****************************************************************************/
+
+
 package model;
 
 import java.util.ArrayList;
@@ -42,7 +71,7 @@ public class Trace {
 
 		String nodes = "\"nodes\": [\n";
 		for (Element e : elements) {
-			nodes +=  "  "+e.toStringJSon() + ",\n";
+			nodes +=  "  "+e.generateJSon() + ",\n";
 		}
 		nodes = nodes.substring(0, nodes.length() - 2) +" \n]";
 		
@@ -61,7 +90,7 @@ public class Trace {
 
 		String nodes = "\"nodes\": [\n";
 		for (Element e : elements) {
-			nodes +=  "  "+e.toStringJSon() + ",\n";
+			nodes +=  "  "+e.generateTraceaJSon() + ",\n";
 		}
 		nodes = nodes.substring(0, nodes.length() - 2) +" \n]";
 		
